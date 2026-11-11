@@ -1585,21 +1585,27 @@ def t_list(s, B, D):
 
 
 def t_quotes(s, B, D):
-    """発言の引用：話し手（肩書き・名前）と発言を、カードではなく引用符と細い線で組む."""
+    """発言の要旨：話し手（肩書き・名前）と、報道による発言の要旨を細い線で組む。
+    実在の人物の言葉を合成音声で「本人の発言」のように見せない（TikTok の AI 生成コンテンツ規定で違反になった）：
+    引用符は使わず、見出しの下に「※ ○○の報道による発言の要旨。読み上げは合成音声」と必ず出す。via＝報道元（省略時は場面の source）."""
     qs = s["quotes"]
     n = len(qs)
     starts = list(B[-n:]) if len(B) >= n else [0.3 + i * (D - 1) / n for i in range(n)]
-    parts = [kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px")]
+    via = s.get("via") or s.get("source", "")
+    parts = [kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px"),
+             f'<div class="qnote" style="top:516px">※ {esc(via)}の報道による発言の要旨です。読み上げは合成音声です。</div>']
+    y = 516 + (36 if len(via) < 14 else 70) + 40
     for i, q in enumerate(qs):
         t = max(0.35, starts[i] + 0.05)
-        y = 500 + i * 330
-        parts.append(f'<div class="qt" style="top:{y}px;--t:{t:.2f}s"><div class="qm">“</div>'
+        parts.append(f'<div class="qt" style="top:{y}px;--t:{t:.2f}s">'
                      f'<div class="qwho"><b>{esc(q["who"])}</b>{esc(q.get("role", ""))}</div>'
                      f'<div class="qtx">{esc(q["text"])}</div></div>')
+        lines = -(-len(q["text"]) // 15)          # 1行およそ15字（50px・幅796px）
+        y += 46 + lines * 71 + 64
     css = """
+.qnote{position:absolute;left:96px;right:96px;font-size:24px;color:var(--sub);font-weight:700;letter-spacing:.02em;line-height:1.45;opacity:0;animation:qin .5s .3s both}
 .qt{position:absolute;left:96px;right:150px;padding-left:34px;border-left:4px solid var(--blue);animation:qin .55s var(--t) cubic-bezier(.2,.8,.2,1) both}
 @keyframes qin{0%{opacity:0;transform:translateX(80px);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
-.qm{position:absolute;right:0;top:-40px;font-size:200px;line-height:1;color:var(--pale);font-weight:900;z-index:-1}
 .qwho{font-size:28px;color:var(--sub);font-weight:700;letter-spacing:.06em;display:flex;gap:14px;align-items:baseline}
 .qwho b{color:var(--blue);font-size:30px}
 .qtx{font-size:50px;font-weight:700;line-height:1.42;letter-spacing:-.01em;margin-top:14px}

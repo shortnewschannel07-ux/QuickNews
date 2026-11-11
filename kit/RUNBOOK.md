@@ -73,6 +73,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
 
 出典：{媒体名、発表元}
 音声：VOICEVOX:冥鳴ひまり
+ナレーションは合成音声です。内容は報道各社の記事にもとづいています。
 
 #時事 #ニュース #就活 #時事問題 #{話題のタグ1〜3} #QuickNews
 ```
@@ -102,6 +103,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
    - 各ニュースは WebFetch で記事本文を開き、数字・固有名詞・日付・対象範囲を本文で確認する。可能なら2つ目の媒体や公式発表（省庁・企業）でも確認する。NHK、共同通信（地方紙の配信記事も可）、時事、日経、各社・各省の公式発表を優先する。
    - 本文で確認できない事実は書かない。続報待ちの速報は避ける。自殺・性犯罪・残虐な事件の詳細は扱わない。政治は事実だけを中立に書く。
    - 発言の引用は記事の要旨にとどめ、話し手の肩書きに「（要旨）」と添える。
+   - **実在の人物の発言を、合成音声で本人が話しているように聞かせない**（2026-11-11、G7の動画が TikTok の「AI生成コンテンツ」規定違反で削除された）。ナレーションは必ず伝聞の形にする：「◯◯（媒体）によると、ドイツの外相は、〜と指摘しました」「〜という考えを示しました」。「 」で囲んだ一人称の直接話法や、本人になりきった言い回しは使わない。
 3. **台本を書く**（1本ずつ。`kit/script_example.json` と同じ形）
    - 上位の項目：channel "Quick News"、tagline "1日1分で社会がわかる"、date_label（例 "2026.11.10 TUE"）、voice {file "1.vvm", id 14, name "冥鳴ひまり", intonation 1.15, pause 0.2}、speed 1.15、min_seconds 61、max_seconds 89、title、cover。
    - **構成の目安（合計62〜70秒）**
@@ -110,7 +112,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
      3. 用語（約6秒）：`term`。加盟国などがあれば members で地図に光らせる。
      4. 背景・ほかの論点（約8秒）：`nodes`（3つ。ナレーションの1文ごとに1つずつ出る）。
      5. 本題・次の焦点（約9秒）：見出しで再フックする。
-     6. 各国・各者の見方（約13秒）：`quotes`。
+     6. 各国・各者の見方（約13秒）：`quotes`。画面には引用符なしで要旨を出し、見出しの下に「※ ◯◯の報道による発言の要旨です。読み上げは合成音声です。」が自動で入る（`via` に報道元。省略時は source）。ナレーションは上の伝聞の形。
      7. ここだけ押さえる（約7秒）：`list` の3行。
      8. 締め（約4秒）：`morph` の logo（tagline「1日1分で社会がわかる」、cta「フォローして毎朝の習慣に」、ナレーション「フォローして、毎朝の習慣に。」）。
    - 内容が足りなくて61秒に届かないときは、間延びさせずに、事実の背景・関係者の発言・数字の比較などの中身を足す（エンジンは最後の手段として話す速さを落とし、締めを延ばす）。
@@ -130,7 +132,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
     - getBrandSettings でブランド（Quick News、blogId 8023514、時間帯 Asia/Tokyo）を確認する。
     - createScheduledPost で予約する。
       - date/publicationDate：当日 07:00 / 12:00 / 20:00（日本時間）。すでに過ぎた時刻なら、その日の次の枠か、15分後にする。
-      - providers：tiktok、youtube、instagram。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
+      - providers：tiktok、youtube、instagram。ただし **2026-12-11 までは、戦争・武力紛争・テロが主題の本は TikTok に出さず**、youtube と instagram だけにする（AI生成コンテンツ規定の違反が重なるとアカウントが制限されるため）。TikTok で削除された動画は、TikTok に再投稿しない。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
       - youtubeData：{title, type "short", privacy "public", tags, category "NEWS_POLITICS", madeForKids false, isAiGeneratedContent false}
       - tiktokData：{privacyOption "PUBLIC_TO_EVERYONE", title（見出し）, isAigc true, disableComment false, disableDuet false, disableStitch false, autoAddMusic false}
       - instagramData：{type "REEL", showReelOnFeed true, isAiGenerated true}
