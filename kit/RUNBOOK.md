@@ -3,7 +3,7 @@
 **視聴者**：就活・試験勉強・ビジネスのために時事に詳しくなりたいが、ショート動画ばかり見てしまいニュースを読めていない人。
 **トーン**：信頼できる、落ち着いた、簡潔。煽らない。キャラクターは出さない。
 **形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**必ず61秒以上**（収益化の条件。上限の目安は89秒）。
-**配信**：TikTok と YouTube ショート（Metricool で予約投稿）。
+**配信**：TikTok、YouTube ショート、Instagram リール（Metricool で予約投稿）。
 
 制作キット（エンジン・準備スクリプト・台本見本・表紙ツール・公開スクリプト）は公開リポジトリの `kit/` にある：
 https://github.com/shortnewschannel07-ux/QuickNews
@@ -130,9 +130,10 @@ https://github.com/shortnewschannel07-ux/QuickNews
     - getBrandSettings でブランド（Quick News、blogId 8023514、時間帯 Asia/Tokyo）を確認する。
     - createScheduledPost で予約する。
       - date/publicationDate：当日 07:00 / 12:00 / 20:00（日本時間）。すでに過ぎた時刻なら、その日の次の枠か、15分後にする。
-      - providers：tiktok と youtube。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
+      - providers：tiktok、youtube、instagram。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
       - youtubeData：{title, type "short", privacy "public", tags, category "NEWS_POLITICS", madeForKids false, isAiGeneratedContent false}
       - tiktokData：{privacyOption "PUBLIC_TO_EVERYONE", title（見出し）, isAigc true, disableComment false, disableDuet false, disableStitch false, autoAddMusic false}
+      - instagramData：{type "REEL", showReelOnFeed true, isAiGenerated true}
       - draft false、autoPublish true。
     - VIDEO_THUMBNAIL_NOT_APPLICABLE で断られたら、videoThumbnailUrl を外して同じ内容で予約し直す。
     - 予約に失敗したら、理由を1行添えて、動画・表紙・キャプションを届ける（ユーザーが手で投稿できるように）。
