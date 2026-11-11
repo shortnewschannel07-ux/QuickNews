@@ -80,6 +80,8 @@ https://github.com/shortnewschannel07-ux/QuickNews
 - 冒頭の1行は、毎回この紹介文で固定する（アカウントの宣伝）。
 - YouTube のタイトルは「{見出し}｜{要点}」の形で、末尾に「 #Shorts」を付ける。全体で60字前後まで。
 
+- **SNS の上部表示を避ける**（2026-11-11）：Instagram リール・TikTok は画面の上 約240px に「リール」やタブが重なる。ロゴ（上端 248px）から下に組むよう、ヘッダーを150px、本文の舞台（.cam）を120px下げてある。台本側で上部に要素を足さないこと。新しい場面を作るときも、上から 400px までには何も置かない。
+
 ## C. 表紙（サムネ）の決まり
 - カードや色の帯は使わない。白地・紺の文字・強調は青1色。どぎつい配色にしない。
 - 数字だけを大きくしない。何のニュースかが一読でわかる見出しを大きく出す。
@@ -107,7 +109,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
 3. **台本を書く**（1本ずつ。`kit/script_example.json` と同じ形）
    - 上位の項目：channel "Quick News"、tagline "1日1分で社会がわかる"、date_label（例 "2026.11.10 TUE"）、voice {file "1.vvm", id 14, name "冥鳴ひまり", intonation 1.15, pause 0.2}、speed 1.15、min_seconds 61、max_seconds 89、title、cover。
    - **構成の目安（合計62〜70秒）**
-     1. 冒頭の大見出し（約4秒）：場所があるニュースは `globe`（mode zoom）に `hero: true, hero_size 140前後, map_h 600, hero_top 980, hero_sub（補足1行）, title_at -0.6`。場所がないニュースは `headline`（size 120前後）を使う。
+     1. 冒頭の大見出し（約4秒）：場所があるニュースは `globe`（mode zoom）に `hero: true, hero_size 140前後, map_h 560, hero_top 900, hero_sub（補足1行）, title_at -0.6`。場所がないニュースは `headline`（size 120前後）を使う。
      2. なぜ？・何が起きた？（約9秒）：`morph` の2ショットで、地点の移動と変形を見せる。
      3. 用語（約6秒）：`term`。加盟国などがあれば members で地図に光らせる。
      4. 背景・ほかの論点（約8秒）：`nodes`（3つ。ナレーションの1文ごとに1つずつ出る）。

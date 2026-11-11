@@ -41,8 +41,13 @@ def chunks(text):
     return out
 
 
+# 上部の見出しの位置。Instagram・TikTok の上部の表示（「リール」やタブ）に隠れないよう、ヘッダーごと下げてある
+TITLE_Y = 336   # .cam ごと 120px 下げているので、画面上では 500px
+
+
 def kin(text, start, cls="", step=0.11, style="", tag="div"):
     """キネティック見出し：文節ごとにぼかし→くっきり。\\n で改行."""
+    style = style.replace("top:336px", f"top:{TITLE_Y}px")   # 上部の見出しは TITLE_Y にそろえる
     lines = text.split("\n")
     html, k = [], 0
     for li, line in enumerate(lines):
@@ -73,7 +78,7 @@ font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased;word-break:aut
 @keyframes drift1{to{transform:translate(120px,80px)}}
 @keyframes drift2{to{transform:translate(-100px,-120px)}}
 #scene{position:absolute;inset:0;animation:sin .34s cubic-bezier(.2,.8,.2,1) both, sout .22s ease-in forwards;animation-delay:0s,var(--zout)}
-.cam{position:absolute;left:0;right:0;top:44px;bottom:-44px;transform-origin:50% 42%;animation:cam var(--D) linear both}
+.cam{position:absolute;left:0;right:0;top:164px;bottom:-164px;transform-origin:50% 42%;animation:cam var(--D) linear both}
 @keyframes cam{from{transform:scale(1)}to{transform:scale(1.045)}}
 .dots{position:absolute;inset:-60px;background-image:radial-gradient(#DDE5F1 2px,transparent 2px);background-size:30px 30px;opacity:.55;animation:dots 6s linear infinite}
 @keyframes dots{to{transform:translate(30px,-30px)}}
@@ -81,14 +86,14 @@ font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased;word-break:aut
 @keyframes sout{0%{opacity:1}100%{opacity:0;filter:blur(10px);transform:translateY(-110px)}}
 /* 枠まわり（細いラベルとヘアライン） */
 #frame{position:absolute;inset:0;z-index:50;pointer-events:none}
-.brand{position:absolute;left:94px;top:98px;font-size:76px;font-weight:900;letter-spacing:-.035em;color:var(--ink);line-height:1}
+.brand{position:absolute;left:94px;top:248px;font-size:76px;font-weight:900;letter-spacing:-.035em;color:var(--ink);line-height:1}
 .brand i{font-style:normal;color:var(--blue)}
-.brand small{display:block;font-size:24px;font-weight:500;color:var(--sub);margin-top:10px;letter-spacing:.06em}
-.date{position:absolute;right:150px;top:156px;font-size:24px;color:var(--sub);letter-spacing:.12em}
-.rule{position:absolute;left:96px;right:150px;top:222px;height:2px;background:var(--line)}
+.tagl{position:absolute;right:150px;top:256px;font-size:24px;font-weight:500;color:var(--sub);letter-spacing:.06em;white-space:nowrap}
+.date{position:absolute;right:150px;top:294px;font-size:24px;color:var(--sub);letter-spacing:.12em}
+.rule{position:absolute;left:96px;right:150px;top:348px;height:2px;background:var(--line)}
 .rule b{position:absolute;left:0;top:-1px;height:4px;border-radius:2px;background:var(--blue);animation:prog var(--D) linear both}
 @keyframes prog{from{width:var(--p0)}to{width:var(--p1)}}
-.sect{position:absolute;left:96px;top:246px;font-size:24px;color:var(--blue);letter-spacing:.06em;font-weight:700}
+.sect{position:absolute;left:96px;top:372px;font-size:24px;color:var(--blue);letter-spacing:.06em;font-weight:700}
 .sect span{color:var(--sub);font-weight:500;margin-left:12px;letter-spacing:.08em}
 /* 字幕 */
 #cap{position:absolute;left:96px;right:150px;top:1318px;z-index:40}
@@ -99,7 +104,7 @@ box-shadow:0 18px 50px rgba(20,40,90,.08)}
 @keyframes capin{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:none}}
 .capout{animation:capin .22s ease-out both, capout .01s linear forwards}
 @keyframes capout{to{opacity:0}}
-#src{position:absolute;right:150px;top:246px;font-size:24px;color:var(--sub);letter-spacing:.02em;z-index:51}
+#src{position:absolute;right:150px;top:372px;font-size:24px;color:var(--sub);letter-spacing:.02em;z-index:51}
 /* キネティック見出し */
 .kin{position:absolute;left:96px;right:150px;font-weight:700;line-height:1.28;letter-spacing:-.02em;color:var(--ink)}
 .ph{display:inline-block;white-space:nowrap;animation:ph .55s cubic-bezier(.2,.8,.2,1) both}
@@ -154,7 +159,7 @@ def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white
 background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}}
 .brand{{color:var(--hfg)!important;letter-spacing:-.01em!important}}
 .brand i{{font-style:normal;color:var(--hnews)}}
-.brand small,.date{{color:var(--hsub)!important}}
+.tagl,.date{{color:var(--hsub)!important}}
 .sect{{color:var(--hnews)!important}}.sect span{{color:var(--hsub)!important}}
 .rule{{background:var(--hline)!important}}
 .rule b{{background:var(--hnews)!important}}
@@ -181,7 +186,7 @@ body{{background:{BGC.get(prev_bg, prev_bg)}}}
 </style></head><body>
 <div id="scene"><div class="sbg" style="background:{BGC.get(bg, bg)}"></div>{'' if dark else '<div id="bg"><div class="glow g1"></div><div class="glow g2"></div><div class="dots"></div></div>'}<div class="cam"><div class="cx">{body}</div></div></div>
 <div id="grain"></div>
-<div id="frame"><div class="brand">{esc(a)} <i>{esc(b2)}</i><small>{esc(sc.get("tagline", "1日1分で社会がわかる"))}</small></div>
+<div id="frame"><div class="brand">{esc(a)} <i>{esc(b2)}</i></div><div class="tagl">{esc(sc.get("tagline", "1日1分で社会がわかる"))}</div>
 <div class="date">{esc(sc.get("date_label", ""))}</div><div class="rule"><b></b></div>{sect_html}</div>
 <div id="cap">{''.join(caps)}</div>{src}
 <script>
@@ -203,7 +208,7 @@ LAYOUT_JS = r"""
    ・守れないときは console に [layout] で警告を出す（書き出し側が表示する） */
 window.__layout=function(){
  const cx=document.querySelector('.cx');if(!cx||document.getElementById('qnm'))return;
- const GAP_T=72,GAP_B=56,CAP=1318-44;   // .cam が 44px 下げているので .cx 座標に直す
+ const GAP_T=72,GAP_B=56,CAP=1318-164;   // .cam が 164px 下げているので .cx 座標に直す（ヘッダーを SNS の上部表示から逃がした分 +120）
  const kids=[...cx.children].filter(e=>getComputedStyle(e).position==='absolute');
  // 位置は計算済みの top、高さは要素の高さ（SVG は height 属性）。data-pad は上下の透明な余白（地球儀のフェードなど）
  kids.forEach(e=>{if(e.dataset.t0==null)e.dataset.t0=parseFloat(getComputedStyle(e).top)||0;else e.style.top=e.dataset.t0+'px';
@@ -541,7 +546,7 @@ def t_nodes(s, B, D):
     nodes = s["nodes"]
     n = len(nodes)
     span = max(0.5, (D - 1.0) / n)
-    top0, gap = 470, 230
+    top0, gap = 470, 205
     parts = [kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px")]
     # ナレーションの区切りに合わせて1つずつ出す（最初の文は前置きとみなす）
     if len(B) >= n:
@@ -1594,21 +1599,21 @@ def t_quotes(s, B, D):
     via = s.get("via") or s.get("source", "")
     parts = [kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px"),
              f'<div class="qnote" style="top:516px">※ {esc(via)}の報道による発言の要旨です。読み上げは合成音声です。</div>']
-    y = 516 + (36 if len(via) < 14 else 70) + 40
+    y = 516 + (36 if len(via) < 14 else 70) + 26
     for i, q in enumerate(qs):
         t = max(0.35, starts[i] + 0.05)
         parts.append(f'<div class="qt" style="top:{y}px;--t:{t:.2f}s">'
                      f'<div class="qwho"><b>{esc(q["who"])}</b>{esc(q.get("role", ""))}</div>'
                      f'<div class="qtx">{esc(q["text"])}</div></div>')
-        lines = -(-len(q["text"]) // 15)          # 1行およそ15字（50px・幅796px）
-        y += 46 + lines * 71 + 64
+        lines = -(-len(q["text"]) // 16)          # 1行およそ16字（48px・幅796px）
+        y += 46 + lines * 66 + 38
     css = """
 .qnote{position:absolute;left:96px;right:96px;font-size:24px;color:var(--sub);font-weight:700;letter-spacing:.02em;line-height:1.45;opacity:0;animation:qin .5s .3s both}
 .qt{position:absolute;left:96px;right:150px;padding-left:34px;border-left:4px solid var(--blue);animation:qin .55s var(--t) cubic-bezier(.2,.8,.2,1) both}
 @keyframes qin{0%{opacity:0;transform:translateX(80px);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
 .qwho{font-size:28px;color:var(--sub);font-weight:700;letter-spacing:.06em;display:flex;gap:14px;align-items:baseline}
 .qwho b{color:var(--blue);font-size:30px}
-.qtx{font-size:50px;font-weight:700;line-height:1.42;letter-spacing:-.01em;margin-top:14px}
+.qtx{font-size:48px;font-weight:700;line-height:1.38;letter-spacing:-.01em;margin-top:14px}
 """
     return "".join(parts), css, ""
 
@@ -1704,10 +1709,10 @@ def t_term(s, B, D):
     body = (f'<div class="eyebrow" style="top:352px">{esc(s.get("eyebrow", "今日の用語"))}</div>'
             + kin(s["term"], 0.2, "", 0.12, "top:388px;font-size:138px;line-height:1")
             + f'<div class="rd2">{esc(s.get("reading", ""))}</div>'
-            f'<div class="tmap card"><svg id="tm" width="834" height="452"></svg></div><div class="tchips">{chips}</div>')
+            f'<div class="tmap card"><svg id="tm" width="834" height="340"></svg></div><div class="tchips">{chips}</div>')
     cfg = {"mem": [{"id": m["id"], "at": m["at"], "t": t_m[k]} for k, m in enumerate(mem)],
            "ex": ({"ids": ex["ids"], "t": t_ex} if ex else None)}
-    js = """(function(){const C=%s;const ns='http://www.w3.org/2000/svg',svg=document.getElementById('tm'),W=834,H=452;
+    js = """(function(){const C=%s;const ns='http://www.w3.org/2000/svg',svg=document.getElementById('tm'),W=834,H=340;
  const mk=(tag,a,par)=>{const e=document.createElementNS(ns,tag);for(const k in a)e.setAttribute(k,a[k]);(par||svg).appendChild(e);return e;};
  const feats=topojson.feature(WORLD,WORLD.objects.countries).features.filter(f=>String(f.id)!=='010');
  const proj=d3.geoEqualEarth().rotate([-12,0]).fitExtent([[10,10],[W-10,H-10]],{type:'MultiPoint',coordinates:[[-128,-34],[152,-34],[-128,80],[152,80],[12,82]]});const path=d3.geoPath(proj);
@@ -1729,8 +1734,8 @@ def t_term(s, B, D):
  });})();""" % json.dumps(cfg)
     css = """
 .rd2{position:absolute;left:330px;top:452px;font-size:30px;color:var(--sub);letter-spacing:.12em;animation:fadeup .5s .5s both;white-space:nowrap}
-.tmap{position:absolute;left:96px;top:604px;width:834px;height:452px;overflow:hidden;animation:fadeup .5s .35s both}
-.tchips{position:absolute;left:96px;right:150px;top:1092px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;animation:fadeup .5s .5s both}
+.tmap{position:absolute;left:96px;top:604px;width:834px;height:340px;overflow:hidden;animation:fadeup .5s .35s both}
+.tchips{position:absolute;left:96px;right:150px;top:968px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;animation:fadeup .5s .5s both}
 .tchip{height:58px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--sub);font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;
 animation:tcin .3s var(--t) cubic-bezier(.2,.9,.3,1.3) both}
 .tchip b{font-size:18px;width:28px;height:28px;border-radius:50%;background:var(--pale);color:var(--blue);display:flex;align-items:center;justify-content:center}
@@ -1781,14 +1786,14 @@ def t_scroll(s, B, D):
                   f'<b class="bar" style="background:{fg};width:{52 + (k * 37) % 30}%"></b><b class="bar b2" style="background:{fg};width:{30 + (k * 23) % 25}%"></b>'
                   f'<span class="rail"><em style="background:{fg}"></em><em style="background:{fg}"></em><em style="background:{fg}"></em></span></div>')
     lines = "".join(f'<div class="bl">{"".join(f"<span class=acc2>{esc(t)}</span>" if a_ else esc(t) for t, a_ in chunks(l))}</div>' for l in s["big"].split("\n"))
-    body = (kin(s["title"], -1.0, "", 0.0, "top:336px;font-size:96px") +  # 1コマ目から見出しが読める
+    body = (kin(s["title"], -1.0, "", 0.0, "top:336px;font-size:90px") +  # 1コマ目から見出しが読める
             f'<div class="scw"><div class="sph"><div class="scr2"><div class="feed" id="feed">{cards}</div></div><div class="notch2"></div></div>'
             f'<div class="sct"><div class="sl">{esc(s.get("counter_label", "スクロールした時間"))}</div><div class="sn mono" id="scn">00:00</div>'
             f'<div class="sl2">{esc(s.get("counter_sub", ""))}</div></div></div>'
             f'<div class="bigq" id="bigq"><div class="bqt">{lines}</div></div>')
     css = """
-.scw{position:absolute;left:96px;right:96px;top:600px;height:560px}
-.sph{position:absolute;left:0;top:0;width:316px;height:560px;border-radius:52px;background:#0B1B33;padding:12px;box-shadow:0 30px 80px rgba(20,40,90,.22)}
+.scw{position:absolute;left:96px;right:96px;top:600px;height:440px}
+.sph{position:absolute;left:0;top:0;width:250px;height:440px;border-radius:44px;background:#0B1B33;padding:12px;box-shadow:0 30px 80px rgba(20,40,90,.22)}
 .scr2{position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#0B1B33}
 .notch2{position:absolute;left:50%;top:22px;width:110px;height:26px;margin-left:-55px;background:#0B1B33;border-radius:14px}
 .feed{position:absolute;left:0;top:0;width:100%;height:100%;will-change:transform}
@@ -1796,7 +1801,7 @@ def t_scroll(s, B, D):
 .sv .pl{position:absolute;left:50%;top:44%;margin:-30px 0 0 -18px;border-left:52px solid;border-top:32px solid transparent;border-bottom:32px solid transparent}
 .sv .bar{position:absolute;left:26px;bottom:74px;height:14px;border-radius:7px}.sv .b2{bottom:48px}
 .sv .rail{position:absolute;right:20px;bottom:120px;display:flex;flex-direction:column;gap:22px}.sv .rail em{width:34px;height:34px;border-radius:50%;opacity:.8}
-.sct{position:absolute;left:372px;top:70px;right:0}
+.sct{position:absolute;left:300px;top:60px;right:0}
 .sl{font-size:30px;font-weight:700;color:var(--sub);letter-spacing:.04em}
 .sn{font-size:118px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin-top:8px}
 .sl2{font-size:28px;color:var(--sub);margin-top:6px}

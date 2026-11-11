@@ -377,7 +377,7 @@ window.QNMorph = function (cv, CFG) {
         const c0 = H.k === s.i && H.pos ? H.pos : [s.x, s.y], end = s.next != null ? s.next - 0.3 : 1e9;
         for (let j = 0; j < 4; j++) { const ph = ((t - s.land - 0.15) / 1.2 + j / 4) % 1; if (t > end && ph < 0.3) continue;
           const a = (1 - ph) * smooth(0, 0.1, ph) * (P.dark ? 0.5 : 0.35); c.save(); c.globalAlpha = a; c.strokeStyle = P.dark ? '#FFFFFF' : '#1F5BFF'; c.lineWidth = 4 * (1 - ph) + 1.5;
-          c.beginPath(); c.arc(c0[0], c0[1], 120 + 165 * EO(ph), 0, 2 * Math.PI); c.stroke(); c.restore(); }
+          c.beginPath(); c.arc(c0[0], c0[1], 120 + 145 * EO(ph), 0, 2 * Math.PI); c.stroke(); c.restore(); }
       }
       if (s.visual === 'spark') {
         const u = sparkU(s, t); if (u <= 0) continue;
@@ -403,7 +403,7 @@ window.QNMorph = function (cv, CFG) {
       const P = s.pal;
       if (s.visual === 'spark' && s.number != null) {
         const a = clamp((t - (s.land + 0.1)) / 0.35);
-        drawNumber(c, s.x - 417, s.y - 170, { pre: s.prefix, val: countV(s, t, s.land + 0.12, 0.95), target: s.number, unit: s.unit, dec: s.decimals, sz: 150, colPre: P.ink, colNum: P.num, align: 'left' }, a);
+        drawNumber(c, s.x - 417, s.y - 100, { pre: s.prefix, val: countV(s, t, s.land + 0.12, 0.95), target: s.number, unit: s.unit, dec: s.decimals, sz: 150, colPre: P.ink, colNum: P.num, align: 'left' }, a);
       }
       if (s.visual === 'bars') {
         const g = H.k === s.i && H.st ? H.st.extra.bars || 0 : 0;
@@ -483,7 +483,7 @@ window.QNMorph = function (cv, CFG) {
       const ue = t < s.land ? flightU(t, s.L, s.land) : 1, us = t < s.land ? 0 : EIO(clamp((t - s.land) / 0.34));
       const gap = 150 / Math.hypot(Pk.B[0] - Pk.A[0], Pk.B[1] - Pk.A[1] + 1);
       const e2 = ue - gap * (t < s.land ? 1 : 1 - EIO(clamp((t - s.land) / 0.3))); if (e2 <= us + 0.01) continue;
-      c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.beginPath(); c.rect(0, 310, W, 1200); c.clip(); c.setTransform(K.a, K.b, K.c, K.d, K.e, K.f);
+      c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.beginPath(); c.rect(0, 430, W, 1080); c.clip(); c.setTransform(K.a, K.b, K.c, K.d, K.e, K.f);
       c.strokeStyle = P.ink; c.globalAlpha = P.dark ? 0.75 : 0.6; c.lineWidth = 6 / K.z; c.setLineDash([22, 16]); c.lineDashOffset = -t * 120; c.lineCap = 'round';
       c.beginPath(); for (let j = 0; j <= 80; j++) { const p = qb(Pk.A, Pk.C, Pk.B, lerp(us, e2, j / 80)); j ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]); } c.stroke(); c.restore();
     }

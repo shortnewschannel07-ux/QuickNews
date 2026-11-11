@@ -85,12 +85,12 @@ def t_morph(s, B, D):
         texts.append(f'<div class="mt" style="animation:mtin .01s {(-0.1 if tin < 0 else tin):.2f}s both{out_anim}">{body}</div>')
     has_logo = any(e["visual"] == "logo" for e in ev)
     # 字幕を出す場面は、舞台と見出しを少し上げて字幕の場所をあける（締めのロゴの場面は従来どおり）
-    cfg = {"shots": ev, "first": first, "tg0": s.get("_t0", 0.0), "bpm": 104, "flight": FLIGHT, "cy": 650 if has_logo else 600}
+    cfg = {"shots": ev, "first": first, "tg0": s.get("_t0", 0.0), "bpm": 104, "flight": FLIGHT, "cy": 650 if has_logo else 676}
     if any(e["visual"] == "logo" for e in ev):
         cfg["glyphs"] = _glyphs()
     js = ("(function(){const R=QNMorph(document.getElementById('qnm')," + json.dumps(cfg, ensure_ascii=False) + ");__tick.push(R);"
           "document.querySelectorAll('.mbig .acc').forEach(e=>{if(e.dataset.c)e.style.color=e.dataset.c;});})();")
-    body = f'<canvas id="qnm" width="1080" height="1920"></canvas><div class="mtext" style="top:{1046 if has_logo else 944}px">{"".join(texts)}</div>'
+    body = f'<canvas id="qnm" width="1080" height="1920"></canvas><div class="mtext" style="top:{1046 if has_logo else 1000}px">{"".join(texts)}</div>'
     css = """
 .cam{top:0!important;bottom:0!important;animation:none!important}
 #qnm{position:absolute;left:0;top:0;width:1080px;height:1920px}
@@ -109,6 +109,6 @@ def t_morph(s, B, D):
 """
     if any(e["visual"] == "logo" for e in ev):   # 締め：中央のロゴが組み上がるとき、上の小さなロゴは退く
         tl = [e for e in ev if e["visual"] == "logo"][0]["land"]
-        css += ("#frame .brand{animation:hdout .35s %.2fs cubic-bezier(.5,0,.75,0) forwards}"
+        css += ("#frame .brand,#frame .tagl{animation:hdout .35s %.2fs cubic-bezier(.5,0,.75,0) forwards}"
                 "@keyframes hdout{to{opacity:0;transform:translateY(-24px);filter:blur(6px)}}.cx{animation:none!important}" % (tl + 0.3))
     return body, css, js
