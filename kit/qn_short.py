@@ -1757,10 +1757,60 @@ padding:20px 0;box-shadow:0 16px 40px rgba(31,91,255,.30);animation:fadeup .5s 1
     return body, css, ""
 
 
+
+def t_scroll(s, B, D):
+    """スマホでショート動画を次々スワイプする画面。スワイプはだんだん速くなり、横の時計が回る。
+    2文目の頭でピタッと止まり、オレンジの札（stamp）が付く。宣伝動画の「自分の気づき」用."""
+    tf = (B[1] if len(B) > 1 else D * 0.6) - 0.05
+    cols = [("#0B1B33", "#1F3A7A"), ("#1F5BFF", "#6F95FF"), ("#DCE6FF", "#F4F7FF"), ("#13265A", "#1F5BFF"), ("#E9EEF7", "#C9D6F2"), ("#0B1B33", "#FFB547")]
+    cards = ""
+    for k in range(40):
+        a, b = cols[(k * 5 + 2) % len(cols)]
+        dark = a in ("#0B1B33", "#1F5BFF", "#13265A")
+        fg = "rgba(255,255,255,.85)" if dark else "rgba(11,27,51,.55)"
+        cards += (f'<div class="sv" style="top:{k * 100}%;background:linear-gradient(160deg,{a},{b})">'
+                  f'<i class="pl" style="border-left-color:{fg}"></i>'
+                  f'<b class="bar" style="background:{fg};width:{52 + (k * 37) % 30}%"></b><b class="bar b2" style="background:{fg};width:{30 + (k * 23) % 25}%"></b>'
+                  f'<span class="rail"><em style="background:{fg}"></em><em style="background:{fg}"></em><em style="background:{fg}"></em></span></div>')
+    body = (kin(s["title"], -1.0, "", 0.0, "top:336px;font-size:96px") +  # 1コマ目から見出しが読める
+            f'<div class="scw"><div class="sph"><div class="scr2"><div class="feed" id="feed">{cards}</div></div><div class="notch2"></div></div>'
+            f'<div class="sct"><div class="sl">{esc(s.get("counter_label", "スクロールした時間"))}</div><div class="sn mono" id="scn">00:00</div>'
+            f'<div class="sl2">{esc(s.get("counter_sub", ""))}</div></div>'
+            f'<div class="stamp" id="stamp">{esc(s["stamp"])}</div></div>')
+    css = """
+.scw{position:absolute;left:96px;right:96px;top:600px;height:560px}
+.sph{position:absolute;left:0;top:0;width:316px;height:560px;border-radius:52px;background:#0B1B33;padding:12px;box-shadow:0 30px 80px rgba(20,40,90,.22)}
+.scr2{position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#0B1B33}
+.notch2{position:absolute;left:50%;top:22px;width:110px;height:26px;margin-left:-55px;background:#0B1B33;border-radius:14px}
+.feed{position:absolute;left:0;top:0;width:100%;height:100%;will-change:transform}
+.sv{position:absolute;left:0;width:100%;height:100%}
+.sv .pl{position:absolute;left:50%;top:44%;margin:-30px 0 0 -18px;border-left:52px solid;border-top:32px solid transparent;border-bottom:32px solid transparent}
+.sv .bar{position:absolute;left:26px;bottom:74px;height:14px;border-radius:7px}.sv .b2{bottom:48px}
+.sv .rail{position:absolute;right:20px;bottom:120px;display:flex;flex-direction:column;gap:22px}.sv .rail em{width:34px;height:34px;border-radius:50%;opacity:.8}
+.sct{position:absolute;left:372px;top:70px;right:0}
+.sl{font-size:30px;font-weight:700;color:var(--sub);letter-spacing:.04em}
+.sn{font-size:118px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin-top:8px}
+.sl2{font-size:28px;color:var(--sub);margin-top:6px}
+.stamp{position:absolute;left:352px;top:360px;padding:18px 34px;border-radius:999px;background:var(--acc,#EA6A12);color:#fff;font-size:46px;font-weight:900;
+letter-spacing:-.01em;white-space:nowrap;opacity:0;box-shadow:0 18px 40px rgba(234,106,18,.35)}
+"""
+    js = """(function(){const tf=%.3f,feed=document.getElementById('feed'),n=document.getElementById('scn'),st=document.getElementById('stamp'),ph=document.querySelector('.sph'),sw=[];
+ let t=0.55,iv=0.62;while(t<tf-0.05&&sw.length<38){sw.push(t);t+=iv;iv=Math.max(0.13,iv*0.8);}
+ const ez=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
+ __tick.push(T=>{const tt=Math.min(T,tf);let k=0;for(const s0 of sw){k+=ez((tt-s0)/0.2);}
+  const jolt=T>tf?Math.exp(-(T-tf)*9)*Math.sin((T-tf)*60)*14:0;
+  feed.style.transform='translateY('+(-k*100)+'%%)';ph.style.transform='translateX('+jolt+'px) rotate('+(jolt*0.08)+'deg)';
+  const sec=Math.round(%d*Math.pow(Math.min(1,tt/tf),2.2));n.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%%60).padStart(2,'0');
+  n.style.color=T>tf?'var(--acc,#EA6A12)':'';
+  const a=T<tf?0:Math.min(1,(T-tf)/0.18),sc=T<tf?0.3:1+0.25*Math.exp(-(T-tf)*10)*Math.cos((T-tf)*30);
+  st.style.opacity=a;st.style.transform='scale('+sc+') rotate(-4deg)';});})();""" % (tf, int(s.get("counter_to", 2832)))
+    return body, css, js
+
 TEMPLATES = {"morph": t_morph, "illus": t_illus, "globe": t_globe, "flash": t_flash, "route": t_route, "summary": t_summary, "hook_q": t_hook_q, "wall": t_wall, "stat": t_stat, "nodes": t_nodes, "headline": t_headline,
              "list": t_list, "quotes": t_quotes, "phone": t_phone, "zoom": t_zoom, "term": t_term, "end": t_end}
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "morph3.py"), encoding="utf-8").read(), globals())
 TEMPLATES["morph"] = t_morph
+TEMPLATES["scroll"] = t_scroll
 
 
 # ───────── 音 ─────────
@@ -2069,6 +2119,7 @@ def main():
             put(fx, sfx_soft_hit(), t0 + 0.6)
         t0 += p["D"]
     music = bgm(total)
+    music = np.pad(music, (0, max(0, len(voice) - len(music))))[:len(voice)]  # 丸めで1サンプルずれることがある
     env = np.convolve(np.abs(voice) > 0.02, np.ones(int(SR * 0.25)) / (SR * 0.25), mode="same")
     music *= (1 - 0.5 * np.clip(env * 3, 0, 1))
     mix = voice * 0.95 + fx + music
