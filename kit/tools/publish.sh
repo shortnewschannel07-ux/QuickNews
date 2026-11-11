@@ -1,0 +1,15 @@
+#!/bin/bash
+# 動画と表紙を公開リポジトリ（media/日付/）に置き、Metricool に渡す URL を表示する。
+# 使い方: bash publish.sh リポジトリの場所 YYYY-MM-DD スラッグ 動画.mp4 表紙.jpg
+set -e
+R="$1"; DAY="$2"; SLUG="$3"; MP4="$4"; JPG="$5"
+mkdir -p "$R/media/$DAY"
+cp "$MP4" "$R/media/$DAY/$SLUG.mp4"; cp "$JPG" "$R/media/$DAY/${SLUG}_cover.jpg"
+cd "$R"
+git fetch -q origin main && git rebase -q origin/main || true
+git add "media/$DAY" media/posted.json 2>/dev/null || git add "media/$DAY"
+git -c user.name="shortnewschannel07-ux" -c user.email="shortnewschannel07-ux@users.noreply.github.com" commit -q -m "投稿用の動画と表紙 $DAY $SLUG"
+git push -q origin main
+B="https://raw.githubusercontent.com/shortnewschannel07-ux/QuickNews/main/media/$DAY"
+echo "VIDEO_URL=$B/$SLUG.mp4"
+echo "COVER_URL=$B/${SLUG}_cover.jpg"
