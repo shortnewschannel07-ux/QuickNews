@@ -155,3 +155,12 @@ https://github.com/shortnewschannel07-ux/QuickNews
 | headline | 左揃えの大見出し＋補足＋大きな数字 | eyebrow, text, sub, big, big_label, size |
 | illus | 決まった図解（status_quo / market / breach） | illus, title |
 | stat / wall / phone / zoom / flash / route | そのほかの表現 | qn_short.py の各関数を参照 |
+
+## F. 離脱分析と改善提案（毎週の別タスク）
+- 書き出すと、動画の隣に `*.timeline.json`（場面ごとの開始・終了秒、ナレーションの各文の開始秒）ができる。publish.sh が `media/日付/スラッグ.timeline.json` として一緒に置く。
+- 秒単位の視聴維持率カーブは、Metricool・Windsor のどちらからも取れない。取れる指標で「どこで離れたか」を推定する。
+  - Instagram リール：retention（平均視聴割合）、averageWatchTime、reelsSkipRate（最初の3秒で離れた割合）、reelsViewRate。
+  - TikTok：fullVideoWatchedRate（完走率）、平均視聴時間（totalTimeWatched ÷ views）、流入元（おすすめ・フォロー・検索）。
+  - YouTube（Windsor の youtube）：average_view_duration、average_view_percentage、views と engaged_views の比（冒頭で離れた割合の目安）。
+  - 平均視聴時間を timeline.json に当てはめ、その秒数で流れている場面・文を「離脱の山」とみなす。本数が増えたら、場面の種類・順番・冒頭の見出しの型・ジャンル・投稿時刻ごとに比べる。
+- 提案は採用されるまで、スキル・RUNBOOK・台本の型を書き換えない。

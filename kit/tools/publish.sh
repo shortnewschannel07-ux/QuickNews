@@ -5,6 +5,8 @@ set -e
 R="$1"; DAY="$2"; SLUG="$3"; MP4="$4"; JPG="$5"
 mkdir -p "$R/media/$DAY"
 cp "$MP4" "$R/media/$DAY/$SLUG.mp4"; cp "$JPG" "$R/media/$DAY/${SLUG}_cover.jpg"
+# 場面の時刻表（qn_short.py が動画の隣に書き出す）も置く。投稿後の離脱分析で使う
+T="${MP4%.mp4}.timeline.json"; [ -f "$T" ] && cp "$T" "$R/media/$DAY/$SLUG.timeline.json"
 cd "$R"
 git fetch -q origin main && git rebase -q origin/main || true
 git add "media/$DAY" media/posted.json 2>/dev/null || git add "media/$DAY"

@@ -1950,6 +1950,17 @@ def main():
         p_["prev_bg"] = prev
         prev = s_["shots"][-1].get("bg", "white") if s_["type"] == "morph" else p_["bg"]
     print(f"scenes={len(P)} duration={total:.1f}s speed={speed:.2f}", flush=True)
+    # 場面ごとの開始・終了秒とナレーションを残す（投稿後の離脱分析で、平均視聴時間がどの場面に当たるかを見るため）
+    tl, tc = [], 0.0
+    for i, p_ in enumerate(P):
+        s_ = p_["s"]
+        tl.append({"i": i, "type": s_["type"], "start": round(tc, 2), "end": round(tc + p_["D"], 2),
+                   "title": s_.get("title") or s_.get("term") or (s_["shots"][0].get("big", "") if s_["type"] == "morph" else ""),
+                   "beats": [{"t": round(tc + bt, 2), "say": b.get("say", "")} for bt, b in zip(p_["B"], s_["beats"])]})
+        tc += p_["D"]
+    json.dump({"duration": round(total, 2), "scenes": tl}, open(os.path.splitext(out)[0] + ".timeline.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    if os.environ.get("QN_TIMELINE_ONLY"):
+        return
     work = tempfile.mkdtemp(prefix="qn_")
     with sync_playwright() as pw:
         try:
