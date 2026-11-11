@@ -123,6 +123,23 @@ for _k, _v in C.items():
 
 
 def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white', prev_bg='white'):
+    # 動きの密度（density）：1 が従来。2 以上で、ナレーションの各文と、その間（1.1秒ごと）にカメラが「寄る・振る」を入れ、
+    # 強調語にマーカーを引く。30秒版（2026-11-12〜）は 2.5。変形アニメーション（morph）はもともと動きが多いので対象外
+    dens = float(sc.get("density", 1))
+    dense_js = ""
+    if dens > 1 and not sc.get("_nodense"):
+        step = 2.75 / dens        # density 2.5 → 1.1秒に1回は何かが動く
+        dense_js = ("(function(){const B=%s,D=%.3f,ST=%.3f,cam=document.querySelector('.cam');if(!cam)return;cam.style.animation='none';"
+                    "const E=[];B.forEach((b,i)=>{E.push(b);const nx=i+1<B.length?B[i+1]:D-0.25;for(let x=b+ST;x<nx-0.45;x+=ST)E.push(x);});"
+                    "const tg=j=>j<=0?0:((j%%2)?1:-1)*(12+((j*7)%%3)*5);"
+                    "__tick.push(t=>{let k=0,n=0;for(const e of E){if(t>=e){n++;const u=t-e;k+=0.03*Math.exp(-u*6)*(1-Math.exp(-u*45));}}"
+                    "const last=n?E[n-1]:0,w=Math.min(1,(t-last)/0.4),ez=1-Math.pow(1-w,3),px=tg(n-1)+(tg(n)-tg(n-1))*ez;"
+                    "cam.style.transform='translate('+px.toFixed(2)+'px,'+(-k*120).toFixed(2)+'px) scale('+(1+0.07*t/D+k).toFixed(4)+') rotate('+(px*0.025).toFixed(3)+'deg)';});})();"
+                    % (json.dumps([round(x, 3) for x in B]), D, step))
+        css = css + """
+.kin .ph.acc{background:linear-gradient(rgba(255,181,71,.42),rgba(255,181,71,.42)) 0 92%/0% 26% no-repeat;animation:ph .55s cubic-bezier(.2,.8,.2,1) both,mk .95s cubic-bezier(.6,0,.2,1) both}
+@keyframes mk{0%,40%{background-size:0% 26%}100%{background-size:100% 26%}}
+"""
     caps = []
     beats = [] if (sc.get('_nocap')) else beats
     for i, b in enumerate(beats):
@@ -195,6 +212,7 @@ window.__tick=[];
 {GLOBE_JS}
 {LAYOUT_JS}
 {js}
+{dense_js}
 window.seek=function(t){{if(!window.__pd){{window.__pd=1;__palt(document);__layout();}}document.getAnimations().forEach(a=>{{a.pause();a.currentTime=t*1000;}});for(const f of __tick)f(t);}};
 </script></body></html>"""
 
@@ -1987,7 +2005,7 @@ def build_html(sc, p, t0, total, first):
         s = dict(s, _first=first, _t0=t0)
     body, css, js = TEMPLATES[s["type"]](s, p["B"], p["D"])
     is_logo = s["type"] == "morph" and any(sh.get("logo") for sh in s.get("shots", []))
-    sc2 = dict(sc, _nocap=s.get("captions") is False or is_logo)
+    sc2 = dict(sc, _nocap=s.get("captions") is False or is_logo, _nodense=s["type"] in ("morph", "scroll"))
     return shell(body, css, js, p["D"], t0 / total, (t0 + p["D"]) / total, sc2, s["beats"], p["B"], s.get("source", ""), p["sect"], first,
                  p.get("bg", "white"), p.get("prev_bg", "white"))
 
@@ -1997,8 +2015,8 @@ def main():
     stills = sys.argv[sys.argv.index("--stills") + 1] if "--stills" in sys.argv else None
     sc = json.load(open(script, encoding="utf-8"))
     speed = sc.get("speed", 1.15)
-    limit = sc.get("max_seconds", 89)
-    floor = sc.get("min_seconds", 61)      # 収益化の条件（1分以上）を必ず満たす
+    limit = sc.get("max_seconds", 32)
+    floor = sc.get("min_seconds", 28)      # 2026-11-12 から1本30秒（28〜32秒）
     for _ in range(5):
         P = plan(sc, speed)
         total = sum(p["D"] for p in P)

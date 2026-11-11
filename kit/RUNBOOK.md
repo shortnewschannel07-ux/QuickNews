@@ -2,8 +2,8 @@
 
 **視聴者**：就活・試験勉強・ビジネスのために時事に詳しくなりたいが、ショート動画ばかり見てしまいニュースを読めていない人。
 **トーン**：信頼できる、落ち着いた、簡潔。煽らない。キャラクターは出さない。
-**形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**必ず61秒以上**（収益化の条件。上限の目安は89秒）。
-**配信**：TikTok、YouTube ショート、Instagram リール（Metricool で予約投稿）。
+**形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**1本30秒**（28〜32秒。2026-11-12 に61秒以上から変更）。**動きの密度は従来の2.5倍以上**（台本に `density: 2.5`。1秒あたりの動きの切り替わり＝場面転換・要素の登場・カメラの寄りと振り・変形の回数を、61秒版の約0.48回から約1.4回へ）。
+**配信**：YouTube ショート、Instagram リール（Metricool で予約投稿）。**TikTok は一時停止中**（2026-11-12〜。ユーザーが再開と言うまで、providers に tiktok を入れない）。
 
 制作キット（エンジン・準備スクリプト・台本見本・表紙ツール・公開スクリプト）は公開リポジトリの `kit/` にある：
 https://github.com/shortnewschannel07-ux/QuickNews
@@ -107,17 +107,18 @@ https://github.com/shortnewschannel07-ux/QuickNews
    - 発言の引用は記事の要旨にとどめ、話し手の肩書きに「（要旨）」と添える。
    - **実在の人物の発言を、合成音声で本人が話しているように聞かせない**（2026-11-11、G7の動画が TikTok の「AI生成コンテンツ」規定違反で削除された）。ナレーションは必ず伝聞の形にする：「◯◯（媒体）によると、ドイツの外相は、〜と指摘しました」「〜という考えを示しました」。「 」で囲んだ一人称の直接話法や、本人になりきった言い回しは使わない。
 3. **台本を書く**（1本ずつ。`kit/script_example.json` と同じ形）
-   - 上位の項目：channel "Quick News"、tagline "1日1分で社会がわかる"、date_label（例 "2026.11.10 TUE"）、voice {file "1.vvm", id 14, name "冥鳴ひまり", intonation 1.15, pause 0.2}、speed 1.15、min_seconds 61、max_seconds 89、title、cover。
+   - 上位の項目：channel "Quick News"、tagline "1日1分で社会がわかる"、date_label（例 "2026.11.10 TUE"）、voice {file "1.vvm", id 14, name "冥鳴ひまり", intonation 1.15, pause 0.2}、speed 1.25、min_seconds 28、max_seconds 32、density 2.5、title、cover。
    - **構成の目安（合計62〜70秒）**
-     1. 冒頭の大見出し（約4秒）：場所があるニュースは `globe`（mode zoom）に `hero: true, hero_size 140前後, map_h 560, hero_top 900, hero_sub（補足1行）, title_at -0.6`。場所がないニュースは `headline`（size 120前後）を使う。
-     2. なぜ？・何が起きた？（約9秒）：`morph` の2ショットで、地点の移動と変形を見せる。
-     3. 用語（約6秒）：`term`。加盟国などがあれば members で地図に光らせる。
-     4. 背景・ほかの論点（約8秒）：`nodes`（3つ。ナレーションの1文ごとに1つずつ出る）。
-     5. 本題・次の焦点（約9秒）：見出しで再フックする。
-     6. 各国・各者の見方（約13秒）：`quotes`。画面には引用符なしで要旨を出し、見出しの下に「※ ◯◯の報道による発言の要旨です。読み上げは合成音声です。」が自動で入る（`via` に報道元。省略時は source）。ナレーションは上の伝聞の形。
-     7. ここだけ押さえる（約7秒）：`list` の3行。
-     8. 締め（約4秒）：`morph` の logo（tagline「1日1分で社会がわかる」、cta「フォローして毎朝の習慣に」、ナレーション「フォローして、毎朝の習慣に。」）。
-   - 内容が足りなくて61秒に届かないときは、間延びさせずに、事実の背景・関係者の発言・数字の比較などの中身を足す（エンジンは最後の手段として話す速さを落とし、締めを延ばす）。
+     30秒版の構成（ナレーションは1文を短く、数字と結論から。1場面2〜4秒。）
+     1. 冒頭の大見出し（約3.5秒）：場所があるニュースは `globe`（mode zoom）に `hero: true, hero_size 140前後, map_h 560, hero_top 900, hero_sub（補足1行）, title_at -0.6`。場所がないニュースは `headline`（size 120前後）を使う。
+     2. なぜ？・何が起きた？（約6.5秒）：`morph` の2ショット（1ショット約3秒）で、地点の移動と変形を見せる。
+     3. 用語（約3秒）：`term`。ナレーションは1文（「◯◯は、〜のことです。」）。
+     4. 数字・背景（約7秒）：`nodes`（3つ。短い1文ごとに1つずつ出る）。
+     5. 相手・影響（約4.5秒）：`list` の2〜3行、または見出しで再フック。
+     （30秒版では `quotes` は原則使わない。使うときは約5秒で1人だけ。）`quotes` の決まり：画面には引用符なしで要旨を出し、見出しの下に「※ ◯◯の報道による発言の要旨です。読み上げは合成音声です。」が自動で入る（`via` に報道元。省略時は source）。ナレーションは上の伝聞の形。
+     6. ここだけ押さえる（約3.5秒）：`list` の3行。ナレーションは次の焦点の1文だけ。
+     7. 締め（約2.4秒、min_dur 2.4）：`morph` の logo（tagline「1日1分で社会がわかる」、cta「フォローして毎朝の習慣に」、ナレーション「フォローして、毎朝の習慣に。」）。
+   - 32秒を超えるときは、文を削る（エンジンは話す速さを上げて収めるが、1.35倍を超えると聞き取りにくい）。28秒に届かないときは、数字の比較などを1文足す。
    - 各場面に `story: 1`、`section`（例「国際｜外交」）、`source`（媒体名）を付ける。
    - 見出しは、青にする語を前後に半角スペースを入れて `*…*` で囲む（例 " *電力* を支え続ける"）。改行は `\n`。1行は8〜9文字まで。
    - 1場面のナレーション（beats）は1〜3文。ニュースの言葉で、です・ます調。
@@ -126,15 +127,15 @@ https://github.com/shortnewschannel07-ux/QuickNews
    - かなの「は」は「わ」と読まれないことがあるので、助詞の前の語は漢字のままにする。
 4. **読みを確認する**：各 beat の reading（なければ say）を `pyopenjtalk.g2p(text, kana=True)` にかけ、誤読があれば reading を直す。
 5. **見本フレームで確認する**：`python3 peek.py 台本.json 場面番号 秒,秒 出力.jpg` で、各場面の後半を見る。見出しの改行、はみ出し、重なり、余白、左端のずれを確かめ、問題があれば台本を直す。
-6. **書き出す**：`python3 qn_short.py 台本.json news_YYYYMMDD_N.mp4`（1本10〜15分）。記録の `layout` 行に `[layout] … 超過` がないこと、`duration` が61秒以上であることを確かめる。
-7. **確認する**：ffprobe で長さ（61秒以上）と解像度（1080x1920）を見る。1コマ目に大見出しが出ていること。数字・固有名詞を取材メモと照らし合わせる。
+6. **書き出す**：`python3 qn_short.py 台本.json news_YYYYMMDD_N.mp4`（1本10〜15分）。記録の `layout` 行に `[layout] … 超過` がないこと、`duration` が28〜32秒であることを確かめる。
+7. **確認する**：ffprobe で長さ（28〜32秒）と解像度（1080x1920）を見る。1コマ目に大見出しが出ていること。数字・固有名詞を取材メモと照らし合わせる。
 8. **表紙を作る**：`python3 tools/cover.py 台本.json cover.png` → JPEG（品質92）に変換する。
 9. **置く**：`bash repo/kit/tools/publish.sh repo YYYY-MM-DD スラッグ 動画.mp4 表紙.jpg` で、動画と表紙を公開リポジトリに置く。表示された VIDEO_URL と COVER_URL を使う。`repo/media/posted.json` に {date, slot, title, topic} を追記して、同じスクリプトで一緒にコミットする。
 10. **予約投稿**（Metricool）
     - getBrandSettings でブランド（Quick News、blogId 8023514、時間帯 Asia/Tokyo）を確認する。
     - createScheduledPost で予約する。
       - date/publicationDate：当日 07:00 / 12:00 / 20:00（日本時間）。すでに過ぎた時刻なら、その日の次の枠か、15分後にする。
-      - providers：tiktok、youtube、instagram。ただし **2026-12-11 までは、戦争・武力紛争・テロが主題の本は TikTok に出さず**、youtube と instagram だけにする（AI生成コンテンツ規定の違反が重なるとアカウントが制限されるため）。TikTok で削除された動画は、TikTok に再投稿しない。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
+      - providers：youtube、instagram（**TikTok は一時停止中**。再開後も、2026-12-11 までは戦争・武力紛争・テロが主題の本は TikTok に出さない。TikTok で削除された動画は TikTok に再投稿しない）。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
       - youtubeData：{title, type "short", privacy "public", tags, category "NEWS_POLITICS", madeForKids false, isAiGeneratedContent false}
       - tiktokData：{privacyOption "PUBLIC_TO_EVERYONE", title（見出し）, isAigc true, disableComment false, disableDuet false, disableStitch false, autoAddMusic false}
       - instagramData：{type "REEL", showReelOnFeed true, isAiGenerated true}
