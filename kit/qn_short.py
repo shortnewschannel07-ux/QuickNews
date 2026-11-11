@@ -1759,8 +1759,10 @@ padding:20px 0;box-shadow:0 16px 40px rgba(31,91,255,.30);animation:fadeup .5s 1
 
 
 def t_scroll(s, B, D):
-    """スマホでショート動画を次々スワイプする画面。スワイプはだんだん速くなり、横の時計が回る。
-    2文目の頭でピタッと止まり、オレンジの札（stamp）が付く。宣伝動画の「自分の気づき」用."""
+    """（台本に "end_bg": "navy" を付けると、次の場面が紺から始まる）
+    スマホでショート動画を次々スワイプする画面。スワイプはだんだん速くなり、横の時計が回る。
+    2文目の頭でピタッと止まり、紺の面がスマホから画面いっぱいに広がって、問いかけ（big）が特大の文字で出る。
+    宣伝動画の「自分の気づき」用。big は \n で改行、*…* がオレンジ."""
     tf = (B[1] if len(B) > 1 else D * 0.6) - 0.05
     cols = [("#0B1B33", "#1F3A7A"), ("#1F5BFF", "#6F95FF"), ("#DCE6FF", "#F4F7FF"), ("#13265A", "#1F5BFF"), ("#E9EEF7", "#C9D6F2"), ("#0B1B33", "#FFB547")]
     cards = ""
@@ -1772,11 +1774,12 @@ def t_scroll(s, B, D):
                   f'<i class="pl" style="border-left-color:{fg}"></i>'
                   f'<b class="bar" style="background:{fg};width:{52 + (k * 37) % 30}%"></b><b class="bar b2" style="background:{fg};width:{30 + (k * 23) % 25}%"></b>'
                   f'<span class="rail"><em style="background:{fg}"></em><em style="background:{fg}"></em><em style="background:{fg}"></em></span></div>')
+    lines = "".join(f'<div class="bl">{"".join(f"<span class=acc2>{esc(t)}</span>" if a_ else esc(t) for t, a_ in chunks(l))}</div>' for l in s["big"].split("\n"))
     body = (kin(s["title"], -1.0, "", 0.0, "top:336px;font-size:96px") +  # 1コマ目から見出しが読める
             f'<div class="scw"><div class="sph"><div class="scr2"><div class="feed" id="feed">{cards}</div></div><div class="notch2"></div></div>'
             f'<div class="sct"><div class="sl">{esc(s.get("counter_label", "スクロールした時間"))}</div><div class="sn mono" id="scn">00:00</div>'
-            f'<div class="sl2">{esc(s.get("counter_sub", ""))}</div></div>'
-            f'<div class="stamp" id="stamp">{esc(s["stamp"])}</div></div>')
+            f'<div class="sl2">{esc(s.get("counter_sub", ""))}</div></div></div>'
+            f'<div class="bigq" id="bigq"><div class="bqt">{lines}</div></div>')
     css = """
 .scw{position:absolute;left:96px;right:96px;top:600px;height:560px}
 .sph{position:absolute;left:0;top:0;width:316px;height:560px;border-radius:52px;background:#0B1B33;padding:12px;box-shadow:0 30px 80px rgba(20,40,90,.22)}
@@ -1791,19 +1794,24 @@ def t_scroll(s, B, D):
 .sl{font-size:30px;font-weight:700;color:var(--sub);letter-spacing:.04em}
 .sn{font-size:118px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin-top:8px}
 .sl2{font-size:28px;color:var(--sub);margin-top:6px}
-.stamp{position:absolute;left:352px;top:360px;padding:18px 34px;border-radius:999px;background:var(--acc,#EA6A12);color:#fff;font-size:46px;font-weight:900;
-letter-spacing:-.01em;white-space:nowrap;opacity:0;box-shadow:0 18px 40px rgba(234,106,18,.35)}
+.bigq{position:fixed;left:-200px;top:-400px;width:1480px;height:2800px;background:#0B1B33;z-index:50;clip-path:circle(0px at 450px 1300px)}
+.bqt{position:absolute;left:296px;top:1010px;width:888px}
+.bl{font-size:124px;font-weight:900;line-height:1.22;letter-spacing:-.04em;color:#fff;white-space:nowrap;opacity:0}
+.bl .acc2{color:#FFB547}
 """
-    js = """(function(){const tf=%.3f,feed=document.getElementById('feed'),n=document.getElementById('scn'),st=document.getElementById('stamp'),ph=document.querySelector('.sph'),sw=[];
+    js = """(function(){const tf=%.3f,feed=document.getElementById('feed'),n=document.getElementById('scn'),ph=document.querySelector('.sph'),bq=document.getElementById('bigq'),bl=[...bq.querySelectorAll('.bl')],sw=[];
  let t=0.55,iv=0.62;while(t<tf-0.05&&sw.length<38){sw.push(t);t+=iv;iv=Math.max(0.13,iv*0.8);}
  const ez=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
+ // 紺の面の中心はスマホの中央（.bigq の座標）。スマホの実際の位置から求める
+ const r=ph.getBoundingClientRect(),q=bq.getBoundingClientRect(),cxp=r.left+r.width/2-q.left,cyp=r.top+r.height/2-q.top;
  __tick.push(T=>{const tt=Math.min(T,tf);let k=0;for(const s0 of sw){k+=ez((tt-s0)/0.2);}
-  const jolt=T>tf?Math.exp(-(T-tf)*9)*Math.sin((T-tf)*60)*14:0;
-  feed.style.transform='translateY('+(-k*100)+'%%)';ph.style.transform='translateX('+jolt+'px) rotate('+(jolt*0.08)+'deg)';
+  feed.style.transform='translateY('+(-k*100)+'%%)';
   const sec=Math.round(%d*Math.pow(Math.min(1,tt/tf),2.2));n.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%%60).padStart(2,'0');
-  n.style.color=T>tf?'var(--acc,#EA6A12)':'';
-  const a=T<tf?0:Math.min(1,(T-tf)/0.18),sc=T<tf?0.3:1+0.25*Math.exp(-(T-tf)*10)*Math.cos((T-tf)*30);
-  st.style.opacity=a;st.style.transform='scale('+sc+') rotate(-4deg)';});})();""" % (tf, int(s.get("counter_to", 2832)))
+  const u=T<tf?0:(T-tf);bq.style.clipPath='circle('+(u<=0?0:2400*ez(u/0.32))+'px at '+cxp+'px '+cyp+'px)';
+  const sh=u>0?Math.exp(-u*7)*Math.sin(u*55)*10:0;
+  const R=document.documentElement.style,dk=u>0.1;R.setProperty('--hfg',dk?'#fff':'#0B1B33');R.setProperty('--hnews',dk?'#7FA2FF':'#1F5BFF');R.setProperty('--hsub',dk?'rgba(255,255,255,.72)':'#5B6B82');R.setProperty('--hline',dk?'rgba(255,255,255,.28)':'#DCE3EE');
+  bl.forEach((e,i)=>{const v=u-0.12-i*0.09,a=v<=0?0:Math.min(1,v/0.12),sc=v<=0?1.6:1+0.6*Math.exp(-v*14);
+   e.style.opacity=a;e.style.transform='translate('+sh+'px,0) scale('+sc+')';e.style.transformOrigin='0 50%%';});});})();""" % (tf, int(s.get("counter_to", 2832)))
     return body, css, js
 
 TEMPLATES = {"morph": t_morph, "illus": t_illus, "globe": t_globe, "flash": t_flash, "route": t_route, "summary": t_summary, "hook_q": t_hook_q, "wall": t_wall, "stat": t_stat, "nodes": t_nodes, "headline": t_headline,
@@ -1998,7 +2006,7 @@ def main():
         s_ = p_["s"]
         p_["bg"] = s_["shots"][0].get("bg", "white") if s_["type"] == "morph" else s_.get("bg", "white")
         p_["prev_bg"] = prev
-        prev = s_["shots"][-1].get("bg", "white") if s_["type"] == "morph" else p_["bg"]
+        prev = s_["shots"][-1].get("bg", "white") if s_["type"] == "morph" else s_.get("end_bg", p_["bg"])  # end_bg：場面の終わりで背景が変わるとき（scroll の紺の面など）
     print(f"scenes={len(P)} duration={total:.1f}s speed={speed:.2f}", flush=True)
     # 場面ごとの開始・終了秒とナレーションを残す（投稿後の離脱分析で、平均視聴時間がどの場面に当たるかを見るため）
     tl, tc = [], 0.0
