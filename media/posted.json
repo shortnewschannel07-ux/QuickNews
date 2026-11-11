@@ -12,7 +12,8 @@
   "topic": "G7外相会合（パリ）",
   "slug": "g7",
   "time": "18:00",
-  "metricool_id": 424043414
+  "metricool_id": 424043414,
+  "note": "TikTok で AI生成コンテンツ規定違反により削除（異議申し立て中）"
  },
  {
   "date": "2026-11-11",
@@ -21,7 +22,8 @@
   "topic": "中国の貿易黒字（1〜10月）",
   "slug": "china_trade",
   "time": "20:00",
-  "metricool_id": 424043429
+  "metricool_id": 424043429,
+  "note": "TikTok は外して YouTube・Instagram のみ（20:00）"
  },
  {
   "date": "2026-11-12",
@@ -31,5 +33,15 @@
   "topic": "アカウントの宣伝動画（ニュースではない）",
   "slug": "promo20",
   "metricool_id": 424071327
+ },
+ {
+  "date": "2026-11-11",
+  "slot": "2-tiktok",
+  "time": "21:30",
+  "title": "中国の貿易黒字1兆ドル超え｜2年連続、AI需要で輸出拡大",
+  "topic": "中国の貿易黒字（1〜10月）",
+  "slug": "china_trade_tt",
+  "metricool_id": 424279231,
+  "note": "TikTok のみ。発言を伝聞＋要旨の注記に直した版"
  }
 ]
