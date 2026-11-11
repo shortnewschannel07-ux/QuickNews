@@ -77,7 +77,7 @@ body{{width:1080px;height:1920px;background:#F7F8FA;font-family:"Yu Gothic","Zen
 window.layoutMap=function(top,bottom){{const M={mp};if(!M)return;const svg=document.getElementById('map'),W=1080,H=bottom-top;svg.style.top=top+'px';svg.setAttribute('width',W);svg.setAttribute('height',H);
  const ns='http://www.w3.org/2000/svg',mk=(t,a)=>{{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e;}};
  const fs=topojson.feature(WORLD,WORLD.objects.countries).features;
- const lo=Math.min(M.from[0],M.to[0])-14,hi=Math.max(M.from[0],M.to[0])+14,la=Math.min(M.from[1],M.to[1])-9,ha=Math.max(M.from[1],M.to[1])+8;
+ const lo=Math.min(M.from[0],M.to[0])-14,hi=Math.max(M.from[0],M.to[0])+14,la=Math.min(M.from[1],M.to[1])-(M.pad_s||9),ha=Math.max(M.from[1],M.to[1])+8;
  const proj=d3.geoConicConformal().rotate([-(lo+hi)/2,0]).parallels([40,60]).fitExtent([[96,10],[W-96,H-10]],{{type:'MultiPoint',coordinates:[[lo,la],[hi,la],[lo,ha],[hi,ha]]}});
  const path=d3.geoPath(proj);const hl=new Set((M.hl||[]).map(x=>String(x).padStart(3,'0')));
  const defs=mk('defs',{{}});defs.innerHTML='<linearGradient id="fd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".12" stop-color="#fff" stop-opacity="1"/><stop offset=".88" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><mask id="mk"><rect width="'+W+'" height="'+H+'" fill="url(#fd)"/></mask>';
@@ -86,7 +86,7 @@ window.layoutMap=function(top,bottom){{const M={mp};if(!M)return;const svg=docum
  const a=proj(M.from),b=proj(M.to),mx=(a[0]+b[0])/2,my=Math.min(a[1],b[1])-120;
  ad('path',{{d:`M${{a[0]}},${{a[1]}} Q${{mx}},${{my}} ${{b[0]}},${{b[1]}}`,fill:'none',stroke:'#0B1B33','stroke-width':4,'stroke-dasharray':'12 12','stroke-linecap':'round'}});
  [[a,M.from_label,'#0B1B33'],[b,M.to_label,'#1F5BFF']].forEach(([p,l,c])=>{{ad('circle',{{cx:p[0],cy:p[1],r:16,fill:'#fff',stroke:c,'stroke-width':6}});
-  const t=ad('text',{{x:p[0],y:p[1]-34,'text-anchor':'middle','font-size':34,'font-weight':700,fill:'#0B1B33','font-family':'Zen Kaku Gothic New'}});t.textContent=l;}});
+  const t=ad('text',{{x:p[0],y:p[1]-34,'text-anchor':'middle','font-size':34,'font-weight':700,fill:'#0B1B33','font-family':'Zen Kaku Gothic New',stroke:'#F7F8FA','stroke-width':9,'paint-order':'stroke','stroke-linejoin':'round'}});t.textContent=l;}});
 }};
 </script></body></html>"""
 fn = os.path.join(os.path.dirname(os.path.abspath(out)), "_cover.html")
