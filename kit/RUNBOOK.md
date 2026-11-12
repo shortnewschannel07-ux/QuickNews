@@ -2,7 +2,8 @@
 
 **視聴者**：就活・試験勉強・ビジネスのために時事に詳しくなりたいが、ショート動画ばかり見てしまいニュースを読めていない人。
 **トーン**：信頼できる、落ち着いた、簡潔。煽らない。キャラクターは出さない。
-**形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**1本30秒**（28〜32秒。2026-11-12 に61秒以上から変更）。**動きの密度は従来の2.5倍以上**（台本に `density: 2.5`。1秒あたりの動きの切り替わり＝場面転換・要素の登場・カメラの寄りと振り・変形の回数を、61秒版の約0.48回から約1.4回へ）。
+**形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**1本30秒**（28〜32秒。2026-11-12 に61秒以上から変更）。**画像のアニメーションを従来の2.5倍以上に**（台本に `density: 2.5`）。カメラを動かして増やすのではなく、場面の中の絵を動かす：`nodes`・`list`・`term` には必ず `icon`（動くピクト）を付け、変形アニメーション（morph）を2ショット以上入れる。**横にスライドする動きは使わない**（見にくい。2026-11-12 ユーザー指定）。
+  - 使えるピクト（picto.py）：up（増加）、down（減少）、chip（半導体・IT）、car（自動車）、ship（貿易・輸出入）、factory（工場・生産）、scale（貿易収支・均衡・法）、coin（ドル・お金）、yen（円）、gov（政府・国会）、people（国民・有権者）、person、doc（法律・文書）、bolt（電力・エネルギー）、globe（世界・外交）、vote（選挙）、gavel（裁判・判決）、alert（注意・危機）、home（住宅・生活）、calendar（日程・次の焦点）、key（要点・理由）、card、chart（統計）、plane（交通・観光）、phone（通信）、mail。内容に合うものを選ぶ（同じ場面で同じピクトを重ねない）。
 **配信**：YouTube ショート、Instagram リール（Metricool で予約投稿）。**TikTok は一時停止中**（2026-11-12〜。ユーザーが再開と言うまで、providers に tiktok を入れない）。
 
 制作キット（エンジン・準備スクリプト・台本見本・表紙ツール・公開スクリプト）は公開リポジトリの `kit/` にある：
@@ -130,7 +131,7 @@ https://github.com/shortnewschannel07-ux/QuickNews
 6. **書き出す**：`python3 qn_short.py 台本.json news_YYYYMMDD_N.mp4`（1本10〜15分）。記録の `layout` 行に `[layout] … 超過` がないこと、`duration` が28〜32秒であることを確かめる。
 7. **確認する**：ffprobe で長さ（28〜32秒）と解像度（1080x1920）を見る。1コマ目に大見出しが出ていること。数字・固有名詞を取材メモと照らし合わせる。
 8. **表紙を作る**：`python3 tools/cover.py 台本.json cover.png` → JPEG（品質92）に変換する。
-9. **置く**：`bash repo/kit/tools/publish.sh repo YYYY-MM-DD スラッグ 動画.mp4 表紙.jpg` で、動画と表紙を公開リポジトリに置く。表示された VIDEO_URL と COVER_URL を使う。`repo/media/posted.json` に {date, slot, title, topic} を追記して、同じスクリプトで一緒にコミットする。
+9. **置く**：`bash repo/kit/tools/publish.sh repo YYYY-MM-DD スラッグ 動画.mp4 表紙.jpg 台本.json` で、動画・表紙・台本を公開リポジトリに置く（台本はあとで直して書き出し直すため）。表示された VIDEO_URL と COVER_URL を使う。`repo/media/posted.json` に {date, slot, title, topic} を追記して、同じスクリプトで一緒にコミットする。
 10. **予約投稿**（Metricool）
     - getBrandSettings でブランド（Quick News、blogId 8023514、時間帯 Asia/Tokyo）を確認する。
     - createScheduledPost で予約する。

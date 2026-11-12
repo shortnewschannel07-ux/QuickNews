@@ -41,6 +41,8 @@ def chunks(text):
     return out
 
 
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "picto.py"), encoding="utf-8").read(), globals())
+
 # 上部の見出しの位置。Instagram・TikTok の上部の表示（「リール」やタブ）に隠れないよう、ヘッダーごと下げてある
 TITLE_Y = 336   # .cam ごと 120px 下げているので、画面上では 500px
 
@@ -123,19 +125,13 @@ for _k, _v in C.items():
 
 
 def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white', prev_bg='white'):
-    # 動きの密度（density）：1 が従来。2 以上で、ナレーションの各文と、その間（1.1秒ごと）にカメラが「寄る・振る」を入れ、
-    # 強調語にマーカーを引く。30秒版（2026-11-12〜）は 2.5。変形アニメーション（morph）はもともと動きが多いので対象外
+    # 画像アニメーションの密度（density）：1 が従来。2 以上で、強調語にマーカーを引く。
+    # 動くピクト（picto.py）は nodes / list / term の icon で出す。30秒版（2026-11-12〜）は 2.5
     dens = float(sc.get("density", 1))
     dense_js = ""
+    css = css + PICTO_CSS
     if dens > 1 and not sc.get("_nodense"):
-        step = 2.75 / dens        # density 2.5 → 1.1秒に1回は何かが動く
-        dense_js = ("(function(){const B=%s,D=%.3f,ST=%.3f,cam=document.querySelector('.cam');if(!cam)return;cam.style.animation='none';"
-                    "const E=[];B.forEach((b,i)=>{E.push(b);const nx=i+1<B.length?B[i+1]:D-0.25;for(let x=b+ST;x<nx-0.45;x+=ST)E.push(x);});"
-                    "const tg=j=>j<=0?0:((j%%2)?1:-1)*(12+((j*7)%%3)*5);"
-                    "__tick.push(t=>{let k=0,n=0;for(const e of E){if(t>=e){n++;const u=t-e;k+=0.03*Math.exp(-u*6)*(1-Math.exp(-u*45));}}"
-                    "const last=n?E[n-1]:0,w=Math.min(1,(t-last)/0.4),ez=1-Math.pow(1-w,3),px=tg(n-1)+(tg(n)-tg(n-1))*ez;"
-                    "cam.style.transform='translate('+px.toFixed(2)+'px,'+(-k*120).toFixed(2)+'px) scale('+(1+0.07*t/D+k).toFixed(4)+') rotate('+(px*0.025).toFixed(3)+'deg)';});})();"
-                    % (json.dumps([round(x, 3) for x in B]), D, step))
+        # 2026-11-12：カメラの横振り・寄りは「見にくい」とのことでやめた。密度は場面の中の画像（動くピクト・変形）で出す
         css = css + """
 .kin .ph.acc{background:linear-gradient(rgba(255,181,71,.42),rgba(255,181,71,.42)) 0 92%/0% 26% no-repeat;animation:ph .55s cubic-bezier(.2,.8,.2,1) both,mk .95s cubic-bezier(.6,0,.2,1) both}
 @keyframes mk{0%,40%{background-size:0% 26%}100%{background-size:100% 26%}}
@@ -577,8 +573,10 @@ def t_nodes(s, B, D):
         t = ts[i]
         y = top0 + i * gap
         last = i == n - 1
-        parts.append(f'<div class="node card{" last" if last else ""}" style="top:{y}px;animation-delay:{t:.2f}s">'
-                     f'<div class="nk">{esc(nd["key"])}</div><div class="nv">{esc(nd["value"])}</div></div>')
+        ic = picto(nd.get("icon", ""), 72, t + 0.2, "#fff" if last else "var(--blue)", 2.8)
+        ic = f'<div class="pgc npg" style="--t:{t + 0.08:.2f}s">{ic}</div>' if ic else ""
+        parts.append(f'<div class="node card{" last" if last else ""}{" hasic" if ic else ""}" style="top:{y}px;animation-delay:{t:.2f}s">'
+                     f'<div class="nk">{esc(nd["key"])}</div><div class="nv">{esc(nd["value"])}</div>{ic}</div>')
         if not last:
             parts.append(f'<svg class="abs" style="left:150px;top:{y + 150}px" width="80" height="{gap - 150}">'
                          f'<path class="ln" style="animation-delay:{(t + ts[i + 1]) / 2:.2f}s" d="M20,0 C20,30 60,{gap - 190} 60,{gap - 150}" pathLength="1"/></svg>')
@@ -588,6 +586,7 @@ def t_nodes(s, B, D):
 .node .nv{font-size:44px;font-weight:700;margin-top:4px}
 .node.last{background:var(--blue);border-color:var(--blue)}
 .node.last .nk{color:#CFDBFF}.node.last .nv{color:#fff}
+.node .npg{position:absolute;right:22px;top:17px;width:116px;height:116px}.node.last .pgc{background:rgba(255,255,255,.16)}.node.hasic{padding-right:160px}
 .ln{fill:none;stroke:var(--blue);stroke-width:4;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .5s ease-out forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 """
@@ -1589,7 +1588,7 @@ def t_list(s, B, D):
         t = 0.35 + i * span
         st = r.get("state", "")
         neg = r.get("neg", False)
-        rh.append(f'<div class="row" style="animation-delay:{t:.2f}s"><span class="rli" style="--t:{t + 0.1:.2f}s">{row_icon(r.get("icon", ""))}</span><span class="rl">{esc(r["label"])}</span>'
+        rh.append(f'<div class="row" style="animation-delay:{t:.2f}s"><span class="rli" style="--t:{t + 0.1:.2f}s">{picto(r.get("icon", ""), 52, t + 0.1, "var(--blue)", 3) or row_icon(r.get("icon", ""))}</span><span class="rl">{esc(r["label"])}</span>'
                   f'<span class="pill{" neg" if neg else ""}" style="animation-delay:{t + 0.18:.2f}s">{esc(st)}</span></div>')
     body = (kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px") + f'<div class="tbl card">{"".join(rh)}</div>')
     css = """
@@ -1628,7 +1627,7 @@ def t_quotes(s, B, D):
     css = """
 .qnote{position:absolute;left:96px;right:96px;font-size:24px;color:var(--sub);font-weight:700;letter-spacing:.02em;line-height:1.45;opacity:0;animation:qin .5s .3s both}
 .qt{position:absolute;left:96px;right:150px;padding-left:34px;border-left:4px solid var(--blue);animation:qin .55s var(--t) cubic-bezier(.2,.8,.2,1) both}
-@keyframes qin{0%{opacity:0;transform:translateX(80px);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes qin{0%{opacity:0;transform:translateY(40px);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
 .qwho{font-size:28px;color:var(--sub);font-weight:700;letter-spacing:.06em;display:flex;gap:14px;align-items:baseline}
 .qwho b{color:var(--blue);font-size:30px}
 .qtx{font-size:48px;font-weight:700;line-height:1.38;letter-spacing:-.01em;margin-top:14px}
@@ -1706,8 +1705,10 @@ def t_term(s, B, D):
     mem = s.get("members")
     if not mem:
         body = (f'<div class="eyebrow" style="top:420px">{esc(s.get("eyebrow", "今日の用語"))}</div>'
-                + kin(s["term"], 0.25, "", 0.12, "top:470px;font-size:150px")
-                + f'<div class="rd">{esc(s.get("reading", ""))}</div><div class="df">{esc(s.get("definition", ""))}</div>')
+                + kin(s["term"], 0.25, "", 0.12, "top:470px;font-size:" + ("136px" if s.get("icon") and len(s["term"]) <= 4 else "150px"))
+                + f'<div class="rd">{esc(s.get("reading", ""))}</div><div class="df">{esc(s.get("definition", ""))}</div>'
+                + (f'<div class="pgc" style="--t:.35s;position:absolute;right:110px;top:392px;width:290px;height:290px">{picto(s["icon"], 190, 0.55, "var(--blue)", 2.0)}</div>' if s.get("icon") and len(s["term"]) <= 4 else "")
+                + (f'<div class="pgc" style="--t:.8s;position:absolute;left:96px;top:950px;width:140px;height:140px">{picto(s["icon"], 92, 1.0, "var(--blue)", 2.6)}</div>' if s.get("icon") and len(s["term"]) > 4 else ""))
         css = """
 .rd{position:absolute;left:100px;top:680px;font-size:30px;color:var(--sub);letter-spacing:.14em;animation:fadeup .5s .6s both}
 .df{position:absolute;left:96px;right:150px;top:760px;font-size:42px;line-height:1.7;font-weight:500;padding-top:28px;border-top:2px solid var(--line);animation:fadeup .5s .85s both}

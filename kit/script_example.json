@@ -120,7 +120,8 @@
     {
      "say": "貿易黒字は、輸出が輸入を上回った分のことです。"
     }
-   ]
+   ],
+   "icon": "scale"
   },
   {
    "type": "nodes",
@@ -131,15 +132,18 @@
    "nodes": [
     {
      "key": "輸出全体",
-     "value": "前年同月比 35.2％増"
+     "value": "前年同月比 35.2％増",
+     "icon": "up"
     },
     {
      "key": "半導体",
-     "value": "輸出額 137.1％増"
+     "value": "輸出額 137.1％増",
+     "icon": "chip"
     },
     {
      "key": "自動車",
-     "value": "輸出 37.6％増"
+     "value": "輸出 37.6％増",
+     "icon": "car"
     }
    ],
    "beats": [
@@ -169,12 +173,12 @@
     {
      "label": "対アメリカの黒字",
      "state": "約2665億ドル",
-     "icon": "card"
+     "icon": "ship"
     },
     {
      "label": "対EUの黒字",
      "state": "3100億ドル超",
-     "icon": "card"
+     "icon": "ship"
     }
    ],
    "beats": [
@@ -194,12 +198,12 @@
     {
      "label": "貿易黒字",
      "state": "2年連続 1兆ドル超",
-     "icon": "card"
+     "icon": "coin"
     },
     {
      "label": "伸びた理由",
      "state": "AI需要",
-     "icon": "key"
+     "icon": "chip"
     },
     {
      "label": "次の焦点",
