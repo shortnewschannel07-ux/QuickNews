@@ -1,0 +1,190 @@
+{
+ "direction": "数字そのものが主役なので、冒頭から morph の spark で「160円」を数え上げ、続けて地球儀でニューヨークへ寄る。暮らしへの影響は custom の値札（1ドルの物＝160円）で直感的に見せ、最後に為替介入を用語で押さえる。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.13 FRI",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "円安が進み1ドル＝160円台｜約2か月ぶり、米利上げ観測で",
+ "cover": {
+  "label": "経済｜円相場",
+  "title": "円安が進み\n*1ドル160円台*\n約2か月ぶり",
+  "sub": "なぜ円が売られたのか。\n為替介入はあるのか"
+ },
+ "scenes": [
+  {
+   "type": "morph",
+   "anchor_offset": 0,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "arrow",
+     "visual": "spark",
+     "number": 160,
+     "decimals": 0,
+     "prefix": "1ドル＝",
+     "unit": "円台",
+     "kicker": "外国為替市場",
+     "big": "円安が進み\n *160円台* に"
+    },
+    {
+     "bg": "white",
+     "icon": "globe",
+     "visual": "globe",
+     "target": [
+      -74.0,
+      40.7
+     ],
+     "hl": [
+      "840"
+     ],
+     "pin": "ニューヨーク",
+     "kicker": "きっかけは？",
+     "big": "アメリカの\n *利上げ* 観測"
+    }
+   ],
+   "beats": [
+    {
+     "say": "円相場が一時、1ドル160円台まで下がりました。およそ2か月ぶりです。",
+     "reading": "円相場がいちじ、いちドルひゃくろくじゅうえんだいまで下がりました。およそ、にかげつぶりです。"
+    },
+    {
+     "say": "きっかけは、アメリカの利上げ観測です。",
+     "reading": "きっかけは、アメリカの、利上げ観測です。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜為替",
+   "source": "テレビ朝日／DZHフィナンシャルリサーチ"
+  },
+  {
+   "type": "kw",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "アメリカの物価が予想を上回り、FRBが12月にも利上げするとの見方が強まりました。",
+     "reading": "アメリカの物価が予想を上回り、エフアールビーが、じゅうにがつにも利上げするとの見方が強まりました。",
+     "kw": [
+      "アメリカの物価が予想を上回り",
+      {
+       "t": "FRBが12月にも *利上げ*",
+       "icon": "up"
+      },
+      "との見方が強まりました"
+     ]
+    },
+    {
+     "say": "金利の高いドルを買い、円を売る動きが進みました。",
+     "kw": [
+      "金利の高いドルを買い",
+      {
+       "t": " *円を売る* 動きが進みました",
+       "icon": "yen"
+      }
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜為替",
+   "source": "テレビ朝日／DZHフィナンシャルリサーチ"
+  },
+  {
+   "type": "custom",
+   "title": "私たちへの *影響*",
+   "html": "<div class=\"pw\">\n<div class=\"ptag\" id=\"p1\"><div class=\"pc\">{{picto:coin:96:0.3}}</div><div><div class=\"pt\">アメリカで1ドルの物</div><div class=\"pv\">1<small>ドル</small></div></div></div>\n<div class=\"parrow\" id=\"p2\">▼ 日本円にすると</div>\n<div class=\"ptag hot\" id=\"p3\"><div class=\"pc\">{{picto:yen:96:1.2}}</div><div><div class=\"pt\">1ドル＝160円なら</div><div class=\"pv\"><span id=\"pn\">0</span><small>円</small></div></div></div>\n<div class=\"pnote\" id=\"p4\">円安になるほど、同じ1ドルに多くの円が必要</div>\n</div>",
+   "css": ".pw{position:absolute;left:96px;right:150px;top:520px}\n.ptag{display:flex;align-items:center;gap:30px;margin-bottom:46px;opacity:0}\n.ptag .pc{width:150px;height:150px;border-radius:36px;background:var(--pale);display:flex;align-items:center;justify-content:center;flex:none}\n.ptag .pt{font-size:44px;font-weight:700;color:var(--sub)}\n.ptag .pv{font-size:104px;font-weight:900;color:var(--ink);letter-spacing:-.02em;line-height:1.05}\n.ptag .pv small{font-size:44px;margin-left:6px}\n.ptag.hot .pv{color:var(--blue)}\n.parrow{font-size:40px;font-weight:700;color:#E8831C;margin:-10px 0 36px 180px;opacity:0}\n.pnote{font-size:34px;color:var(--sub);opacity:0}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const E=[...'p1,p2,p3,p4'.split(',')].map(i=>document.getElementById(i)),T=[0.2,0.8,1.1,__B[1]||2.0];\nconst pn=document.getElementById('pn');\n__tick.push(t=>{E.forEach((e,i)=>{const u=ez((t-T[i])/0.35);e.style.opacity=u.toFixed(3);e.style.transform='translateY('+(30*(1-u)).toFixed(1)+'px)';});\npn.textContent=Math.round(160*ez((t-1.3)/0.8));});",
+   "beats": [
+    {
+     "say": "1ドルの物を買うのに、160円が必要になる計算です。",
+     "reading": "いちドルの物を買うのに、ひゃくろくじゅうえんが必要になる計算です。"
+    },
+    {
+     "say": "円安になると、輸入品の値段が上がりやすくなります。",
+     "reading": "えんやすになると、輸入品の値段が上がりやすくなります。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜為替",
+   "source": "テレビ朝日／DZHフィナンシャルリサーチ"
+  },
+  {
+   "type": "term",
+   "term": "為替介入",
+   "reading": "かわせかいにゅう",
+   "eyebrow": "今日の用語",
+   "definition": "政府・日銀が通貨を売買して、為替相場の急な動きを抑えること。",
+   "icon": "gov",
+   "beats": [
+    {
+     "say": "市場では、政府と日銀による為替介入への警戒感が広がっています。",
+     "reading": "市場では、政府と日銀による、かわせかいにゅうへの警戒感が広がっています。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜為替",
+   "source": "テレビ朝日／DZHフィナンシャルリサーチ"
+  },
+  {
+   "type": "list",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "円相場",
+     "state": "一時160円台",
+     "icon": "yen"
+    },
+    {
+     "label": "きっかけ",
+     "state": "米の利上げ観測",
+     "icon": "up"
+    },
+    {
+     "label": "次の焦点",
+     "state": "為替介入",
+     "icon": "calendar"
+    }
+   ],
+   "beats": [
+    {
+     "say": "押さえるのは、この3つです。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜為替",
+   "source": "テレビ朝日／DZHフィナンシャルリサーチ"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
