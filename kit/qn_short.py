@@ -1955,12 +1955,26 @@ def t_kw(s, B, D):
      p.querySelectorAll('.ka').forEach(x=>x.style.setProperty('--mk',(100*ez((e-0.2)/0.4)).toFixed(1)+'%'));});});});})();"""
     return body, css, js
 
+
+def t_custom(s, B, D):
+    """自由演出：台本に html / css / js をそのまま書いて、そのニュースのためだけの場面を作る（2026-11-12〜）。
+    js は __tick.push(t => {...}) で時刻 t（場面の頭からの秒）から絵を決める（毎フレーム同じ t なら同じ絵：Math.random と Date は使わない）。
+    使える値：__B（ナレーション各文の開始秒の配列）、__D（場面の長さ）。picto("名前", 大きさ, 開始秒) は {{picto:名前:大きさ:開始秒}} と書くと埋め込める。
+    座標は幅1080の .cx 内（上の見出しは top:336px、本文は 400〜1100px あたり）。"""
+    html = s.get("html", "")
+    html = re.sub(r"\{\{picto:(\w+):(\d+):([\d.]+)\}\}", lambda m: picto(m.group(1), int(m.group(2)), float(m.group(3))), html)
+    if s.get("title"):
+        html = kin(s["title"], 0.1, "", 0.12, "top:336px;font-size:84px") + html
+    js = f"(function(){{const __B={json.dumps([round(x, 3) for x in B])},__D={D:.3f};\n{s.get('js', '')}\n}})();"
+    return html, s.get("css", ""), js
+
 TEMPLATES = {"morph": t_morph, "illus": t_illus, "globe": t_globe, "flash": t_flash, "route": t_route, "summary": t_summary, "hook_q": t_hook_q, "wall": t_wall, "stat": t_stat, "nodes": t_nodes, "headline": t_headline,
              "list": t_list, "quotes": t_quotes, "phone": t_phone, "zoom": t_zoom, "term": t_term, "end": t_end}
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "morph3.py"), encoding="utf-8").read(), globals())
 TEMPLATES["morph"] = t_morph
 TEMPLATES["scroll"] = t_scroll
 TEMPLATES["kw"] = t_kw
+TEMPLATES["custom"] = t_custom
 
 
 # ───────── 音 ─────────
