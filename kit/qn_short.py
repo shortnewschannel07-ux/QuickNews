@@ -11,6 +11,7 @@
 ・ナレーションは VOICEVOX（VOICEVOX_DIR）。既定は No.7 アナウンス。使えなければ pyopenjtalk。
 ・BGM と効果音は numpy で合成する。
 """
+import re
 import json, os, sys, subprocess, tempfile, shutil, wave, random, io, glob, html as H
 import numpy as np
 from playwright.sync_api import sync_playwright
@@ -1851,12 +1852,54 @@ def t_scroll(s, B, D):
     return body, css, js
 
 
+_KW_FUNC = sorted(set("""の が を に で と は や へ も な だ か ね ほど など から まで より として による について での との への にも では には とは へも
+ます ました です でした ません ませんでした ている ています ていた ていました になります になりました となる となり となります される された され する した して します しました
+られる られた れる れた せる せた たい ない なかった ため ように ような そうです という といった""".split()), key=len, reverse=True)
+
+
+def _kw_split(run):
+    """ひらがなの並びを、送りがな（大きいまま）と助詞・助動詞（小さく）に分ける."""
+    pre = next((f for f in _KW_FUNC if run.startswith(f) and len(f) < len(run)), "") if run else ""
+    if run in _KW_FUNC:
+        return [("", run)]
+    rest = run[len(pre):]
+    suf = next((f for f in _KW_FUNC if rest.endswith(f) and len(f) < len(rest)), "")
+    mid = rest[:len(rest) - len(suf)] if suf else rest
+    out = []
+    if pre:
+        out.append(("", pre))
+    if mid:
+        out.append((mid, ""))
+    if suf:
+        out.append(("", suf))
+    return out
+
+
+def _kw_html(text):
+    """テロップ組み：中身の言葉（漢字・カタカナ・英数字と送りがな）は大きく、助詞・助動詞は小さく細く。*…* は重要語."""
+    out = []
+    for t, a in chunks(text):
+        segs = re.findall(r"[ぁ-ゖ]+|[^ぁ-ゖ]+", t)
+        for k, seg in enumerate(segs):
+            if re.fullmatch(r"[ぁ-ゖ]+", seg):
+                after_kanji = k > 0 and not re.fullmatch(r"[ぁ-ゖ]+", segs[k - 1]) and re.search(r"[一-龥々]$", segs[k - 1])
+                pieces = _kw_split(seg) if after_kanji else ([("", seg)] if seg in _KW_FUNC else [(seg, "")])
+                for big, small in pieces:
+                    if big:
+                        out.append(f'<span class="kc{" ka" if a else ""}">{esc(big)}</span>')
+                    if small:
+                        out.append(f'<span class="kf{" ka" if a else ""}">{esc(small)}</span>')
+            else:
+                out.append(f'<span class="kc{" ka" if a else ""}">{esc(seg.strip())}</span>')
+    return "".join(out)
+
+
 def t_kw(s, B, D):
-    """キネティック・タイポ：ナレーションの言葉の区切り（kw）を、話すのに合わせて1つずつ大きく出す。
-    新しい言葉が下から大きく現れ、前の言葉は上へ小さく退く（左右には動かさない）。*…* の語は重要語：青＋オレンジのマーカー＋大きめ。
-    {"t": "*貿易黒字*", "icon": "scale"} のように icon を付けると、言葉の上に動くピクトが出る。
-    label（例「背景」「なぜ大事？」「私たちへの影響」）は上に小さく出す。各 kw は say の中の文字列に合わせる（出る時刻を言葉の位置から決める）。"""
-    items = []
+    """キネティック・テロップ：ナレーション1文を1つの「意味のまとまり」として画面の中ほどに組み、
+    言葉の区切り（kw）を話すのに合わせてその場に1つずつ足していく（入れ替えない）。文が変わるときだけ、まとまりごと静かに入れ替える。
+    中身の言葉は大きく、助詞・助動詞（ひらがな）は小さく。*…* の重要語は青＋マーカー＋さらに大きく、icon があれば上にピクトを出す。
+    label（例「背景」「なぜ大事？」）は上に小さく出す。各 kw は say の中の文字列（出る時刻を言葉の位置から決める）。"""
+    blocks = []
     beats = s["beats"]
     for i, b in enumerate(beats):
         st = B[i] if i < len(B) else 0.2
@@ -1864,57 +1907,52 @@ def t_kw(s, B, D):
         ln = max(0.4, (en - st) * 0.93)
         say = b.get("say", "")
         kws = b.get("kw") or [say]
-        cur = 0
+        cur, parts = 0, []
         for j, k in enumerate(kws):
             k = k if isinstance(k, dict) else {"t": k}
             plain = k["t"].replace("*", "").strip()
             idx = say.find(plain, cur) if plain else -1
-            if idx < 0:
-                frac = j / max(1, len(kws))
-            else:
-                frac = idx / max(1, len(say)); cur = idx + len(plain)
-            items.append(dict(k, at=round(st + frac * ln, 3)))
-    # 重なりすぎないよう、前の言葉から最低 0.42 秒あける
-    for j in range(1, len(items)):
-        items[j]["at"] = max(items[j]["at"], items[j - 1]["at"] + 0.42)
+            frac = (j / max(1, len(kws))) if idx < 0 else idx / max(1, len(say))
+            if idx >= 0:
+                cur = idx + len(plain)
+            parts.append(dict(k, at=round(max(st, st + frac * ln - 0.08), 3)))
+        for j in range(1, len(parts)):
+            parts[j]["at"] = max(parts[j]["at"], parts[j - 1]["at"] + 0.28)
+        blocks.append({"st": st, "parts": parts})
     html = []
-    for j, it in enumerate(items):
-        emph = "*" in it["t"]
-        txt = "".join(f'<span class="fa">{esc(t)}</span>' if a else esc(t) for t, a in chunks(it["t"]))
-        ic = picto(it.get("icon", ""), 150, it["at"] + 0.05, "var(--blue)", 2.2) if it.get("icon") else ""
-        html.append(f'<div class="fw{" em" if emph else ""}" data-at="{it["at"]}">'
-                    + (f'<div class="fic">{ic}</div>' if ic else "") + f'<div class="ft">{txt}</div></div>')
+    for bi, bl in enumerate(blocks):
+        icon = next((p for p in bl["parts"] if p.get("icon")), None)
+        ic = (f'<div class="kic">{picto(icon["icon"], 132, icon["at"] + 0.02, "var(--blue)", 2.3)}</div>') if icon else ""
+        ps = "".join(f'<span class="kp" data-at="{p["at"]}">{_kw_html(p["t"])}</span>' for p in bl["parts"])
+        html.append(f'<div class="kb" data-st="{bl["st"]}" data-en="{blocks[bi + 1]["st"] if bi + 1 < len(blocks) else 999}">{ic}<div class="kt">{ps}</div></div>')
     lab = s.get("label", "")
     body = ((f'<div class="flab">{picto(s.get("label_icon", ""), 46, 0.1, "#fff", 3.2)}<b>{esc(lab)}</b></div>' if lab else "")
-            + f'<div class="fstage">{"".join(html)}</div>')
+            + f'<div class="kst">{"".join(html)}</div>')
     css = """
 .flab{position:absolute;left:96px;top:300px;display:flex;align-items:center;gap:12px;background:var(--blue);color:#fff;border-radius:999px;padding:12px 30px 12px 22px;animation:pillin .35s .05s cubic-bezier(.2,1.4,.4,1) both}
 .flab b{font-size:36px;font-weight:900;letter-spacing:.04em}
-.fstage{position:absolute;left:96px;right:120px;top:0;height:1150px}
-.fw{position:absolute;left:0;right:0;top:0;opacity:0;transform-origin:0 50%;will-change:transform,opacity,filter}
-.ft{font-size:132px;font-weight:900;line-height:1.12;letter-spacing:-.035em;color:var(--ink);white-space:nowrap}
-.fw.em .ft{font-size:168px;color:var(--blue)}
-.fa{background:linear-gradient(rgba(255,181,71,.5),rgba(255,181,71,.5)) 0 90%/var(--mk,0%) 28% no-repeat}
-.fw.em .fa{color:var(--blue)}
-.fic{margin-bottom:6px;height:150px}
+.kst{position:absolute;left:96px;right:110px;top:400px;height:720px}
+.kb{position:absolute;left:0;right:0;top:50%;opacity:0}
+.kt{line-height:1.18;letter-spacing:-.03em;font-weight:900;color:var(--ink)}
+.kp{display:block;opacity:0;white-space:nowrap;width:max-content;max-width:none}
+.kc{font-size:var(--fc,108px)}
+.kf{font-size:calc(var(--fc,108px) * .58);font-weight:700;color:#41506A;letter-spacing:0}
+.kc.ka{font-size:calc(var(--fc,108px) * 1.2);color:var(--blue);background:linear-gradient(rgba(255,181,71,.5),rgba(255,181,71,.5)) 0 88%/var(--mk,0%) 26% no-repeat}
+.kf.ka{color:var(--blue)}
+.kic{height:146px;margin-bottom:10px}
 """
-    js = r"""(function(){const W=[...document.querySelectorAll('.fw')],MAXW=864;
- W.forEach(w=>{const t=w.querySelector('.ft');let fs=parseFloat(getComputedStyle(t).fontSize);while(t.scrollWidth>MAXW&&fs>56){fs-=4;t.style.fontSize=fs+'px';}});
- const at=W.map(w=>+w.dataset.at),ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3),ob=x=>{x=Math.min(1,Math.max(0,x));const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);};
- // 立ち位置：0＝いま話している言葉（画面の中ほど）、1＝ひとつ前（上に小さく）、2以上＝消える
- const SLOT=[{y:800,s:1,o:1},{y:560,s:.5,o:.38},{y:470,s:.36,o:0}];
- __tick.push(t=>{let n=0;for(const a of at)if(t>=a)n++;
-  W.forEach((w,i)=>{if(t<at[i]){w.style.opacity=0;return;}
-   const age=(n-1)-i;            // 0 がいちばん新しい
-   const u=ez((t-(i+1<at.length?at[i+1]:1e9))/0.22), u2=ez((t-(i+2<at.length?at[i+2]:1e9))/0.25);
-   const A=SLOT[0],B1=SLOT[1],C=SLOT[2];
-   let y=A.y+(B1.y-A.y)*u+(C.y-B1.y)*u2, sc=A.s+(B1.s-A.s)*u+(C.s-B1.s)*u2, op=A.o+(B1.o-A.o)*u+(C.o-B1.o)*u2;
-   const e=(t-at[i]);const ein=ez(e/0.28);
-   sc*=1+0.3*(1-ob(e/0.42));op*=Math.min(1,e/0.14);y+=120*(1-ein);
-   const h=w.offsetHeight;y-=h*0.5;
-   w.style.opacity=op.toFixed(3);w.style.filter=e<0.28?'blur('+(12*(1-ein)).toFixed(1)+'px)':'none';
-   w.style.transform='translateY('+y.toFixed(1)+'px) scale('+sc.toFixed(3)+')';
-   w.style.setProperty('--mk',(100*ez((e-0.25)/0.45)).toFixed(1)+'%');});});})();"""
+    js = r"""(function(){const K=[...document.querySelectorAll('.kb')],MAXH=600;
+ K.forEach(k=>{let fc=108;k.style.setProperty('--fc',fc+'px');k.style.opacity=1;k.querySelectorAll('.kp').forEach(p=>p.style.opacity=1);
+  const over=()=>k.offsetHeight>MAXH||[...k.querySelectorAll('.kp')].some(p=>p.scrollWidth>864);
+  while(over()&&fc>56){fc-=4;k.style.setProperty('--fc',fc+'px');}
+  k.querySelectorAll('.kp').forEach(p=>p.style.opacity=0);k.style.opacity=0;k.dataset.h=k.offsetHeight;});
+ const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);
+ __tick.push(t=>{K.forEach(k=>{const st=+k.dataset.st,en=+k.dataset.en,h=+k.dataset.h;
+   const a=ez((t-st+0.02)/0.22),b=ez((t-en+0.02)/0.2);   // まとまりの出入り（上下とフェードだけ）
+   k.style.opacity=(a*(1-b)).toFixed(3);k.style.transform='translateY('+(-h/2+30*(1-a)-40*b).toFixed(1)+'px)';
+   k.querySelectorAll('.kp').forEach(p=>{const e=t-(+p.dataset.at),u=ez(e/0.22);
+     p.style.opacity=(e<0?0:Math.max(.0,u)).toFixed(3);
+     p.querySelectorAll('.ka').forEach(x=>x.style.setProperty('--mk',(100*ez((e-0.2)/0.4)).toFixed(1)+'%'));});});});})();"""
     return body, css, js
 
 TEMPLATES = {"morph": t_morph, "illus": t_illus, "globe": t_globe, "flash": t_flash, "route": t_route, "summary": t_summary, "hook_q": t_hook_q, "wall": t_wall, "stat": t_stat, "nodes": t_nodes, "headline": t_headline,
