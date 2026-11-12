@@ -131,7 +131,13 @@ def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white
     dense_js = ""
     css = css + PICTO_CSS
     if dens > 1 and not sc.get("_nodense"):
-        # 2026-11-12：カメラの横振り・寄りは「見にくい」とのことでやめた。密度は場面の中の画像（動くピクト・変形）で出す
+        # 2026-11-12：左右に揺れる動き（横振り・回転）は「見にくい」とのことでやめた。寄り（拡大のパンチ）は残す
+        step = 2.75 / dens
+        dense_js = ("(function(){const B=%s,D=%.3f,ST=%.3f,cam=document.querySelector('.cam');if(!cam)return;cam.style.animation='none';"
+                    "const E=[];B.forEach((b,i)=>{E.push(b);const nx=i+1<B.length?B[i+1]:D-0.25;for(let x=b+ST;x<nx-0.45;x+=ST)E.push(x);});"
+                    "__tick.push(t=>{let k=0;for(const e of E){if(t>=e){const u=t-e;k+=0.026*Math.exp(-u*6)*(1-Math.exp(-u*45));}}"
+                    "cam.style.transform='translateY('+(-k*110).toFixed(2)+'px) scale('+(1+0.06*t/D+k).toFixed(4)+')';});})();"
+                    % (json.dumps([round(x, 3) for x in B]), D, step))
         css = css + """
 .kin .ph.acc{background:linear-gradient(rgba(255,181,71,.42),rgba(255,181,71,.42)) 0 92%/0% 26% no-repeat;animation:ph .55s cubic-bezier(.2,.8,.2,1) both,mk .95s cubic-bezier(.6,0,.2,1) both}
 @keyframes mk{0%,40%{background-size:0% 26%}100%{background-size:100% 26%}}
@@ -1844,11 +1850,79 @@ def t_scroll(s, B, D):
    e.style.opacity=a;e.style.transform='translate('+sh+'px,0) scale('+sc+')';e.style.transformOrigin='0 50%%';});});})();""" % (tf, int(s.get("counter_to", 2832)))
     return body, css, js
 
+
+def t_kw(s, B, D):
+    """キネティック・タイポ：ナレーションの言葉の区切り（kw）を、話すのに合わせて1つずつ大きく出す。
+    新しい言葉が下から大きく現れ、前の言葉は上へ小さく退く（左右には動かさない）。*…* の語は重要語：青＋オレンジのマーカー＋大きめ。
+    {"t": "*貿易黒字*", "icon": "scale"} のように icon を付けると、言葉の上に動くピクトが出る。
+    label（例「背景」「なぜ大事？」「私たちへの影響」）は上に小さく出す。各 kw は say の中の文字列に合わせる（出る時刻を言葉の位置から決める）。"""
+    items = []
+    beats = s["beats"]
+    for i, b in enumerate(beats):
+        st = B[i] if i < len(B) else 0.2
+        en = (B[i + 1] - 0.05) if i + 1 < len(B) else D - 0.25
+        ln = max(0.4, (en - st) * 0.93)
+        say = b.get("say", "")
+        kws = b.get("kw") or [say]
+        cur = 0
+        for j, k in enumerate(kws):
+            k = k if isinstance(k, dict) else {"t": k}
+            plain = k["t"].replace("*", "").strip()
+            idx = say.find(plain, cur) if plain else -1
+            if idx < 0:
+                frac = j / max(1, len(kws))
+            else:
+                frac = idx / max(1, len(say)); cur = idx + len(plain)
+            items.append(dict(k, at=round(st + frac * ln, 3)))
+    # 重なりすぎないよう、前の言葉から最低 0.42 秒あける
+    for j in range(1, len(items)):
+        items[j]["at"] = max(items[j]["at"], items[j - 1]["at"] + 0.42)
+    html = []
+    for j, it in enumerate(items):
+        emph = "*" in it["t"]
+        txt = "".join(f'<span class="fa">{esc(t)}</span>' if a else esc(t) for t, a in chunks(it["t"]))
+        ic = picto(it.get("icon", ""), 150, it["at"] + 0.05, "var(--blue)", 2.2) if it.get("icon") else ""
+        html.append(f'<div class="fw{" em" if emph else ""}" data-at="{it["at"]}">'
+                    + (f'<div class="fic">{ic}</div>' if ic else "") + f'<div class="ft">{txt}</div></div>')
+    lab = s.get("label", "")
+    body = ((f'<div class="flab">{picto(s.get("label_icon", ""), 46, 0.1, "#fff", 3.2)}<b>{esc(lab)}</b></div>' if lab else "")
+            + f'<div class="fstage">{"".join(html)}</div>')
+    css = """
+.flab{position:absolute;left:96px;top:300px;display:flex;align-items:center;gap:12px;background:var(--blue);color:#fff;border-radius:999px;padding:12px 30px 12px 22px;animation:pillin .35s .05s cubic-bezier(.2,1.4,.4,1) both}
+.flab b{font-size:36px;font-weight:900;letter-spacing:.04em}
+.fstage{position:absolute;left:96px;right:120px;top:0;height:1150px}
+.fw{position:absolute;left:0;right:0;top:0;opacity:0;transform-origin:0 50%;will-change:transform,opacity,filter}
+.ft{font-size:132px;font-weight:900;line-height:1.12;letter-spacing:-.035em;color:var(--ink);white-space:nowrap}
+.fw.em .ft{font-size:168px;color:var(--blue)}
+.fa{background:linear-gradient(rgba(255,181,71,.5),rgba(255,181,71,.5)) 0 90%/var(--mk,0%) 28% no-repeat}
+.fw.em .fa{color:var(--blue)}
+.fic{margin-bottom:6px;height:150px}
+"""
+    js = r"""(function(){const W=[...document.querySelectorAll('.fw')],MAXW=864;
+ W.forEach(w=>{const t=w.querySelector('.ft');let fs=parseFloat(getComputedStyle(t).fontSize);while(t.scrollWidth>MAXW&&fs>56){fs-=4;t.style.fontSize=fs+'px';}});
+ const at=W.map(w=>+w.dataset.at),ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3),ob=x=>{x=Math.min(1,Math.max(0,x));const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);};
+ // 立ち位置：0＝いま話している言葉（画面の中ほど）、1＝ひとつ前（上に小さく）、2以上＝消える
+ const SLOT=[{y:800,s:1,o:1},{y:560,s:.5,o:.38},{y:470,s:.36,o:0}];
+ __tick.push(t=>{let n=0;for(const a of at)if(t>=a)n++;
+  W.forEach((w,i)=>{if(t<at[i]){w.style.opacity=0;return;}
+   const age=(n-1)-i;            // 0 がいちばん新しい
+   const u=ez((t-(i+1<at.length?at[i+1]:1e9))/0.22), u2=ez((t-(i+2<at.length?at[i+2]:1e9))/0.25);
+   const A=SLOT[0],B1=SLOT[1],C=SLOT[2];
+   let y=A.y+(B1.y-A.y)*u+(C.y-B1.y)*u2, sc=A.s+(B1.s-A.s)*u+(C.s-B1.s)*u2, op=A.o+(B1.o-A.o)*u+(C.o-B1.o)*u2;
+   const e=(t-at[i]);const ein=ez(e/0.28);
+   sc*=1+0.3*(1-ob(e/0.42));op*=Math.min(1,e/0.14);y+=120*(1-ein);
+   const h=w.offsetHeight;y-=h*0.5;
+   w.style.opacity=op.toFixed(3);w.style.filter=e<0.28?'blur('+(12*(1-ein)).toFixed(1)+'px)':'none';
+   w.style.transform='translateY('+y.toFixed(1)+'px) scale('+sc.toFixed(3)+')';
+   w.style.setProperty('--mk',(100*ez((e-0.25)/0.45)).toFixed(1)+'%');});});})();"""
+    return body, css, js
+
 TEMPLATES = {"morph": t_morph, "illus": t_illus, "globe": t_globe, "flash": t_flash, "route": t_route, "summary": t_summary, "hook_q": t_hook_q, "wall": t_wall, "stat": t_stat, "nodes": t_nodes, "headline": t_headline,
              "list": t_list, "quotes": t_quotes, "phone": t_phone, "zoom": t_zoom, "term": t_term, "end": t_end}
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "morph3.py"), encoding="utf-8").read(), globals())
 TEMPLATES["morph"] = t_morph
 TEMPLATES["scroll"] = t_scroll
+TEMPLATES["kw"] = t_kw
 
 
 # ───────── 音 ─────────
@@ -2006,7 +2080,7 @@ def build_html(sc, p, t0, total, first):
         s = dict(s, _first=first, _t0=t0)
     body, css, js = TEMPLATES[s["type"]](s, p["B"], p["D"])
     is_logo = s["type"] == "morph" and any(sh.get("logo") for sh in s.get("shots", []))
-    sc2 = dict(sc, _nocap=s.get("captions") is False or is_logo, _nodense=s["type"] in ("morph", "scroll"))
+    sc2 = dict(sc, _nocap=s.get("captions") is False or is_logo, _nodense=s["type"] in ("morph", "scroll", "kw"))
     return shell(body, css, js, p["D"], t0 / total, (t0 + p["D"]) / total, sc2, s["beats"], p["B"], s.get("source", ""), p["sect"], first,
                  p.get("bg", "white"), p.get("prev_bg", "white"))
 
