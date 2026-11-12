@@ -1,0 +1,185 @@
+{
+ "direction": "制度の話なので地図は使わず、headline で事実から入り、custom で比例の議席の帯が176から145へ縮む様子を数字と一緒に見せる。仕組みの変更は morph の cards（書類）で、賛否と今後は kw と nodes の日程で整理する。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.13 FRI",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "衆院定数31削減法案を提出｜自維国、比例を176→145に",
+ "cover": {
+  "label": "政治｜衆院定数削減",
+  "title": "衆院の定数\n*31削減* 法案\n自維国が提出",
+  "sub": "今の国会で成立するのか。\n参院は与党が少数"
+ },
+ "scenes": [
+  {
+   "type": "custom",
+   "html": "<div class=\"eyebrow\" style=\"top:420px;animation-delay:-0.5s\">国会<span>11月12日</span></div><div class=\"kin \" style=\"top:480px;font-size:124px\"><span class=\"ph\" style=\"animation-delay:-0.55s\">衆院の定数</span><br><span class=\"ph acc\" style=\"animation-delay:-0.45s\">31削減</span><span class=\"ph\" style=\"animation-delay:-0.35s\">法案</span></div><div class=\"hl-sub2\" style=\"top:790px\">自民・維新・国民の3党が提出</div><div class=\"hgov\">{{picto:gov:170:0.2}}</div>",
+   "css": ".hl-sub2{position:absolute;left:96px;right:150px;font-size:40px;line-height:1.6;color:var(--sub)}.hgov{position:absolute;left:96px;top:880px;width:170px;height:170px;animation:fadeup .5s .15s both}",
+   "js": "",
+   "beats": [
+    {
+     "say": "自民・維新・国民の3党が、衆院の定数を31減らす法案を出しました。",
+     "reading": "じみん、いしん、こくみんのさんとうが、しゅういんのていすうを、さんじゅういち減らす法案を出しました。"
+    }
+   ],
+   "captions": false,
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "custom",
+   "title": "減るのは *比例代表*",
+   "html": "<div class=\"seatw\">\n<div class=\"seatrow\"><div class=\"seatlab\">いまの比例代表</div><div class=\"seatbar\"><div class=\"seatfill\" style=\"width:100%\"></div></div><div class=\"seatnum\">176<small>議席</small></div></div>\n<div class=\"seatrow\"><div class=\"seatlab\">法案では</div><div class=\"seatbar\"><div class=\"seatfill\" id=\"sf2\" style=\"width:100%\"></div><div class=\"seatcut\" id=\"sc2\" style=\"width:0%\"></div><div class=\"seattag\" id=\"st2\">−31</div></div><div class=\"seatnum\"><span id=\"sn2\">176</span><small>議席</small></div></div>\n</div>",
+   "css": ".seatw{position:absolute;left:96px;right:150px;top:500px}\n.seatrow{margin-bottom:34px}\n.seatlab{font-size:40px;font-weight:700;color:var(--sub);margin-bottom:12px}\n.seatbar{height:72px;border-radius:20px;background:var(--pale);position:relative;overflow:hidden}\n.seatfill{position:absolute;left:0;top:0;bottom:0;background:var(--blue);border-radius:20px}\n.seatnum{font-size:80px;line-height:1.1;font-weight:900;color:var(--ink);margin-top:8px;letter-spacing:-.02em}\n.seatnum small{font-size:40px;font-weight:700;margin-left:8px;color:var(--sub)}\n.seatcut{position:absolute;top:0;bottom:0;right:0;background:repeating-linear-gradient(135deg,rgba(255,153,51,.85) 0 14px,rgba(255,153,51,.45) 14px 28px);border-radius:0 20px 20px 0}\n.seattag{position:absolute;right:12px;top:6px;font-size:52px;line-height:1;color:#fff !important;font-weight:900;color:#E8831C;opacity:0}\n.seatnote{font-size:34px;color:var(--sub);margin-top:10px}",
+   "js": "const f=document.getElementById('sf2'),c=document.getElementById('sc2'),n=document.getElementById('sn2'),g=document.getElementById('st2');\nconst ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\n__tick.push(t=>{const u=ez((t-0.9)/1.2);const v=176-31*u;f.style.width=(100*v/176).toFixed(2)+'%';c.style.width=(100*(176-v)/176).toFixed(2)+'%';\nn.textContent=Math.round(v);g.style.opacity=ez((t-1.6)/0.4).toFixed(3);g.style.transform='translateY('+(20*(1-ez((t-1.6)/0.4))).toFixed(1)+'px)';});",
+   "beats": [
+    {
+     "say": "減らすのは比例代表で、176議席から145議席になります。",
+     "reading": "減らすのは比例代表で、ひゃくななじゅうろく議席から、ひゃくよんじゅうご議席になります。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "何が変わる？",
+     "big": "議席の *配り方* \nも見直す"
+    },
+    {
+     "bg": "white",
+     "icon": "dot",
+     "icon2": "arrow",
+     "icon2_at": 0.6,
+     "visual": "ripple",
+     "kicker": "もう一つ",
+     "big": "比例での *復活* \nを厳しく"
+    }
+   ],
+   "beats": [
+    {
+     "say": "議席の配り方も、中小政党に有利とされる方式に変えます。",
+     "reading": "議席の配りかたも、ちゅうしょう政党に有利とされる方式に変えます。"
+    },
+    {
+     "say": "選挙区で負けた人の比例復活も、厳しくします。",
+     "reading": "選挙区で負けた人の比例復活も、厳しくします。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "term",
+   "term": "比例代表",
+   "reading": "ひれいだいひょう",
+   "eyebrow": "今日の用語",
+   "definition": "政党の得票の割合に応じて、議席を配る選挙の仕組み。",
+   "icon": "vote",
+   "beats": [
+    {
+     "say": "比例代表は、政党の得票に応じて議席を配る仕組みです。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "kw",
+   "label": "賛成と反対",
+   "label_icon": "scale",
+   "beats": [
+    {
+     "say": "3党は今国会での成立を目指し、ほかの野党の多くは反発しています。",
+     "reading": "さんとうは、こんこっかいでの成立を目指し、ほかの野党の多くは反発しています。",
+     "kw": [
+      "3党は今国会での成立を目指し",
+      {
+       "t": "ほかの野党の多くは *反発*",
+       "icon": "alert"
+      }
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "nodes",
+   "title": "これから *どうなる？*",
+   "nodes": [
+    {
+     "key": "来週にも",
+     "value": "衆院の委員会で審議",
+     "icon": "calendar"
+    },
+    {
+     "key": "今月中",
+     "value": "衆院の通過を目指す",
+     "icon": "gov"
+    },
+    {
+     "key": "そのあと",
+     "value": "参院は与党が少数",
+     "icon": "people"
+    }
+   ],
+   "beats": [
+    {
+     "say": "与党は、月内の衆院通過が目標です。",
+     "reading": "与党は、げつないの、しゅういん通過が目標です。"
+    },
+    {
+     "say": "ただ参院は、与党が少数です。",
+     "reading": "ただ、さんいんは、与党が少数です。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "時事通信／テレビ朝日"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
