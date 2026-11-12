@@ -4,7 +4,7 @@
 **トーン**：信頼できる、落ち着いた、簡潔。煽らない。キャラクターは出さない。
 **形式**：1本の動画で1つのニュース。1日3本。1080x1920・30fps。**1本30秒**（28〜32秒。2026-11-12 に61秒以上から変更）。**画像のアニメーションを従来の2.5倍以上に**（台本に `density: 2.5`）。カメラだけでなく、場面の中の絵と言葉を動かす：`kw`（言葉を大きく出す場面）を3場面、`nodes`・`list`・`term` には必ず `icon`（動くピクト）を付け、変形アニメーション（morph）を2ショット以上入れる。ナレーションの文ごとにカメラがグッと寄る動き（拡大のパンチ）は自動で入る。**左右に揺れる動きは使わない**（見にくい。2026-11-12 ユーザー指定）。
   - 使えるピクト（picto.py）：up（増加）、down（減少）、chip（半導体・IT）、car（自動車）、ship（貿易・輸出入）、factory（工場・生産）、scale（貿易収支・均衡・法）、coin（ドル・お金）、yen（円）、gov（政府・国会）、people（国民・有権者）、person、doc（法律・文書）、bolt（電力・エネルギー）、globe（世界・外交）、vote（選挙）、gavel（裁判・判決）、alert（注意・危機）、home（住宅・生活）、calendar（日程・次の焦点）、key（要点・理由）、card、chart（統計）、plane（交通・観光）、phone（通信）、mail。内容に合うものを選ぶ（同じ場面で同じピクトを重ねない）。
-**配信**：YouTube ショート、Instagram リール（Metricool で予約投稿）。**TikTok は一時停止中**（2026-11-12〜。ユーザーが再開と言うまで、providers に tiktok を入れない）。
+**配信**：TikTok、YouTube ショート、Instagram リール（Metricool で予約投稿）。TikTok は 2026-11-12 に一時停止し、同日、異議申し立てが承認されて再開。
 
 制作キット（エンジン・準備スクリプト・台本見本・表紙ツール・公開スクリプト）は公開リポジトリの `kit/` にある：
 https://github.com/shortnewschannel07-ux/QuickNews
@@ -145,9 +145,9 @@ https://github.com/shortnewschannel07-ux/QuickNews
     - getBrandSettings でブランド（Quick News、blogId 8023514、時間帯 Asia/Tokyo）を確認する。
     - createScheduledPost で予約する。
       - date/publicationDate：当日 07:00 / 12:00 / 20:00（日本時間）。すでに過ぎた時刻なら、その日の次の枠か、15分後にする。
-      - providers：youtube、instagram（**TikTok は一時停止中**。再開後も、2026-12-11 までは戦争・武力紛争・テロが主題の本は TikTok に出さない。TikTok で削除された動画は TikTok に再投稿しない）。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
+      - providers：tiktok、youtube、instagram。ただし 2026-12-11 までは、戦争・武力紛争・テロが主題の本は TikTok に出さない（youtube と instagram だけ）。TikTok で削除された動画は TikTok に再投稿しない。media：[VIDEO_URL]。videoThumbnailUrl：COVER_URL。text：キャプション（B の型）。
       - youtubeData：{title, type "short", privacy "public", tags, category "NEWS_POLITICS", madeForKids false, isAiGeneratedContent false}
-      - tiktokData：{privacyOption "PUBLIC_TO_EVERYONE", title（見出し）, isAigc true, disableComment false, disableDuet false, disableStitch false, autoAddMusic false}
+      - tiktokData：{privacyOption "PUBLIC_TO_EVERYONE", title（見出し。必須）, isAigc true, disableComment false, disableDuet false, disableStitch false, autoAddMusic false}
       - instagramData：{type "REEL", showReelOnFeed true, isAiGenerated true}
       - draft false、autoPublish true。
     - VIDEO_THUMBNAIL_NOT_APPLICABLE で断られたら、videoThumbnailUrl を外して同じ内容で予約し直す。
