@@ -1,0 +1,196 @@
+{
+ "direction": "国会の攻防なので、headline（gov）で事実から入り、custom で特別委員会の席（与党19・野党20）が1つずつ埋まって『1人足りない』を見せる。法案の中身は morph の cards（8%→1%）と ripple（支援金の対象拡大）で、これからを kw で整理し、list は置かずに締める。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.14 SAT",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "消費減税法案、参院で本格審議｜委員会は与党19・野党20",
+ "cover": {
+  "label": "政治｜消費減税法案",
+  "title": "消費減税法案\n参院で *本格審議*\n与党は過半数なし",
+  "sub": "食料品の消費税1％は実現するのか。\nカギを握る野党の判断"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "gov",
+   "eyebrow": "参院",
+   "eyebrow_sub": "11月13日",
+   "text": "消費減税法案\n *参院で論戦*",
+   "size": 118,
+   "sub": "高市首相が出席し、本格的な審議が始まりました",
+   "captions": false,
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "テレビ朝日／NHK",
+   "beats": [
+    {
+     "say": "消費減税法案の本格的な審議が、参議院で始まりました。",
+     "reading": "しょうひげんぜいほうあんの、本格的な審議が、参議院で始まりました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "共同通信／NHK",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "card",
+     "visual": "cards",
+     "number": 1,
+     "decimals": 0,
+     "prefix": "8％→",
+     "unit": "％",
+     "kicker": "法案の中身",
+     "big": "食料品の消費税を\n *2年間* 下げる"
+    },
+    {
+     "bg": "navy",
+     "icon": "bubble",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "首相の答弁",
+     "big": "支援金の対象\n *勤労者の5割以上* へ"
+    }
+   ],
+   "beats": [
+    {
+     "say": "食料品の消費税を、来年4月から2年間、1%に下げる法案です。",
+     "reading": "食料品の消費税を、らいねんしがつから2年間、いちパーセントに下げる法案です。"
+    },
+    {
+     "say": "首相は、支援金の対象を、勤労者の5割以上で検討すると答えました。",
+     "reading": "首相は、支援金の対象を、勤労者のごわり以上で検討すると答えました。"
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "title": "委員会は *与党が少数*",
+   "html": "<div class=\"sw\"><div class=\"sgrid\" id=\"sg\"></div><div class=\"slab\"><div class=\"sl\"><i class=\"dy\"></i>与党<b id=\"ny\">0</b><small>人</small></div><div class=\"sl\"><i class=\"dn\"></i>野党<b id=\"nn\">0</b><small>人</small></div></div><div class=\"snote\" id=\"snt\">過半数まで、与党は <em>1人</em> 足りない</div></div>",
+   "css": ".sw{position:absolute;left:96px;right:150px;top:500px}\n.sgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:14px;width:700px}\n.seat{width:54px;height:54px;border-radius:50%;background:var(--pale);transform:scale(.3);opacity:0}\n.seat.y{background:var(--blue)}\n.seat.n{background:#0B1B33}\n.slab{display:flex;gap:70px;margin-top:30px}\n.sl{font-size:44px;font-weight:700;color:var(--ink);display:flex;align-items:baseline;gap:12px}\n.sl i{display:inline-block;width:30px;height:30px;border-radius:50%;align-self:center}\n.sl .dy{background:var(--blue)}.sl .dn{background:#0B1B33}\n.sl b{font-size:88px;font-weight:900;letter-spacing:-.02em}\n.sl small{font-size:36px;color:var(--sub)}\n.snote{margin-top:16px;font-size:48px;font-weight:700;color:var(--ink);opacity:0}\n.snote em{font-style:normal;color:#EA6A12;font-size:64px;font-weight:900}",
+   "js": "const g=document.getElementById('sg');const S=[];for(let i=0;i<39;i++){const d=document.createElement('div');d.className='seat '+(i<19?'y':'n');g.appendChild(d);S.push(d);}\nconst ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const ny=document.getElementById('ny'),nn=document.getElementById('nn'),nt=document.getElementById('snt');\n__tick.push(t=>{let cy=0,cn=0;S.forEach((d,i)=>{const t0=0.35+i*0.045;const u=ez((t-t0)/0.3);d.style.opacity=u.toFixed(3);d.style.transform='scale('+(0.3+0.7*u).toFixed(3)+')';if(u>0.5){if(i<19)cy++;else cn++;}});ny.textContent=cy;nn.textContent=cn;const v=ez((t-(__B[1]||2.4))/0.4);nt.style.opacity=v.toFixed(3);nt.style.transform='translateY('+(20*(1-v)).toFixed(1)+'px)';});",
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "テレビ朝日",
+   "beats": [
+    {
+     "say": "委員会は、与党19人、野党20人。",
+     "reading": "委員会は、与党じゅうきゅうにん、野党にじゅうにん。"
+    },
+    {
+     "say": "否決されかねない状況です。"
+    }
+   ]
+  },
+  {
+   "type": "term",
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "テレビ朝日",
+   "term": "少数与党",
+   "reading": "しょうすうよとう",
+   "eyebrow": "今日の用語",
+   "definition": "政権を担う与党が、議会で過半数の議席を持っていない状態。",
+   "icon": "vote",
+   "beats": [
+    {
+     "say": "少数与党は、与党が過半数に届かない状態のことです。",
+     "reading": "しょうすうよとうは、与党が過半数に届かない状態のことです。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "共同通信",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "成立すれば、消費税の導入以来初の引き下げです。",
+     "reading": "成立すれば、消費税の導入以来、初の引き下げです。",
+     "kw": [
+      "成立すれば",
+      {
+       "t": "消費税の導入以来 *初* の",
+       "icon": "doc"
+      },
+      "引き下げです"
+     ]
+    },
+    {
+     "say": "ただ、約10兆円の財源は決まっていません。",
+     "reading": "ただ、やくじゅっちょうえんの財源は、決まっていません。",
+     "kw": [
+      "ただ、約10兆円の",
+      {
+       "t": " *財源* は決まっていません",
+       "icon": "yen"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "テレビ朝日",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "カギは、公明党か国民民主党が賛成に回るかです。",
+     "reading": "カギは、こうめいとうか、こくみんみんしゅとうが、賛成に回るかです。",
+     "kw": [
+      "カギは",
+      {
+       "t": " *公明党か国民民主党* が",
+       "icon": "people"
+      },
+      "賛成に回るか"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
