@@ -132,13 +132,8 @@ def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white
     dense_js = ""
     css = css + PICTO_CSS
     if dens > 1 and not sc.get("_nodense"):
-        # 2026-11-12：左右に揺れる動き（横振り・回転）は「見にくい」とのことでやめた。寄り（拡大のパンチ）は残す
-        step = 2.75 / dens
-        dense_js = ("(function(){const B=%s,D=%.3f,ST=%.3f,cam=document.querySelector('.cam');if(!cam)return;cam.style.animation='none';"
-                    "const E=[];B.forEach((b,i)=>{E.push(b);const nx=i+1<B.length?B[i+1]:D-0.25;for(let x=b+ST;x<nx-0.45;x+=ST)E.push(x);});"
-                    "__tick.push(t=>{let k=0;for(const e of E){if(t>=e){const u=t-e;k+=0.026*Math.exp(-u*6)*(1-Math.exp(-u*45));}}"
-                    "cam.style.transform='translateY('+(-k*110).toFixed(2)+'px) scale('+(1+0.06*t/D+k).toFixed(4)+')';});})();"
-                    % (json.dumps([round(x, 3) for x in B]), D, step))
+        # 2026-11-13：場面全体が揺れる動き（左右の振り・文ごとの寄りのパンチ）は「振動して見える」のでやめた。
+        # カメラは従来のゆっくりした寄り（.cam の cam アニメーション）だけ。動きは場面の中の絵と言葉で出す
         css = css + """
 .kin .ph.acc{background:linear-gradient(rgba(255,181,71,.42),rgba(255,181,71,.42)) 0 92%/0% 26% no-repeat;animation:ph .55s cubic-bezier(.2,.8,.2,1) both,mk .95s cubic-bezier(.6,0,.2,1) both}
 @keyframes mk{0%,40%{background-size:0% 26%}100%{background-size:100% 26%}}
