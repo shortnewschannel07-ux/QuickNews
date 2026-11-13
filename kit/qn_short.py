@@ -605,8 +605,16 @@ def t_headline(s, B, D):
         sv, il_css = il_breach(1.0)
         il = f'<div class="il" style="top:{s.get("illus_top", 1015)}px">{sv}</div>'
     sub_top, big_top = (800, 870) if il else (790, 920)
-    body = (f'<div class="eyebrow" style="top:420px">{esc(s.get("eyebrow", ""))}<span>{esc(s.get("eyebrow_sub", ""))}</span></div>'
-            + kin(s["text"], 0.2, g, 0.13, f"top:480px;font-size:{s.get('size', 112)}px")
+    # 冒頭に使うとき（open: true）は1コマ目から見出しが読めるようにする。icon があれば上に大きな動くピクトを置く
+    st0 = -0.6 if s.get("open") else 0.2
+    eb_top, hl_top = 420, 480
+    pic = ""
+    if s.get("icon"):
+        eb_top, hl_top = 650, 710
+        sub_top = big_top = int(hl_top + (s['text'].count('\n') + 1) * s.get('size', 112) * 1.3 + 36)
+        pic = f'<div class="pgc" style="--t:{0.0 if s.get("open") else 0.1:.2f}s;position:absolute;left:96px;top:380px;width:230px;height:230px">{picto(s["icon"], 150, 0.05, "var(--blue)", 2.2)}</div>'
+    body = (pic + f'<div class="eyebrow" style="top:{eb_top}px">{esc(s.get("eyebrow", ""))}<span>{esc(s.get("eyebrow_sub", ""))}</span></div>'
+            + kin(s["text"], st0, g, 0.13, f"top:{hl_top}px;font-size:{s.get('size', 112)}px")
             + (f'<div class="hl-sub" style="animation-delay:{0.9:.2f}s;top:{sub_top}px">{esc(s["sub"])}</div>' if s.get("sub") else "")
             + (f'<div class="hl-big mono" style="animation-delay:{1.2:.2f}s;top:{big_top}px">{esc(s["big"])}<small>{esc(s.get("big_label", ""))}</small></div>' if s.get("big") else "")
             + il)

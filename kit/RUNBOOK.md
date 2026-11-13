@@ -111,7 +111,14 @@ https://github.com/shortnewschannel07-ux/QuickNews
 3. **台本を書く**（1本ずつ。`kit/script_example.json` と同じ形）
    - 上位の項目：channel "Quick News"、tagline "1日1分で社会がわかる"、date_label（例 "2026.11.10 TUE"）、voice {file "1.vvm", id 14, name "冥鳴ひまり", intonation 1.15, pause 0.2}、speed 1.25、min_seconds 28、max_seconds 32、density 2.5、title、cover。
    - **構成の目安（合計28〜32秒。2026-11-12 改訂）**：視聴者はニュース初心者。細かい数字の羅列（「今日の数字」）は毎回は入れず、**背景・意義（なぜ大事か）・影響（これからどうなる／私たちへの影響）**がわかるようにする。ナレーションは1文を短く。
-     1. 冒頭の大見出し（約3.5秒）：場所があるニュースは `globe`（mode zoom）に `hero: true, hero_size 140前後, map_h 560, hero_top 900, hero_sub（補足1行）, title_at -0.6`。場所がないニュースは `headline`（size 120前後）を使う。
+     1. 冒頭の大見出し（約3.5秒）：**テーマごとに見せ方を変える。地図に寄っていく冒頭（`globe` の zoom）は飽きられるので、場所そのものがニュースの核心のとき（災害・事件の現場など）だけにし、1日に1本まで・前日と続けない**（2026-11-13 ユーザー指定）。どの冒頭も1コマ目から見出しが大きく読めること。
+        - 政治・国会・選挙：`headline`（open: true、icon "vote" / "gov"）や、議席・定数の数字を `custom` で見せる。
+        - 経済・為替・物価：`morph` の spark で数字（例「160円」）が動いて始める、または `headline`（icon "yen" / "coin" / "up" / "down"）。
+        - 外交・国際会議：2地点を結ぶ `globe` の route（寄るのではなく、国と国をつなぐ）や `headline`（icon "globe"）。
+        - 裁判・判決：`headline`（icon "gavel"）。
+        - 事件・災害：場所が核心なら `globe` の zoom（`hero: true, hero_size 140前後, map_h 560, hero_top 900, hero_sub, title_at -0.6`）。そうでなければ `headline`（icon "alert"）。
+        - 暮らし・社会：視聴者の疑問から入る（`headline` に問いの見出し、例「卵は食べても大丈夫？」、icon "home"）。
+        - `headline` を冒頭に使うときは `open: true`（1コマ目から見出しがくっきり）を付け、`icon` で上に大きな動くピクトを出す。
      2. 何が起きた？（約6秒）：`morph` の2ショット（1ショット約3秒）。数字はここで1つだけ大きく見せる。
      3. 背景（約4秒）：`kw`（label「背景」、label_icon "key"）。
      4. 用語（約3秒）：`term`（icon 必須）。ナレーションは1文（「◯◯は、〜のことです。」）。
