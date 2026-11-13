@@ -1,0 +1,205 @@
+{
+ "direction": "企業トップの交代が主役なので、headline（chip）で事実から入り、morph の cards→ripple で『フアン氏の33年』から『クレス氏が暫定CEO』へ移る流れを見せる。株価は custom で −14% が赤く数え上がる下向きの矢印、意義を kw、次の焦点を nodes で1つずつつなぐ。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.14 SAT",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "エヌビディアのフアンCEOが辞任｜株価は一時14%安",
+ "cover": {
+  "label": "経済｜米IT・半導体",
+  "title": "エヌビディア\n*フアンCEO* が辞任\n株価は一時14%安",
+  "sub": "AIブームの主役はどうなる。\n17日の決算に注目"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "chip",
+   "eyebrow": "米半導体大手",
+   "eyebrow_sub": "11月12日",
+   "text": "エヌビディア\n *CEOが辞任*",
+   "size": 116,
+   "sub": "創業者のジェンスン・フアン氏が退きました",
+   "captions": false,
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "NHK／CNN",
+   "beats": [
+    {
+     "say": "半導体大手エヌビディアの創業者、フアンCEOが辞任しました。",
+     "reading": "半導体大手エヌビディアの創業者、フアンシーイーオーが辞任しました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "CNN／ウエルスアドバイザー",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "これまで",
+     "big": "33年間\n *フアン氏* が率いた"
+    },
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "icon2": "bubble",
+     "visual": "ripple",
+     "kicker": "当面は",
+     "big": "暫定CEOに\n *クレス氏*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フアン氏は33年間、CEOを務めてきました。",
+     "reading": "フアン氏は、さんじゅうさんねんかん、シーイーオーを務めてきました。"
+    },
+    {
+     "say": "当面は、財務責任者のクレス氏が暫定CEOです。",
+     "reading": "当面は、財務責任者のクレス氏が、暫定シーイーオーです。"
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "title": "株価は *急落*",
+   "html": "<div class=\"kw2\"><div class=\"kpre\">発表した12日　一時</div><div class=\"knum\"><span class=\"mi\">−</span><span id=\"kn\">0</span><small>%</small><svg class=\"kdn\" width=\"120\" height=\"152\" viewBox=\"0 0 150 190\"><path id=\"kdp\" d=\"M75,10 L75,160 M30,118 L75,165 L120,118\" fill=\"none\" stroke=\"#D33\" stroke-width=\"14\" stroke-linecap=\"round\" stroke-linejoin=\"round\" pathLength=\"1\" stroke-dasharray=\"1\" stroke-dashoffset=\"1\"/></svg></div><div class=\"kline\" id=\"kl\"><span>1株</span><b>148.80</b><span>ドルまで下落</span></div><div class=\"kline k2\" id=\"kl2\"><span>終値は</span><b>4.34%</b><span>安まで戻す</span></div></div>",
+   "css": ".kw2{position:absolute;left:96px;right:150px;top:500px}\n.kpre{font-size:44px;font-weight:700;color:var(--sub)}\n.knum{display:flex;align-items:center;font-size:210px;font-weight:900;line-height:1;color:#D33;letter-spacing:-.04em;margin-top:6px}\n.knum .mi{font-size:150px;margin-right:6px}\n.knum small{font-size:96px;margin-left:8px}\n.kdn{margin-left:30px}\n.kline{margin-top:20px;font-size:46px;font-weight:700;color:var(--ink);opacity:0;border-top:2px solid var(--line);padding-top:16px}\n.kline b{font-size:60px;font-weight:900;margin:0 10px;color:var(--ink)}\n.k2 b{color:var(--blue)}",
+   "js": "const n=document.getElementById('kn'),p=document.getElementById('kdp'),l=document.getElementById('kl'),l2=document.getElementById('kl2');\nconst ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\n__tick.push(t=>{const u=ez((t-0.3)/0.9);n.textContent=Math.round(14*u);p.style.strokeDashoffset=(1-ez((t-0.4)/0.7)).toFixed(3);\nconst a=ez((t-1.4)/0.35);l.style.opacity=a.toFixed(3);l.style.transform='translateY('+(20*(1-a)).toFixed(1)+'px)';const b=ez((t-__D*0.62)/0.35);l2.style.opacity=b.toFixed(3);l2.style.transform='translateY('+(20*(1-b)).toFixed(1)+'px)';});",
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "ウエルスアドバイザー",
+   "beats": [
+    {
+     "say": "発表した12日、株価は一時14%以上値下がりしました。",
+     "reading": "発表した、じゅうににち、株価は、いちじ、じゅうよんパーセント以上値下がりしました。"
+    }
+   ]
+  },
+  {
+   "type": "term",
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "",
+   "term": "CEO",
+   "reading": "シーイーオー",
+   "eyebrow": "今日の用語",
+   "definition": "最高経営責任者。会社の経営に最終的な責任を持つトップのこと。",
+   "icon": "key",
+   "beats": [
+    {
+     "say": "CEOは、会社の経営に責任を持つトップのことです。",
+     "reading": "シーイーオーは、会社の経営に責任を持つトップのことです。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "ウエルスアドバイザー",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "エヌビディアは、AI向け半導体で圧倒的なシェアを持つ会社です。",
+     "reading": "エヌビディアは、エーアイ向け半導体で、圧倒的なシェアを持つ会社です。",
+     "kw": [
+      "エヌビディアは",
+      {
+       "t": " *AI向け半導体* で",
+       "icon": "chip"
+      },
+      "圧倒的なシェアを持つ会社"
+     ]
+    },
+    {
+     "say": "交代は、AI業界全体に影響するとみられます。",
+     "reading": "交代は、エーアイ業界全体に影響するとみられます。",
+     "kw": [
+      "交代は",
+      {
+       "t": "AI業界 *全体* に",
+       "icon": "globe"
+      },
+      "影響するとみられます"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "nodes",
+   "story": 1,
+   "section": "経済｜米IT",
+   "source": "Forbes JAPAN／ウエルスアドバイザー",
+   "title": "これから *どうなる？*",
+   "nodes": [
+    {
+     "key": "11月17日",
+     "value": "決算の発表",
+     "icon": "calendar"
+    },
+    {
+     "key": "後任",
+     "value": "次のCEO選び",
+     "icon": "person"
+    },
+    {
+     "key": "焦点",
+     "value": "成長を続けられるか",
+     "icon": "up"
+    }
+   ],
+   "beats": [
+    {
+     "say": "焦点は、17日の決算。",
+     "reading": "焦点は、じゅうしちにちの決算。"
+    },
+    {
+     "say": "そして、次のCEO選び。",
+     "reading": "そして、次のシーイーオー選び。"
+    },
+    {
+     "say": "成長を続けられるかです。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 4,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}

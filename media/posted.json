@@ -104,6 +104,15 @@
   "time": "07:00",
   "title": "消費減税法案、参院で本格審議｜委員会は与党19・野党20",
   "topic": "食料品消費税減税法案の参院特別委審議・支援金",
-  "slug": "shohizei_sanin"
+  "slug": "shohizei_sanin",
+  "metricool_id": 427453428
+ },
+ {
+  "date": "2026-11-14",
+  "slot": "2",
+  "time": "12:00",
+  "title": "エヌビディアのフアンCEOが辞任｜株価は一時14%安",
+  "topic": "エヌビディアCEO辞任・暫定CEOにクレス氏",
+  "slug": "nvidia_ceo"
  }
 ]
