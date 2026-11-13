@@ -113,6 +113,15 @@
   "time": "12:00",
   "title": "エヌビディアのフアンCEOが辞任｜株価は一時14%安",
   "topic": "エヌビディアCEO辞任・暫定CEOにクレス氏",
-  "slug": "nvidia_ceo"
+  "slug": "nvidia_ceo",
+  "metricool_id": 427457779
+ },
+ {
+  "date": "2026-11-14",
+  "slot": "3",
+  "time": "20:00",
+  "title": "マイクロソフト365で世界的な障害｜メールやTeamsに影響",
+  "topic": "マイクロソフト365の世界的な接続障害（11/13）",
+  "slug": "ms365_outage"
  }
 ]

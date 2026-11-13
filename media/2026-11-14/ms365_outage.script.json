@@ -1,0 +1,202 @@
+{
+ "direction": "暮らしに直結する障害なので、視聴者の疑問『メールがつながらない？』の headline（mail）から入る。規模は morph の records（不具合の報告13万件超）で見せ、原因は custom でサーバが落ちて残りに負荷が集まる様子を図にする。用語はクラウド、影響は kw、最後は list で持ち帰り。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.14 SAT",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "マイクロソフト365で世界的な障害｜メールやTeamsに影響",
+ "cover": {
+  "label": "社会｜IT・通信障害",
+  "title": "マイクロソフト365\n*世界的な障害*\nメールやTeamsに影響",
+  "sub": "大学や自治体でも影響。\nなぜ止まったのか"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "mail",
+   "eyebrow": "11月13日",
+   "eyebrow_sub": "日本時間の未明から",
+   "text": "メールが\n *つながらない？*",
+   "size": 120,
+   "sub": "マイクロソフト365で、世界的な接続障害",
+   "captions": false,
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "NHK／マイナビニュース",
+   "beats": [
+    {
+     "say": "マイクロソフト365で、世界的な接続障害が起きました。",
+     "reading": "マイクロソフトさんろくごで、世界的な接続障害が起きました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "ロイター／ITmedia",
+   "anchor_offset": 0,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "bubble",
+     "visual": "records",
+     "number": 138058,
+     "prefix": "報告",
+     "unit": "件",
+     "kicker": "どれくらい？",
+     "big": "不具合の報告\n *13万件超*"
+    },
+    {
+     "bg": "blue",
+     "icon": "globe",
+     "icon2": "lock",
+     "visual": "ripple",
+     "kicker": "何が使えない？",
+     "big": "メールやTeams\n *AIチャット* も"
+    }
+   ],
+   "beats": [
+    {
+     "say": "アウトルックの不具合の報告は、ピーク時に13万件を超えました。",
+     "reading": "アウトルックの不具合の報告は、ピーク時に、じゅうさんまんけんを超えました。"
+    },
+    {
+     "say": "メールやチームズ、AIチャットにも影響が出ました。",
+     "reading": "メールやチームズ、エーアイチャットにも影響が出ました。"
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "title": "なぜ *止まった？*",
+   "html": "<div class=\"vw\"><div class=\"vg\" id=\"vg\"></div><div class=\"vt\" id=\"vt1\"><b>一部のサーバ</b>が使えなくなり</div><div class=\"vt\" id=\"vt2\">残りに<b class=\"o\">負荷が集中</b></div></div>",
+   "css": ".vw{position:absolute;left:96px;right:150px;top:490px}\n.vg{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;width:834px}\n.sv{height:96px;border-radius:16px;background:#fff;border:3px solid var(--blue);position:relative}\n.sv i{position:absolute;left:18px;right:18px;height:8px;border-radius:4px;background:var(--blue);opacity:.35}\n.sv i:nth-child(1){top:26px}.sv i:nth-child(2){top:48px}.sv b{position:absolute;right:14px;bottom:14px;width:16px;height:16px;border-radius:50%;background:var(--blue)}\n.sv.off{border-color:#C9D2E0;background:#EEF1F6}.sv.off i{background:#C9D2E0}.sv.off b{background:#D33}\n.sv .x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:72px;font-weight:900;color:#D33;opacity:0}\n.vt{margin-top:30px;font-size:52px;font-weight:700;color:var(--ink);opacity:0}\n.vt b{color:var(--blue);font-weight:900}.vt b.o{color:#EA6A12}\n#vt1{margin-top:36px}\n.vn{margin-top:22px;font-size:30px;color:var(--sub)}",
+   "js": "const g=document.getElementById('vg');const S=[];const OFF=[1,3,4,8,10,13,15,16];for(let i=0;i<18;i++){const d=document.createElement('div');d.className='sv';d.innerHTML='<i></i><i></i><b></b><span class=\"x\">×</span>';g.appendChild(d);S.push(d);}\nconst ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const t1=document.getElementById('vt1'),t2=document.getElementById('vt2');\n__tick.push(t=>{S.forEach((d,i)=>{const k=OFF.indexOf(i);const on=k>=0&&t>0.6+k*0.12;d.classList.toggle('off',on);d.querySelector('.x').style.opacity=on?ez((t-0.6-k*0.12)/0.2).toFixed(3):0;\nconst b2=(__B[1]||2.2);if(k<0){const h=ez((t-b2)/0.5);d.style.background='rgba(234,106,18,'+(0.22*h).toFixed(3)+')';d.style.borderColor=h>0.5?'#EA6A12':'';}});\nconst a=ez((t-0.5)/0.35);t1.style.opacity=a.toFixed(3);const c=ez((t-(__B[1]||2.2))/0.35);t2.style.opacity=c.toFixed(3);t2.style.transform='translateY('+(20*(1-c)).toFixed(1)+'px)';});",
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "マイナビニュース／ロイター",
+   "beats": [
+    {
+     "say": "マイクロソフトによると、一部のサーバが使えなくなり、",
+     "reading": "マイクロソフトによると、一部のサーバが使えなくなり、"
+    },
+    {
+     "say": "残りのサーバに負荷が集中したということです。"
+    }
+   ]
+  },
+  {
+   "type": "term",
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "",
+   "term": "クラウド",
+   "reading": "cloud",
+   "eyebrow": "今日の用語",
+   "definition": "ソフトやデータを自分の端末ではなく、インターネット上のサーバで使う仕組み。",
+   "icon": "phone",
+   "beats": [
+    {
+     "say": "クラウドは、インターネット上のサーバで、ソフトやデータを使う仕組みです。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "NHK",
+   "label": "私たちへの影響",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "大学では、メールで課題を相談できなくなりました。",
+     "reading": "大学では、メールで課題を相談できなくなりました。",
+     "kw": [
+      {
+       "t": " *大学* では",
+       "icon": "doc"
+      },
+      "メールで課題を",
+      "相談できなくなりました"
+     ]
+    },
+    {
+     "say": "自治体でも、問い合わせフォームが使えなくなりました。",
+     "reading": "自治体でも、問い合わせフォームが使えなくなりました。",
+     "kw": [
+      {
+       "t": " *自治体* でも",
+       "icon": "gov"
+      },
+      "問い合わせフォームが",
+      "使えなくなりました"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "story": 1,
+   "section": "社会｜IT",
+   "source": "NHK／ロイター",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "何が",
+     "state": "M365の接続障害",
+     "icon": "mail"
+    },
+    {
+     "label": "原因",
+     "state": "サーバに負荷集中",
+     "icon": "key"
+    },
+    {
+     "label": "影響",
+     "state": "大学や自治体にも",
+     "icon": "people"
+    }
+   ],
+   "beats": [
+    {
+     "say": "便利なクラウドも、止まると影響は世界に広がります。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 2,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
