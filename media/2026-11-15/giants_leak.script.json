@@ -1,0 +1,182 @@
+{
+ "direction": "件数の大きさが入口なので、冒頭から morph の records で『80万件』を積み上げて始め、cards で『カード情報は対象外』へ変形させる。後半は視聴者の行動に直結する『私たちが気をつけること』を kw で2文に組み、用語（フィッシング詐欺）で手口を押さえてから一覧で締める。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.15 SUN",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "巨人ファンクラブのメアド80万件流出｜サイバー攻撃で",
+ "cover": {
+  "label": "社会｜サイバー",
+  "title": "巨人ファンクラブ\nメアド*80万件*\nサイバー攻撃で流出",
+  "sub": "カード情報は対象外。\n届くメールで気をつけることは？"
+ },
+ "scenes": [
+  {
+   "type": "custom",
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／サンケイスポーツ",
+   "captions": false,
+   "html": "<div class=\"gh\"><div class=\"ge\">プロ野球・巨人のファンクラブ</div><div class=\"gt\">メアド<span class=\"b\">80万件</span><br>流出</div><div class=\"gs\">会員情報のシステムにサイバー攻撃</div></div><div class=\"gg\" id=\"gg\"></div><div class=\"gc\"><span id=\"gn\">0</span><small>件</small></div>",
+   "css": ".gh{position:absolute;left:96px;right:150px;top:440px}\n.ge{font-size:36px;font-weight:700;color:var(--blue);letter-spacing:.06em}\n.gt{margin-top:12px;font-size:112px;font-weight:900;line-height:1.2;color:var(--ink);letter-spacing:-.03em}\n.gt .b{color:var(--blue)}\n.gs{margin-top:20px;font-size:38px;color:var(--sub)}\n.gg{position:absolute;left:96px;width:834px;top:910px;display:grid;grid-template-columns:repeat(10,1fr);gap:14px}\n.gg div{height:52px;color:#C9D2E0}\n.gg div.on{color:#D33}\n.gc{position:absolute;left:96px;top:1050px;font-size:64px;font-weight:900;color:#D33;font-variant-numeric:tabular-nums}\n.gc small{font-size:32px;margin-left:8px;color:var(--sub)}",
+   "js": "const g=document.getElementById('gg');const C=[];const ENV='<svg viewBox=\"0 0 64 48\" width=\"100%\" height=\"100%\"><rect x=\"3\" y=\"3\" width=\"58\" height=\"42\" rx=\"6\" fill=\"#fff\" stroke=\"currentColor\" stroke-width=\"4\"/><path d=\"M5,7 L32,28 L59,7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/></svg>';for(let i=0;i<20;i++){const e=document.createElement('div');e.innerHTML=ENV;g.appendChild(e);C.push(e);}\nconst n=document.getElementById('gn');const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\n__tick.push(t=>{const k=ez((t-0.4)/2.6);C.forEach((e,i)=>e.classList.toggle('on',i<Math.round(k*20)));n.textContent=Math.round(807030*k).toLocaleString('en-US');});",
+   "beats": [
+    {
+     "say": "プロ野球・巨人のファンクラブで、会員のメールアドレス80万件あまりが流出しました。",
+     "reading": "プロ野球、きょじんのファンクラブで、会員のメールアドレス、はちじゅうまんけんあまりが流出しました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／サンケイスポーツ",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "lock",
+     "visual": "ripple",
+     "kicker": "原因は？",
+     "big": "外部からの\n *サイバー攻撃*"
+    },
+    {
+     "bg": "blue",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "カード情報は？",
+     "big": "クレジットカード\n情報は *対象外*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "会員情報を管理するシステムが、外部からサイバー攻撃を受けたということです。",
+     "reading": "会員情報を管理するシステムが、外部からサイバーこうげきを受けたということです。"
+    },
+    {
+     "say": "クレジットカードの情報は、対象外だとしています。"
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／サンケイスポーツ",
+   "html": "<div class=\"tw\"><div class=\"te\" id=\"te\">今日の用語</div><div class=\"tt\" id=\"tt\">フィッシング詐欺</div><div class=\"tr\" id=\"tr\">ふぃっしんぐさぎ</div><div class=\"ti\">{{picto:mail:120:0.5}}</div><div class=\"td\" id=\"td\">本物の企業などを装ったメールで<br>偽サイトに誘い、<b>パスワードやカード番号</b>を盗む手口。</div></div>",
+   "css": ".tw{position:absolute;left:96px;right:150px;top:480px}\n.te{font-size:34px;font-weight:700;color:var(--blue);letter-spacing:.08em;opacity:0}\n.tt{margin-top:14px;font-size:100px;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.1;white-space:nowrap;opacity:0}\n.tr{margin-top:14px;font-size:30px;color:var(--sub);letter-spacing:.14em;opacity:0}\n.ti{position:absolute;right:0px;top:-50px;width:160px;height:160px;display:flex;align-items:center;justify-content:center}\n.td{margin-top:34px;padding-top:28px;border-top:2px solid var(--line);font-size:42px;line-height:1.65;font-weight:500;color:var(--ink);opacity:0}\n.td b{color:var(--blue);font-weight:800}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const E=['te','tt','tr','td'].map(i=>document.getElementById(i));const T=[0.05,0.2,0.5,0.8];\n__tick.push(t=>{E.forEach((e,i)=>{const a=ez((t-T[i])/0.4);e.style.opacity=a.toFixed(3);e.style.transform='translateY('+(24*(1-a)).toFixed(1)+'px)';});});",
+   "beats": [
+    {
+     "say": "フィッシング詐欺は、本物を装ったメールで、パスワードなどを盗む手口です。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／サンケイスポーツ",
+   "label": "私たちが気をつけること",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "流出したアドレスには、なりすましメールが届くおそれがあります。",
+     "kw": [
+      "流出したアドレスには",
+      {
+       "t": " *なりすましメール* が",
+       "icon": "mail"
+      },
+      "届くおそれがあります"
+     ]
+    },
+    {
+     "say": "メールのリンクから、パスワードなどを入れないこと。",
+     "kw": [
+      "メールのリンクから",
+      {
+       "t": " *パスワード* などを",
+       "icon": "key"
+      },
+      "入れないこと"
+     ]
+    },
+    {
+     "say": "公式のサイトやアプリから、直接確かめるのが安全です。",
+     "kw": [
+      "公式のサイトやアプリから",
+      {
+       "t": " *直接確かめる* のが",
+       "icon": "phone"
+      },
+      "安全です"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／サンケイスポーツ",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "流出",
+     "state": "メアド80万件",
+     "icon": "mail"
+    },
+    {
+     "label": "カード情報",
+     "state": "対象外",
+     "icon": "card"
+    },
+    {
+     "label": "注意",
+     "state": "なりすましメール",
+     "icon": "key",
+     "neg": true
+    }
+   ],
+   "beats": [
+    {
+     "say": "ポイントは、この3つ。押さえておきましょう。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
