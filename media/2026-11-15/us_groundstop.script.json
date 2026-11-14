@@ -1,0 +1,190 @@
+{
+ "direction": "空の交通がまるごと止まった規模感が主役なので、headline（plane）で事実から入り、morph の records で『欠航4700便超』を積み上げてから ripple で海外への波及を見せる。原因は nodes で『機器の過負荷→誤った情報→22か所の管制に障害』の連鎖として図にし、締めの前の一覧は置かずに『これからどうなる？』で終える。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.15 SUN",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "全米の空港で離陸停止｜管制の通信障害、欠航4700便超",
+ "cover": {
+  "label": "国際｜交通",
+  "title": "全米の空港で\n*離陸停止*\n管制の通信障害",
+  "sub": "欠航は4700便を超えた。\nなぜ空が止まったのか？"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "plane",
+   "eyebrow": "11月13日",
+   "eyebrow_sub": "アメリカ東部時間の夕方から",
+   "text": "全米の空港で\n *離陸停止*",
+   "size": 120,
+   "sub": "管制の通信障害で、4時間あまり",
+   "captions": false,
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "NHK／財経新聞（IBT）",
+   "beats": [
+    {
+     "say": "アメリカで、全国の空港からの出発便が、4時間あまり止まりました。",
+     "reading": "アメリカで、全国の空港からの出発便が、よじかんあまり止まりました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "ロイター（財経新聞）",
+   "anchor_offset": 0,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "dot",
+     "visual": "records",
+     "number": 4700,
+     "prefix": "欠航",
+     "unit": "便超",
+     "kicker": "どれくらい？",
+     "big": "13日の欠航\n *4700便* 超"
+    },
+    {
+     "bg": "blue",
+     "icon": "globe",
+     "visual": "ripple",
+     "kicker": "影響は海外にも",
+     "big": "欧州やメキシコの\n *米国行き* も"
+    }
+   ],
+   "beats": [
+    {
+     "say": "欠航は4700便を超え、遅れは1万便にのぼりました。",
+     "reading": "欠航は、よんせんななひゃくびんを超え、遅れは、いちまんびんにのぼりました。"
+    },
+    {
+     "say": "ヨーロッパなどでも、アメリカ行きの便が止められました。"
+    }
+   ]
+  },
+  {
+   "type": "nodes",
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "財経新聞（IBT）",
+   "title": "なぜ *止まった？*",
+   "nodes": [
+    {
+     "key": "原因",
+     "value": "機器が過負荷に",
+     "icon": "bolt"
+    },
+    {
+     "key": "すると",
+     "value": "誤った情報を出す",
+     "icon": "alert"
+    },
+    {
+     "key": "結果",
+     "value": "22か所で通信障害",
+     "icon": "plane"
+    }
+   ],
+   "beats": [
+    {
+     "say": "運輸長官によると、機器の過負荷で、全米22か所の管制センターに障害が起きました。",
+     "reading": "運輸長官によると、機器の過負荷で、全米にじゅうにかしょの管制センターに障害が起きました。"
+    }
+   ]
+  },
+  {
+   "type": "term",
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "財経新聞（IBT）",
+   "term": "航空管制",
+   "reading": "こうくうかんせい",
+   "eyebrow": "今日の用語",
+   "definition": "航空機が安全に飛べるよう、地上の管制官が高度や経路、離着陸の順番を指示する仕組み。",
+   "icon": "plane",
+   "beats": [
+    {
+     "say": "航空管制は、飛行機がぶつからないよう、地上から指示を出す仕組みです。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "財経新聞（IBT）",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "運輸長官は、管制システムがとても古いと指摘しました。",
+     "kw": [
+      "運輸長官は",
+      {
+       "t": "管制システムが *とても古い* と",
+       "icon": "alert"
+      },
+      "指摘しました"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜交通",
+   "source": "財経新聞（IBT）",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "停止は解除されましたが、欠航や遅れは、しばらく続く見通しです。",
+     "kw": [
+      "停止は解除されましたが",
+      {
+       "t": " *欠航や遅れ* は",
+       "icon": "plane"
+      },
+      "しばらく続く見通しです"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
