@@ -1,0 +1,236 @@
+{
+ "direction": "ペルシャ湾という場所そのものが核心なので、地球儀でバーレーンへ寄って始める（今日は地図の冒頭はこの1本だけ）。morph で『報復と主張』→『撃墜と発表』の応酬を見せ、原油の通り道（ホルムズ海峡）から私たちへの影響を kw で組む。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.15 SUN",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "イランがバーレーンの米軍施設を攻撃と発表｜米側は撃墜",
+ "cover": {
+  "label": "国際｜中東",
+  "title": "イランが\n*米軍施設*を攻撃\nバーレーンで",
+  "sub": "ホルムズ海峡の緊張は\n私たちの暮らしにどう響く？",
+  "map": {
+   "from": [
+    54.5,
+    31.5
+   ],
+   "to": [
+    50.55,
+    26.07
+   ],
+   "hl": [
+    "364"
+   ],
+   "from_label": "イラン",
+   "to_label": "バーレーン",
+   "pad_s": 6
+  }
+ },
+ "scenes": [
+  {
+   "type": "globe",
+   "mode": "zoom",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "NHK／テレビ朝日",
+   "target": [
+    51.5,
+    26.3
+   ],
+   "hl": [
+    "048",
+    "364"
+   ],
+   "stages": [
+    "世界",
+    "中東",
+    "ペルシャ湾",
+    "バーレーン"
+   ],
+   "pin": "バーレーン",
+   "pin_sub": "米軍の施設",
+   "title": "イランが\n *米軍施設* を攻撃",
+   "title_at": -0.6,
+   "hero": true,
+   "hero_size": 116,
+   "map_h": 560,
+   "hero_top": 900,
+   "hero_sub": "バーレーンで。革命防衛隊が発表",
+   "beats": [
+    {
+     "say": "イランの革命防衛隊が、バーレーンにあるアメリカ軍の施設を攻撃したと発表しました。",
+     "reading": "イランの革命防衛隊が、バーレーンにあるアメリカ軍の施設を攻撃したと発表しました。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "NHK／テレビ朝日",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "arrow",
+     "visual": "globe",
+     "kicker": "なぜ？",
+     "big": "米軍の攻撃への\n *報復* と主張"
+    },
+    {
+     "bg": "white",
+     "icon": "dot",
+     "icon2": "lock",
+     "visual": "ripple",
+     "kicker": "アメリカ側は？",
+     "big": "ドローン2機を\n *撃墜* と発表"
+    }
+   ],
+   "beats": [
+    {
+     "say": "13日に米軍がイラン南部を攻撃したことへの、報復だとしています。",
+     "reading": "じゅうさんにちに、べいぐんがイラン南部を攻撃したことへの、報復だとしています。"
+    },
+    {
+     "say": "アメリカ軍は、ドローン2機をすべて撃墜し、被害はないと発表しました。",
+     "reading": "アメリカ軍は、ドローンにきをすべて撃墜し、被害はないと発表しました。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "テレビ朝日",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "アメリカとイランの、戦闘を終わらせる交渉は止まったままです。",
+     "kw": [
+      "アメリカとイランの",
+      "戦闘を終わらせる *交渉* は",
+      "止まったままです"
+     ]
+    },
+    {
+     "say": "中東の米軍施設への攻撃は、9月上旬以来です。",
+     "reading": "中東のべいぐん施設への攻撃は、くがつじょうじゅん以来です。",
+     "kw": [
+      "中東の米軍施設への攻撃は",
+      {
+       "t": " *9月上旬* 以来です",
+       "icon": "calendar"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "NHK",
+   "html": "<div class=\"tw\"><div class=\"te\" id=\"te\">今日の用語</div><div class=\"tt\" id=\"tt\">ホルムズ海峡</div><div class=\"tr\" id=\"tr\">ほるむずかいきょう</div><div class=\"ti\" id=\"ti\">{{picto:ship:120:0.5}}</div><div class=\"td\" id=\"td\">ペルシャ湾の出口の海峡。<br>中東の原油を運ぶ<b>タンカーの通り道</b>。</div></div>",
+   "css": ".tw{position:absolute;left:96px;right:150px;top:480px}\n.te{font-size:34px;font-weight:700;color:var(--blue);letter-spacing:.08em;opacity:0}\n.tt{margin-top:14px;font-size:132px;font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.1;opacity:0}\n.tr{margin-top:14px;font-size:30px;color:var(--sub);letter-spacing:.14em;opacity:0}\n.ti{position:absolute;right:0px;top:-50px;width:160px;height:160px;display:flex;align-items:center;justify-content:center}\n.td{margin-top:34px;padding-top:28px;border-top:2px solid var(--line);font-size:44px;line-height:1.65;font-weight:500;color:var(--ink);opacity:0}\n.td b{color:var(--blue);font-weight:800}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const E=['te','tt','tr','td'].map(i=>document.getElementById(i));const T=[0.05,0.2,0.5,0.8];\n__tick.push(t=>{E.forEach((e,i)=>{const a=ez((t-T[i])/0.4);e.style.opacity=a.toFixed(3);e.style.transform='translateY('+(24*(1-a)).toFixed(1)+'px)';});});",
+   "beats": [
+    {
+     "say": "ホルムズ海峡は、中東の原油を運ぶ船の通り道です。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "NHK",
+   "label": "私たちへの影響",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "日本は輸入する原油の多くを、中東に頼っています。",
+     "kw": [
+      "日本は輸入する原油の多くを",
+      {
+       "t": " *中東* に頼っています",
+       "icon": "ship"
+      }
+     ]
+    },
+    {
+     "say": "緊張が長引けば、ガソリン代などに響くおそれがあります。",
+     "kw": [
+      "緊張が長引けば",
+      {
+       "t": " *ガソリン代* などに",
+       "icon": "yen"
+      },
+      "響くおそれがあります"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "list",
+   "story": 1,
+   "section": "国際｜中東",
+   "source": "NHK／テレビ朝日",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "イラン",
+     "state": "報復と主張",
+     "icon": "key"
+    },
+    {
+     "label": "米軍",
+     "state": "撃墜・被害なし",
+     "icon": "person"
+    },
+    {
+     "label": "焦点",
+     "state": "ホルムズ海峡",
+     "icon": "calendar"
+    }
+   ],
+   "beats": [
+    {
+     "say": "ポイントは、この3つです。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
