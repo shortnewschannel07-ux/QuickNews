@@ -1,0 +1,204 @@
+{
+ "direction": "国と地域をつなぐ提案なので、custom で大見出しの下に『日本→東南アジア』を結ぶ点線を流して始める（地図には寄らない）。morph の globe→ripple で IEA の『90日分の備蓄』から『協調放出にASEANは不参加』へつなぎ、なぜ大事？とこれからを kw で、最後に list で3点を残す。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.16 MON",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "「アジア版IEA」創設を提唱へ｜石油備蓄で東南アジアと連携",
+ "cover": {
+  "label": "経済｜エネルギー",
+  "title": "アジア版IEA\n*創設を提唱へ*\n石油備蓄で連携",
+  "sub": "なぜ今、東南アジアと組むのか。\n17日のAZEC首脳会合に注目"
+ },
+ "scenes": [
+  {
+   "type": "custom",
+   "captions": false,
+   "html": "<div class=\"ah\"><div class=\"ae\">17日のAZEC首脳会合で</div><div class=\"at\">アジア版IEA<br><span class=\"b\">創設を提唱へ</span></div><div class=\"as\">高市首相、石油備蓄で東南アジアと連携</div></div>\n<div class=\"am\"><div class=\"an\" id=\"a1\">{{picto:gov:84:0.2}}<b>日本</b></div><svg class=\"aa\" viewBox=\"0 0 300 60\" width=\"300\" height=\"60\"><path id=\"ap\" d=\"M10,30 H280\" stroke=\"#EA6A12\" stroke-width=\"6\" stroke-dasharray=\"14 12\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M262,14 L284,30 L262,46\" stroke=\"#EA6A12\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><div class=\"an\" id=\"a2\">{{picto:globe:84:1.0}}<b>東南アジア</b></div></div>",
+   "css": ".ah{position:absolute;left:96px;right:120px;top:440px}\n.ae{font-size:38px;font-weight:700;color:var(--blue);letter-spacing:.04em}\n.at{margin-top:14px;font-size:118px;font-weight:900;line-height:1.18;color:var(--ink);letter-spacing:-.03em}\n.at .b{color:var(--blue)}\n.as{margin-top:22px;font-size:40px;color:var(--sub);font-weight:700}\n.am{position:absolute;left:96px;right:96px;top:1000px;display:flex;align-items:center;justify-content:space-between}\n.an{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:44px;color:var(--ink);opacity:0}\n.an b{font-weight:900}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const a1=document.getElementById('a1'),a2=document.getElementById('a2'),p=document.getElementById('ap');\n__tick.push(t=>{const u=ez((t-0.2)/0.4),v=ez((t-1.0)/0.4);a1.style.opacity=u;a2.style.opacity=v;a1.style.transform='translateY('+(20*(1-u)).toFixed(1)+'px)';a2.style.transform='translateY('+(20*(1-v)).toFixed(1)+'px)';p.style.strokeDashoffset=(-t*40).toFixed(1);});",
+   "beats": [
+    {
+     "say": "高市首相が、アジア版IEAの創設を提唱する方針です。",
+     "reading": "たかいちしゅしょうが、アジアばん、アイイーエーの創設を提唱する方針です。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "globe",
+     "visual": "globe",
+     "number": 90,
+     "decimals": 0,
+     "prefix": "IEA加盟国",
+     "unit": "日分",
+     "kicker": "IEAとは？",
+     "big": "石油の備蓄を\n *90日分* 義務づけ"
+    },
+    {
+     "bg": "white",
+     "icon": "bolt",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "今年3月から",
+     "big": "過去最大の\n *協調放出*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "IEAは、加盟国に90日分の石油備蓄を義務づけています。",
+     "reading": "アイイーエーは、加盟国に、きゅうじゅうにちぶんの石油備蓄を義務づけています。"
+    },
+    {
+     "say": "今年3月からは、過去最大規模の放出を行いました。",
+     "reading": "ことしさんがつからは、過去最大規模の放出を行いました。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "kw",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "この放出に、東南アジアの国はどこも加わっていません。",
+     "reading": "この放出に、とうなんアジアの国はどこも加わっていません。",
+     "kw": [
+      "この放出に",
+      {
+       "t": " *東南アジア* の国は",
+       "icon": "globe"
+      },
+      "どこも加わっていません"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "term",
+   "term": "協調放出",
+   "reading": "きょうちょうほうしゅつ",
+   "eyebrow": "今日の用語",
+   "icon": "bolt",
+   "definition": "危機の際、各国がためておいた石油を足並みをそろえて市場に出すこと。",
+   "beats": [
+    {
+     "say": "協調放出は、各国がそろって備蓄を放出することです。",
+     "reading": "きょうちょうほうしゅつは、各国がそろって備蓄を放出することです。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "kw",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "中東情勢の悪化で、アジアのエネルギー供給の弱さが表れました。",
+     "reading": "ちゅうとうじょうせいの悪化で、アジアのエネルギー供給の弱さが表れました。",
+     "kw": [
+      "中東情勢の悪化で",
+      {
+       "t": "アジアの *エネルギー供給*",
+       "icon": "bolt"
+      },
+      "の弱さが表れました"
+     ]
+    },
+    {
+     "say": "日本も、手術用の手袋などの石油製品を、東南アジアに頼っています。",
+     "reading": "日本も、しゅじゅつようのてぶくろなどの石油製品を、とうなんアジアに頼っています。",
+     "kw": [
+      "日本も、手術用の手袋などの",
+      {
+       "t": " *石油製品* を",
+       "icon": "ship"
+      },
+      "東南アジアに頼っています"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "list",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "提案",
+     "state": "アジア版IEA",
+     "icon": "globe"
+    },
+    {
+     "label": "中身",
+     "state": "緊急時の放出・融通",
+     "icon": "key"
+    },
+    {
+     "label": "次の焦点",
+     "state": "17日 AZEC首脳会合",
+     "icon": "calendar"
+    }
+   ],
+   "beats": [
+    {
+     "say": "緊急時に石油を融通するルール作りが柱です。",
+     "reading": "緊急時に石油をゆうずうするルール作りが柱です。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜エネルギー",
+   "source": "時事通信"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
