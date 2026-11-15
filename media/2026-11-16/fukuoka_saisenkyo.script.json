@@ -1,0 +1,194 @@
+{
+ "direction": "選挙のしくみ（4分の1ルール）が核心なので、headline（vote）で事実から入り、morph の records で『13人』が並んでから、custom で有効投票の帯に『4分の1』の線を引き、最多得票でも届かない様子を見せる。後半は kw 2つで意義と日程、list は置かずに締める。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.16 MON",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "福岡市長選、再選挙へ｜13人立候補、誰も法定得票に届かず",
+ "cover": {
+  "label": "政治｜福岡市長選",
+  "title": "福岡市長選\n*再選挙へ*\n13人とも届かず",
+  "sub": "当選に必要な「4分の1」とは。\n政令市では札幌市以来"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "vote",
+   "eyebrow": "福岡市長選",
+   "eyebrow_sub": "11月15日投開票",
+   "text": "福岡市長選\n *再選挙へ*",
+   "size": 124,
+   "sub": "13人が立候補し、誰も当選に届きませんでした",
+   "captions": false,
+   "beats": [
+    {
+     "say": "福岡市長選挙は、当選者が決まらず、再選挙になる見通しです。",
+     "reading": "ふくおかしちょうせんきょは、当選者が決まらず、さいせんきょになる見通しです。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "visual": "records",
+     "number": 13,
+     "decimals": 0,
+     "prefix": "立候補",
+     "unit": "人",
+     "kicker": "何人が出た？",
+     "big": "候補者は\n *過去最多*"
+    },
+    {
+     "bg": "white",
+     "icon": "bubble",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "なぜ乱立？",
+     "big": "現職が出ず\n *新人だけ* の争い"
+    }
+   ],
+   "beats": [
+    {
+     "say": "立候補したのは、過去最多の13人。",
+     "reading": "立候補したのは、かこさいだの、じゅうさんにん。"
+    },
+    {
+     "say": "現職の市長が出馬せず、新人どうしの争いになりました。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "custom",
+   "title": "当選の条件は *4分の1*",
+   "html": "<div class=\"qw\"><div class=\"qcap\">有効投票（全体）</div><div class=\"qbar\"><div class=\"qfill\" id=\"qf\"></div><div class=\"qline\" id=\"ql\"><span>当選ライン 4分の1</span></div></div><div class=\"qtick\"><i>0</i><i>1/4</i><i>1/2</i><i>3/4</i><i>全体</i></div><div class=\"qtop\" id=\"qt\">{{picto:people:96:0.4}}<div><b>最多得票の候補</b><br>でも <em>届かず</em></div></div></div>",
+   "css": ".qw{position:absolute;left:96px;right:96px;top:520px}\n.qcap{font-size:40px;font-weight:700;color:var(--sub);margin-bottom:84px}\n.qbar{position:relative;height:120px;border-radius:20px;background:var(--pale);overflow:visible}\n.qfill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:20px;background:var(--blue)}\n.qline{position:absolute;top:-34px;bottom:-34px;left:25%;width:8px;margin-left:-4px;background:#EA6A12;border-radius:4px;transform:scaleY(0);transform-origin:bottom}\n.qline span{position:absolute;left:22px;top:-58px;white-space:nowrap;font-size:42px;font-weight:900;color:#EA6A12}\n.qtick{display:flex;justify-content:space-between;margin-top:46px;font-size:34px;color:var(--sub);font-style:normal}\n.qtick i{font-style:normal}\n.qtop{display:flex;align-items:center;gap:28px;margin-top:30px;font-size:50px;font-weight:700;color:var(--ink);line-height:1.35;opacity:0}\n.qtop em{font-style:normal;color:#EA6A12;font-size:64px;font-weight:900}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\nconst f=document.getElementById('qf'),l=document.getElementById('ql'),q=document.getElementById('qt');\n__tick.push(t=>{const a=ez((t-0.3)/0.6);l.style.transform='scaleY('+a.toFixed(3)+')';\nconst t1=(__B[1]||2.6);const b=ez((t-t1)/1.2);f.style.width=(23*b).toFixed(2)+'%';\nconst c=ez((t-t1-1.0)/0.5);q.style.opacity=c.toFixed(3);q.style.transform='translateY('+(24*(1-c)).toFixed(1)+'px)';});",
+   "beats": [
+    {
+     "say": "当選には、有効投票の4分の1以上が必要です。",
+     "reading": "当選には、ゆうこうとうひょうの、よんぶんのいち以上が必要です。"
+    },
+    {
+     "say": "票が割れて、最も多く得票した候補も届きませんでした。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "term",
+   "term": "再選挙",
+   "reading": "さいせんきょ",
+   "eyebrow": "今日の用語",
+   "icon": "vote",
+   "definition": "当選者が決まらなかったときなどに、改めて行う選挙。",
+   "beats": [
+    {
+     "say": "再選挙は、当選者が決まらないときに、改めて行う選挙です。",
+     "reading": "さいせんきょは、当選者が決まらないときに、あらためて行う選挙です。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "kw",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "政令市の市長選で再選挙になるのは、2003年の札幌市以来です。",
+     "reading": "せいれいしの市長選で、さいせんきょになるのは、にせんさんねんの、さっぽろし以来です。",
+     "kw": [
+      "政令市の市長選で",
+      {
+       "t": "再選挙になるのは",
+       "icon": "gov"
+      },
+      "2003年の *札幌市* 以来です"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "kw",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "再選挙は、原則50日以内に行われます。",
+     "reading": "さいせんきょは、げんそく、ごじゅうにち以内に行われます。",
+     "kw": [
+      {
+       "t": " *再選挙* は",
+       "icon": "calendar"
+      },
+      "原則50日以内に行われます"
+     ]
+    },
+    {
+     "say": "今の市長の任期は、12月6日までです。",
+     "reading": "今の市長の任期は、じゅうにがつむいかまでです。",
+     "kw": [
+      "今の市長の任期は",
+      {
+       "t": " *12月6日* まで",
+       "icon": "gov"
+      }
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "政治｜選挙",
+   "source": "共同通信／NetIB-News"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
