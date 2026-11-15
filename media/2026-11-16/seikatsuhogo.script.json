@@ -1,0 +1,167 @@
+{
+ "direction": "暮らしの制度の話なので、視聴者の疑問『生活保護の基準、どう変わる？』の headline（home）から入る。morph の cards→ripple で『食費や光熱費の基準』『物価高をどう反映』を見せ、custom で 2022年→いま→年内→2027年10月 の時間軸を進めて日程を一目で。最後は nodes で、ほかの制度への波及を連鎖で見せる。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.16 MON",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "生活保護費の基準、見直しへ｜物価高の反映が焦点、27年10月改定予定",
+ "cover": {
+  "label": "社会｜生活保護",
+  "title": "生活保護費\n*基準を見直し*\n物価高の反映が焦点",
+  "sub": "なぜ見直すのか。\nほかの制度にも影響する可能性"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "home",
+   "eyebrow": "生活保護",
+   "eyebrow_sub": "厚生労働省",
+   "text": "生活保護の基準\n *どう変わる？*",
+   "size": 112,
+   "sub": "支給水準の見直しへ、検証が本格化",
+   "captions": false,
+   "beats": [
+    {
+     "say": "生活保護費の支給水準の見直しに向けて、国の検証が本格化しています。",
+     "reading": "せいかつほごひの、しきゅうすいじゅんの見直しに向けて、国の検証が本格化しています。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜暮らし",
+   "source": "共同通信（北海道新聞・琉球新報）"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "見直すのは？",
+     "big": "食費や光熱費の\n *生活扶助*"
+    },
+    {
+     "bg": "blue",
+     "icon": "chart",
+     "visual": "ripple",
+     "kicker": "焦点は？",
+     "big": " *物価高* を\nどう反映するか"
+    }
+   ],
+   "beats": [
+    {
+     "say": "対象は、食費や光熱費にあてる、生活扶助の基準額です。",
+     "reading": "対象は、食費や光熱費にあてる、せいかつふじょの基準額です。"
+    },
+    {
+     "say": "焦点は、物価高をどこまで反映するかです。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜暮らし",
+   "source": "共同通信（北海道新聞・琉球新報）"
+  },
+  {
+   "type": "term",
+   "term": "生活扶助",
+   "reading": "せいかつふじょ",
+   "eyebrow": "今日の用語",
+   "icon": "home",
+   "definition": "生活保護のうち、食費や光熱費など、日々の暮らしにあてる分。",
+   "beats": [
+    {
+     "say": "生活扶助は、生活保護のうち、日々の暮らしにあてる分のことです。",
+     "reading": "せいかつふじょは、生活保護のうち、日々の暮らしにあてる分のことです。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜暮らし",
+   "source": "共同通信（北海道新聞・琉球新報）"
+  },
+  {
+   "type": "custom",
+   "title": "これからの *日程*",
+   "html": "<div class=\"tw\"><div class=\"tbar\"><div class=\"tfill\" id=\"tf\"></div></div><div class=\"tl\" id=\"t0\"><i></i><div><b>2022年</b><span>前回の検証</span></div></div><div class=\"tl\" id=\"t1\"><i></i><div><b>いま</b><span>専門家会議で検証</span></div></div><div class=\"tl\" id=\"t2\"><i></i><div><b>年内</b><span>新しい基準の大枠</span></div></div><div class=\"tl\" id=\"t3\"><i></i><div><b>2027年10月</b><span>改定の予定</span></div></div></div>",
+   "css": ".tw{position:absolute;left:96px;right:120px;top:500px}\n.tbar{position:absolute;left:22px;top:30px;bottom:30px;width:8px;border-radius:4px;background:var(--pale)}\n.tfill{position:absolute;left:0;right:0;top:0;height:0;border-radius:4px;background:#EA6A12}\n.tl{position:relative;display:flex;align-items:center;gap:40px;height:140px;opacity:.25}\n.tl i{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;border:8px solid var(--blue);box-sizing:border-box;z-index:1}\n.tl b{display:block;font-size:56px;font-weight:900;color:var(--ink);letter-spacing:-.01em}\n.tl span{display:block;font-size:40px;color:var(--sub);font-weight:700}\n.tl.on b{color:var(--blue)}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const f=document.getElementById('tf');const T=[0,1,2,3].map(i=>document.getElementById('t'+i));\nconst at=[0.2,0.9,(__B[1]||2.6),(__B[1]||2.6)+1.0];\n__tick.push(t=>{T.forEach((e,i)=>{const u=ez((t-at[i])/0.4);e.style.opacity=(0.25+0.75*u).toFixed(3);e.style.transform='translateX('+(30*(1-u)).toFixed(1)+'px)';e.classList.toggle('on',u>0.5&&i===Math.max(...at.map((a,k)=>t>=a?k:0)));});\nlet k=0;for(let i=0;i<4;i++)if(t>=at[i])k=i;const prev=at[k],next=at[Math.min(3,k+1)];const fr=k>=3?1:ez((t-prev)/Math.max(0.3,next-prev));f.style.height=Math.min(100,(k+ (k>=3?0:fr))/3*100).toFixed(2)+'%';});",
+   "beats": [
+    {
+     "say": "検証は原則5年に1度で、前回は2022年でした。",
+     "reading": "検証は、げんそく、ごねんにいちどで、前回は、にせんにじゅうにねんでした。"
+    },
+    {
+     "say": "政府は年内に大枠を決め、2027年10月に改定する予定です。",
+     "reading": "政府は、ねんないに大枠を決め、にせんにじゅうななねん、じゅうがつに改定する予定です。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜暮らし",
+   "source": "共同通信（北海道新聞・琉球新報）"
+  },
+  {
+   "type": "nodes",
+   "title": "私たちへの *影響*",
+   "icon": "people",
+   "nodes": [
+    {
+     "key": "生活保護の基準",
+     "value": "見直し",
+     "icon": "doc"
+    },
+    {
+     "key": "住民税",
+     "value": "非課税の線引き",
+     "icon": "yen"
+    },
+    {
+     "key": "就学援助",
+     "value": "対象の目安",
+     "icon": "home"
+    }
+   ],
+   "beats": [
+    {
+     "say": "見直しは、住民税の非課税や、就学援助など、ほかの制度にも影響する可能性があります。",
+     "reading": "見直しは、じゅうみんぜいの非課税や、しゅうがくえんじょなど、ほかの制度にも影響する可能性があります。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜暮らし",
+   "source": "共同通信（北海道新聞・琉球新報）"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
