@@ -1,0 +1,173 @@
+{
+ "direction": "国会の手続きが核心なので、地図も数字の帯（11/13の冒頭）も使わず、morph の cards（法案の書類）から入って『45削減案は撤回』へ変形。中盤は custom で『きょう審議入り→月末に衆院通過→参院60日→衆院で再可決』の時間軸を進め、なぜ月内を急ぐかを一目で見せる。賛否は kw で両論を並べる。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.17 TUE",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "衆院定数削減法案、きょう審議入り｜比例31減、月内の衆院通過が焦点",
+ "cover": {
+  "label": "政治｜衆院定数削減",
+  "title": "定数削減法案\n*きょう審議入り*\n比例を31減らす",
+  "sub": "なぜ与党は「月内」を急ぐのか。\n参院の60日ルールがカギ"
+ },
+ "scenes": [
+  {
+   "type": "morph",
+   "anchor_offset": 2,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "自民・維新・国民民主が提出",
+     "big": "定数削減法案\n *きょう審議入り*",
+     "size": 104
+    },
+    {
+     "bg": "white",
+     "icon": "bubble",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "何が決まった？",
+     "big": "45削減案は\n *撤回* へ"
+    }
+   ],
+   "beats": [
+    {
+     "say": "衆議院の定数を減らす法案が、きょう審議入りします。",
+     "reading": "しゅうぎいんの定数を減らす法案が、きょう、しんぎいりします。"
+    },
+    {
+     "say": "前の国会の、45議席を減らす案は撤回されます。",
+     "reading": "前の国会の、よんじゅうごぎせきを減らす案は、撤回されます。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "NHK／テレビ朝日（ANN）"
+  },
+  {
+   "type": "kw",
+   "label": "何が変わる？",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "3党の新しい法案は、比例代表を31議席減らす内容です。",
+     "reading": "さんとうの新しい法案は、ひれいだいひょうを、さんじゅういちぎせき減らす内容です。",
+     "kw": [
+      "3党の新しい法案は",
+      {
+       "t": " *比例代表* を31議席",
+       "icon": "vote"
+      },
+      "減らす内容です"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "NHK／テレビ朝日（ANN）"
+  },
+  {
+   "type": "custom",
+   "title": "なぜ *月内* なの？",
+   "html": "<div class=\"tw\"><div class=\"tl\"><div class=\"tlf\" id=\"tf\"></div></div><div class=\"ts\" id=\"s0\"><i></i><b>きょう</b><span>審議入り</span></div><div class=\"ts\" id=\"s1\"><i></i><b>11月末</b><span>衆院を通過<br>（与党の目標）</span></div><div class=\"ts\" id=\"s2\"><i></i><b>参院</b><span>60日以内に<br>採決なし</span></div><div class=\"ts hot\" id=\"s3\"><i></i><b>衆院</b><span>再び可決<br>できる</span></div></div>",
+   "css": ".tw{position:absolute;left:96px;right:96px;top:520px;height:560px}\n.tl{position:absolute;left:36px;top:30px;bottom:60px;width:10px;border-radius:5px;background:var(--pale)}\n.tlf{position:absolute;left:0;top:0;width:10px;height:0;border-radius:5px;background:var(--blue)}\n.ts{position:absolute;left:0;display:flex;align-items:center;gap:30px;opacity:0}\n.ts i{display:block;width:82px;height:82px;border-radius:50%;background:#fff;border:10px solid var(--blue);box-sizing:border-box;flex:none}\n.ts b{font-size:58px;font-weight:900;color:var(--ink);width:250px}\n.ts span{font-size:42px;font-weight:700;color:var(--sub);line-height:1.3}\n.ts.hot i{border-color:#EA6A12}\n.ts.hot b{color:#EA6A12}\n#s0{top:0}#s1{top:140px}#s2{top:280px}#s3{top:420px}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const f=document.getElementById('tf');const S=[0,1,2,3].map(k=>document.getElementById('s'+k));\n__tick.push(t=>{const b1=(__B[1]||2.4);const at=[0.3,0.9,b1+0.1,b1+1.0];S.forEach((e,k)=>{const u=ez((t-at[k])/0.45);e.style.opacity=u.toFixed(3);e.style.transform='translateX('+(40*(1-u)).toFixed(1)+'px)';});const p=Math.max(0,Math.min(1,(t-0.3)/(b1+1.0)));f.style.height=(p*440).toFixed(1)+'px';});",
+   "beats": [
+    {
+     "say": "与党は、月内の衆院通過を目指しています。",
+     "reading": "与党は、げつないの、しゅういんつうかを目指しています。"
+    },
+    {
+     "say": "参議院で60日以内に採決されないと、衆議院で再可決できるためです。",
+     "reading": "さんぎいんで、ろくじゅうにち以内に採決されないと、しゅうぎいんで、さいかけつできるためです。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "NHK／テレビ朝日（ANN）"
+  },
+  {
+   "type": "term",
+   "term": "再可決",
+   "reading": "さいかけつ",
+   "eyebrow": "今日の用語",
+   "icon": "gov",
+   "definition": "参議院が否決した（または60日以内に議決しない）法案を、衆議院が出席議員の3分の2以上で再び可決し、成立させること。",
+   "beats": [
+    {
+     "say": "再可決は、衆議院が3分の2以上の賛成で、もう一度可決することです。",
+     "reading": "さいかけつは、しゅうぎいんが、さんぶんのに以上の賛成で、もう一度可決することです。"
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "NHK／テレビ朝日（ANN）"
+  },
+  {
+   "type": "kw",
+   "label": "賛成と反対",
+   "label_icon": "people",
+   "beats": [
+    {
+     "say": "自民党側は、連立の合意どおり実現したい考えです。",
+     "reading": "じみんとうがわは、連立の合意どおり実現したい考えです。",
+     "kw": [
+      "自民党側は",
+      {
+       "t": "連立の合意どおり *実現* したい",
+       "icon": "gov"
+      }
+     ]
+    },
+    {
+     "say": "一方、野党は、数の力で選挙制度を変えることに反発しています。",
+     "kw": [
+      "一方、野党は",
+      {
+       "t": " *数の力* で",
+       "icon": "people"
+      },
+      "選挙制度を変えることに反発"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "政治｜国会",
+   "source": "NHK／テレビ朝日（ANN）"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
