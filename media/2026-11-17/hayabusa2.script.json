@@ -1,0 +1,182 @@
+{
+ "direction": "行き先が変わる話なので、冒頭から custom で『地球→1998 KY26（2031年）』の点線が途中で止まり×、オレンジの新しい線が『2015 BM510（2028年度）』へ伸びる宇宙の航路図を見せる（地図には寄らない）。原因は morph で稲妻のピクトと『エンジン4基』の数字から ripple へ変形させてエンジンの不調を、用語は小惑星、意義は kw、最後に list で3点。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.17 TUE",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "はやぶさ2、目的地を変更｜エンジン不具合で2031年の到着を断念",
+ "cover": {
+  "label": "社会｜宇宙・JAXA",
+  "title": "はやぶさ2\n*目的地を変更*\nエンジン不具合で",
+  "sub": "2031年の小惑星到着を断念。\n新しい行き先はどこ？"
+ },
+ "scenes": [
+  {
+   "type": "custom",
+   "captions": false,
+   "html": "<div class=\"hh\"><div class=\"he\">JAXA・11月16日に報告</div><div class=\"ht\">はやぶさ2<br><span class=\"b\">目的地を変更</span></div><div class=\"hs\">エンジン不具合で、2031年の到着を断念</div></div><div class=\"hm\"><svg width=\"888\" height=\"420\" viewBox=\"0 0 888 420\"><circle cx=\"80\" cy=\"300\" r=\"46\" fill=\"#1F5BFF\"/><text x=\"80\" y=\"390\" text-anchor=\"middle\" font-size=\"38\" font-weight=\"700\" fill=\"#0B1B33\">地球</text><path id=\"po\" d=\"M126,280 C330,120 560,60 800,70\" fill=\"none\" stroke=\"#9AA8BD\" stroke-width=\"7\" stroke-dasharray=\"14 14\"/><g id=\"px\" opacity=\"0\"><path d=\"M560,52 l44,44 M604,52 l-44,44\" stroke=\"#D23C3C\" stroke-width=\"12\" stroke-linecap=\"round\"/></g><circle cx=\"810\" cy=\"70\" r=\"22\" fill=\"#9AA8BD\"/><text x=\"860\" y=\"140\" text-anchor=\"end\" font-size=\"34\" font-weight=\"700\" fill=\"#5B6B82\">1998 KY26・2031年</text><path id=\"pn\" d=\"M126,310 C340,330 560,310 790,260\" fill=\"none\" stroke=\"#EA6A12\" stroke-width=\"9\" stroke-linecap=\"round\" pathLength=\"1\" stroke-dasharray=\"1\" stroke-dashoffset=\"1\"/><g id=\"pt\" opacity=\"0\"><circle cx=\"806\" cy=\"256\" r=\"22\" fill=\"#EA6A12\"/><text x=\"860\" y=\"340\" text-anchor=\"end\" font-size=\"38\" font-weight=\"900\" fill=\"#EA6A12\">2015 BM510・2028年度</text></g></svg></div>",
+   "css": ".hh{position:absolute;left:96px;right:110px;top:420px}\n.he{font-size:38px;font-weight:700;color:var(--blue);letter-spacing:.04em}\n.ht{margin-top:14px;font-size:120px;font-weight:900;line-height:1.18;color:var(--ink);letter-spacing:-.03em}\n.ht .b{color:var(--blue)}\n.hs{margin-top:22px;font-size:40px;color:var(--sub);font-weight:700}\n.hm{position:absolute;left:96px;top:880px}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const o=document.getElementById('po'),x=document.getElementById('px'),n=document.getElementById('pn'),k=document.getElementById('pt');\n__tick.push(t=>{o.style.strokeDashoffset=(-t*30).toFixed(1);const a=ez((t-0.6)/0.3);x.setAttribute('opacity',a.toFixed(3));const b=ez((t-1.1)/1.0);n.style.strokeDashoffset=(1-b).toFixed(3);k.setAttribute('opacity',ez((t-1.9)/0.4).toFixed(3));});",
+   "beats": [
+    {
+     "say": "探査機はやぶさ2が、最後の目的地の小惑星を変更します。",
+     "reading": "たんさきはやぶさツーが、最後の目的地の、しょうわくせいを変更します。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜宇宙",
+   "source": "読売新聞／財経日報（JAXA報告）"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 2,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "bolt",
+     "visual": "",
+     "number": 4,
+     "prefix": "イオンエンジン",
+     "unit": "基",
+     "kicker": "何が起きた？",
+     "big": "最後の1基も\n *不具合*"
+    },
+    {
+     "bg": "white",
+     "icon": "globe",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "その結果",
+     "big": "軌道を変える\n *力が足りない*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "エンジン4基のうち、最後の1基も、8月に不具合を起こしました。",
+     "reading": "エンジンよんきのうち、最後のいっきも、はちがつに不具合を起こしました。"
+    },
+    {
+     "say": "地球の重力を使って軌道を変える、スイングバイが難しくなりました。",
+     "reading": "地球の重力を使って軌道を変える、スイングバイが難しくなりました。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜宇宙",
+   "source": "読売新聞／財経日報（JAXA報告）"
+  },
+  {
+   "type": "term",
+   "term": "小惑星",
+   "reading": "しょうわくせい",
+   "eyebrow": "今日の用語",
+   "icon": "globe",
+   "definition": "太陽のまわりを回る、岩などでできた小さな天体。",
+   "beats": [
+    {
+     "say": "小惑星は、太陽のまわりを回る、岩などでできた小さな天体です。",
+     "reading": "しょうわくせいは、太陽のまわりを回る、岩などでできた小さな天体です。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜宇宙",
+   "source": "読売新聞／財経日報（JAXA報告）"
+  },
+  {
+   "type": "kw",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "数十メートルの小惑星を、間近で見るのは世界初の見込みです。",
+     "reading": "すうじゅうメートルの、しょうわくせいを、まぢかで見るのは、世界初の見込みです。",
+     "kw": [
+      "数十メートルの小惑星を",
+      "間近で見るのは",
+      {
+       "t": " *世界初* の見込みです",
+       "icon": "key"
+      }
+     ]
+    },
+    {
+     "say": "地球に近づく小惑星から、地球を守る研究にも役立つと期待されています。",
+     "reading": "地球に近づく、しょうわくせいから、地球を守る研究にも役立つと期待されています。",
+     "kw": [
+      "地球に近づく小惑星から",
+      {
+       "t": " *地球を守る* 研究にも",
+       "icon": "globe"
+      },
+      "役立つと期待されています"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "社会｜宇宙",
+   "source": "読売新聞／財経日報（JAXA報告）"
+  },
+  {
+   "type": "list",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "1998 KY26",
+     "state": "到着を断念",
+     "neg": true,
+     "icon": "alert"
+    },
+    {
+     "label": "新しい目標",
+     "state": "2015 BM510",
+     "icon": "key"
+    },
+    {
+     "label": "接近観測",
+     "state": "2028年度の計画",
+     "icon": "calendar"
+    }
+   ],
+   "beats": [
+    {
+     "say": "新しい目標は、2015 BM510。2028年度に、近くで観測する計画です。",
+     "reading": "新しい目標は、にせんじゅうご、ビーエム、ごひゃくじゅう。にせんにじゅうはちねんどに、近くで観測する計画です。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜宇宙",
+   "source": "読売新聞／財経日報（JAXA報告）"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
