@@ -1,0 +1,193 @@
+{
+ "direction": "マイナスの数字が主役だが右肩上がりの spark は合わないので、headline（down）で『4期ぶりマイナス』と -0.1% を1コマ目から出す。morph の cards→ripple で『1年ぶり』『足踏み』へ変形させ、用語は前半に置いて GDP を先に説明し、custom で GDP の帯の半分以上を占める『個人消費』の柱が沈む様子を見せ、なぜ響くかを図で。最後は kw で家計への影響と次の発表。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.17 TUE",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "GDP、4期ぶりマイナス｜7〜9月は年率0.1%減、個人消費が低迷",
+ "cover": {
+  "label": "経済｜GDP速報",
+  "title": "日本のGDP\n*4期ぶりマイナス*\n7〜9月、年率0.1%減",
+  "sub": "足を引っ張ったのは個人消費。\n私たちの財布と景気の関係は？"
+ },
+ "scenes": [
+  {
+   "type": "headline",
+   "open": true,
+   "icon": "down",
+   "eyebrow": "GDP速報",
+   "eyebrow_sub": "内閣府・11月16日発表",
+   "text": "日本のGDP\n *4期ぶりマイナス*",
+   "size": 112,
+   "big": "−0.1%",
+   "big_label": "7〜9月・年率",
+   "captions": false,
+   "beats": [
+    {
+     "say": "7月から9月のGDPは、年率0.1%減。4期ぶりのマイナスです。",
+     "reading": "しちがつから、くがつのジーディーピーは、ねんりつ、れいてんいちパーセントげん。よんきぶりのマイナスです。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "chart",
+     "visual": "cards",
+     "kicker": "どういうこと？",
+     "big": "マイナスは\n *1年ぶり*"
+    },
+    {
+     "bg": "white",
+     "icon": "bubble",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "景気は？",
+     "big": "成長が\n *足踏み*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "マイナス成長は、およそ1年ぶりです。",
+     "reading": "マイナスせいちょうは、およそいちねんぶりです。"
+    },
+    {
+     "say": "日本の景気の足踏みを示す結果です。",
+     "reading": "日本の景気の、あしぶみを示す結果です。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "term",
+   "term": "GDP",
+   "reading": "こくないそうせいさん（国内総生産）",
+   "eyebrow": "今日の用語",
+   "icon": "chart",
+   "definition": "一定の期間に国内で生み出された、モノやサービスの価値の合計。",
+   "beats": [
+    {
+     "say": "GDPは、国内で生み出されたモノやサービスの価値の合計です。",
+     "reading": "ジーディーピーは、国内で生み出されたモノやサービスの価値の合計です。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "custom",
+   "title": "足を引っ張ったのは *消費*",
+   "html": "<div class=\"gw\"><div class=\"gcap\">GDPの中身（イメージ）</div><div class=\"gbar\"><div class=\"gc\" id=\"gc\"><b>個人消費</b><span>半分以上</span><div class=\"gar\" id=\"ga\">{{picto:down:96:0.2}}</div></div><div class=\"go\"><b>設備投資・輸出など</b></div></div><div class=\"gnote\" id=\"gn\">{{picto:home:84:0.2}}<div>家計の買い物が<br><em>減った</em></div></div></div>",
+   "css": ".gw{position:absolute;left:96px;right:96px;top:520px}\n.gcap{font-size:40px;font-weight:700;color:var(--sub);margin-bottom:30px}\n.gbar{display:flex;height:250px;gap:12px}\n.gc{position:relative;flex:0 0 56%;background:var(--blue);border-radius:24px;color:#fff;padding:34px 36px;box-sizing:border-box;}\n.gc b{display:block;font-size:60px;font-weight:900}\n.gc span{display:block;font-size:42px;font-weight:700;margin-top:10px;opacity:.85}\n.gar{position:absolute;right:20px;bottom:24px;opacity:0}\n.go{flex:1;background:var(--pale);border-radius:24px;padding:34px 30px;box-sizing:border-box;color:var(--ink)}\n.go b{font-size:42px;font-weight:700;line-height:1.35}\n.gnote{display:flex;align-items:center;gap:28px;margin-top:36px;font-size:52px;font-weight:700;color:var(--ink);line-height:1.3;opacity:0}\n.gnote em{font-style:normal;color:#EA6A12;font-size:66px;font-weight:900}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const c=document.getElementById('gc'),a=document.getElementById('ga'),n=document.getElementById('gn');\n__tick.push(t=>{const u=ez((t-0.2)/0.6);const b1=(__B[1]||2.2);const v=ez((t-b1)/0.8);c.style.opacity=u.toFixed(3);c.style.transform='translateY('+(40*(1-u)+26*v).toFixed(1)+'px)';a.style.opacity=v.toFixed(3);const w=ez((t-b1-0.4)/0.5);n.style.opacity=w.toFixed(3);n.style.transform='translateY('+(24*(1-w)).toFixed(1)+'px)';});",
+   "beats": [
+    {
+     "say": "GDPの半分以上を占めるのが、個人消費です。",
+     "reading": "ジーディーピーの半分以上を占めるのが、こじんしょうひです。"
+    },
+    {
+     "say": "今回は、その個人消費が落ち込みました。",
+     "reading": "今回は、そのこじんしょうひが、落ち込みました。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "kw",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "物価高が続き、家計が節約を強めています。",
+     "reading": "ぶっかだかが続き、かけいが節約を強めています。",
+     "kw": [
+      "物価高が続き",
+      {
+       "t": "家計が *節約* を強めています",
+       "icon": "yen"
+      }
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "kw",
+   "label": "私たちへの影響",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "消費が冷えると、企業のもうけや賃上げにも響きます。",
+     "reading": "しょうひが冷えると、企業のもうけや、ちんあげにも響きます。",
+     "kw": [
+      {
+       "t": " *消費* が冷えると",
+       "icon": "down"
+      },
+      "企業のもうけや",
+      "賃上げにも響きます"
+     ]
+    },
+    {
+     "say": "改定値は、12月8日に発表されます。",
+     "reading": "かいていちは、じゅうにがつようかに発表されます。",
+     "kw": [
+      {
+       "t": " *改定値* は",
+       "icon": "calendar"
+      },
+      "12月8日に発表されます"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜景気",
+   "source": "NHK／日本経済新聞／時事通信"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
