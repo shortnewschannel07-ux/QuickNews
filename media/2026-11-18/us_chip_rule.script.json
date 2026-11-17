@@ -1,0 +1,173 @@
+{
+ "direction": "『抜け道をふさぐ』という仕組みの話なので、冒頭は custom で『米国製AI半導体→第三国のデータセンター→中国など』の流れ図を出し、最後の矢印に×が入る様子で規制の中身を1コマ目から見せる（数字の見出しや地図では始めない）。株価は morph の ripple で『801円安』へ変形、用語→なぜ大事→私たちへの影響を kw で、まとめの list は置かずに締める。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.18 WED",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "米、AI半導体の輸出規制を強化｜日経平均は801円安",
+ "cover": {
+  "label": "経済｜半導体",
+  "title": "米がAI半導体の\n*抜け道をふさぐ*\n日経平均は801円安",
+  "sub": "何が規制されたのか。\n私たちの資産への影響は？"
+ },
+ "scenes": [
+  {
+   "type": "custom",
+   "captions": false,
+   "html": "<div class=\"hh\"><div class=\"he\">米商務省・現地時間11月16日</div><div class=\"ht\">AI半導体<br><span class=\"b\">抜け道をふさぐ</span></div><div class=\"hs\">アメリカが輸出規制を強化</div></div><div class=\"hm\"><div class=\"nd n1\" id=\"n1\"><div class=\"ic\">{{picto:chip:96:0.1}}</div><b>米国製の<br>AI半導体</b></div><div class=\"ar\" id=\"a1\"></div><div class=\"nd n2\" id=\"n2\"><div class=\"ic\">{{picto:globe:96:0.4}}</div><b>第三国の<br>データセンター</b></div><div class=\"ar ar2\" id=\"a2\"><span class=\"x\" id=\"x\">×</span></div><div class=\"nd n3\" id=\"n3\"><div class=\"ic\">{{picto:alert:96:0.7}}</div><b>中国など<br>の企業</b></div></div>",
+   "css": ".hh{position:absolute;left:96px;right:110px;top:420px}\n.he{font-size:38px;font-weight:700;color:var(--blue);letter-spacing:.04em}\n.ht{margin-top:14px;font-size:118px;font-weight:900;line-height:1.18;color:var(--ink);letter-spacing:-.03em}\n.ht .b{color:var(--blue)}\n.hs{margin-top:22px;font-size:42px;color:var(--sub);font-weight:700}\n.hm{position:absolute;left:96px;width:888px;top:930px;display:flex;align-items:center;justify-content:space-between}\n.nd{width:250px;height:290px;border-radius:28px;background:#fff;border:2px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;opacity:0;box-sizing:border-box}\n.nd b{font-size:36px;line-height:1.3;text-align:center;color:var(--ink);font-weight:800}\n.n1{border:4px solid var(--blue)}\n.ic{height:110px;display:flex;align-items:center}\n.ar{position:relative;flex:1;height:8px;margin:0 10px;background:#9AA8BD;border-radius:4px;transform-origin:left center;transform:scaleX(0)}\n.ar2{background:#EA6A12}\n.x{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(0);font-size:110px;font-weight:900;color:#D23C3C;line-height:1}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const ob=x=>{x=Math.min(1,Math.max(0,x));const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};const g=i=>document.getElementById(i);\n__tick.push(t=>{[['n1',0.0],['n2',0.45],['n3',0.9]].forEach(([i,s])=>{const u=ez((t-s)/0.4);g(i).style.opacity=u.toFixed(3);g(i).style.transform='translateY('+(30*(1-u)).toFixed(1)+'px)';});g('a1').style.transform='scaleX('+ez((t-0.3)/0.35).toFixed(3)+')';g('a2').style.transform='scaleX('+ez((t-0.75)/0.35).toFixed(3)+')';const k=ob((t-1.5)/0.4);g('x').style.transform='translate(-50%,-50%) scale('+k.toFixed(3)+')';g('a2').style.background=t>1.5?'#C9D2DF':'#EA6A12';});",
+   "beats": [
+    {
+     "say": "アメリカが、AI半導体の輸出規制を強化しました。",
+     "reading": "アメリカが、エーアイはんどうたいの、輸出規制を強化しました。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜半導体",
+   "source": "CNN／ITmedia／DZH（OANDA）"
+  },
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "globe",
+     "visual": "globe",
+     "kicker": "何をふさぐ？",
+     "big": "第三国経由の\n *遠隔利用*",
+     "target": [
+      103.8,
+      1.35
+     ],
+     "pin": "東南アジアなど"
+    },
+    {
+     "bg": "white",
+     "icon": "dot",
+     "visual": "ripple",
+     "kicker": "株価は？",
+     "big": "日経平均\n *801円安*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "中国などが、第三国のデータセンター経由で、AI半導体を使う抜け道です。",
+     "reading": "中国などが、だいさんごくのデータセンターけいゆで、エーアイはんどうたいを使う、ぬけみちです。"
+    },
+    {
+     "say": "アメリカで半導体株が売られた流れを受け、17日の日経平均は801円下がりました。",
+     "reading": "アメリカで、はんどうたいかぶが売られた流れを受け、じゅうしちにちの日経平均は、はっぴゃくいちえん下がりました。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜半導体",
+   "source": "CNN／ITmedia／DZH（OANDA）"
+  },
+  {
+   "type": "term",
+   "term": "輸出規制",
+   "reading": "ゆしゅつきせい",
+   "eyebrow": "今日の用語",
+   "icon": "doc",
+   "definition": "安全保障などを理由に、国が特定の品物や技術の輸出を制限すること。",
+   "beats": [
+    {
+     "say": "輸出規制は、安全保障などを理由に、国が輸出を制限することです。",
+     "reading": "ゆしゅつきせいは、安全保障などを理由に、国が輸出を制限することです。"
+    }
+   ],
+   "story": 1,
+   "section": "経済｜半導体",
+   "source": "CNN／ITmedia／DZH（OANDA）"
+  },
+  {
+   "type": "kw",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "半導体は、AIの性能を左右します。",
+     "reading": "はんどうたいは、エーアイの性能を左右します。",
+     "kw": [
+      {
+       "t": " *半導体* は",
+       "icon": "chip"
+      },
+      "AIの性能を左右します"
+     ]
+    },
+    {
+     "say": "米中は、この技術の主導権を争っています。",
+     "reading": "べいちゅうは、この技術の主導権を争っています。",
+     "kw": [
+      "米中は",
+      {
+       "t": "この技術の *主導権* を",
+       "icon": "scale"
+      },
+      "争っています"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜半導体",
+   "source": "CNN／ITmedia／DZH（OANDA）"
+  },
+  {
+   "type": "kw",
+   "label": "私たちへの影響",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "日本の半導体関連株も売られ、投資信託などを通じて、私たちの資産にも響きます。",
+     "reading": "日本の、はんどうたいかんれんかぶも売られ、とうしんたくなどを通じて、私たちの資産にも響きます。",
+     "kw": [
+      "日本の半導体関連株も売られ",
+      "投資信託などを通じて",
+      {
+       "t": "私たちの *資産* にも響きます",
+       "icon": "coin"
+      }
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "経済｜半導体",
+   "source": "CNN／ITmedia／DZH（OANDA）"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
