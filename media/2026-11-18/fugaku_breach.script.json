@@ -1,0 +1,211 @@
+{
+ "direction": "件数の大きさと『どこから入られたか』が核心なので、冒頭は morph の lock→lock_open（鍵が開く変形）で『富岳に不正アクセス』、続けて records で『最大4597人分』を見せる（見出しや流れ図の冒頭は同じ日の2本で使うので避ける）。侵入の経路は nodes の3段（公開ページ→内部のサーバー→接続用の鍵）で、最後は視聴者が気をつけること（不審なメール）を kw と list で持ち帰らせる。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.18 WED",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "スパコン「富岳」に不正アクセス｜最大4597人分の情報漏えいのおそれ",
+ "cover": {
+  "label": "社会｜サイバー",
+  "title": "スパコン富岳に\n*不正アクセス*\n最大4597人分が漏えいか",
+  "sub": "入り口はどこだったのか。\n私たちが気をつけることは？"
+ },
+ "scenes": [
+  {
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "lock",
+     "icon2": "lock_open",
+     "icon2_at": 0.9,
+     "visual": "records",
+     "kicker": "理化学研究所・11月16日発表",
+     "big": "スパコン富岳に\n *不正アクセス*"
+    },
+    {
+     "bg": "white",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "何が漏れた？",
+     "big": "最大 *4597人分*\nの情報"
+    }
+   ],
+   "beats": [
+    {
+     "say": "スーパーコンピューター富岳に、不正アクセスがありました。",
+     "reading": "スーパーコンピューター、ふがくに、不正アクセスがありました。"
+    },
+    {
+     "say": "利用者、最大4597人分の名前やメールアドレスが、漏れたおそれがあります。",
+     "reading": "利用者、さいだい、よんせんごひゃくきゅうじゅうななにんぶんの名前やメールアドレスが、漏れたおそれがあります。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "nodes",
+   "title": "侵入の *流れ*",
+   "nodes": [
+    {
+     "key": "入り口",
+     "value": "稼働状況の公開ページ",
+     "icon": "phone"
+    },
+    {
+     "key": "内部へ",
+     "value": "複数のサーバーを操作",
+     "icon": "chip"
+    },
+    {
+     "key": "持ち出し？",
+     "value": "接続用の鍵や研究データ",
+     "icon": "doc"
+    }
+   ],
+   "beats": [
+    {
+     "say": "入り口は、稼働状況を見せる公開ページでした。",
+     "reading": "入り口は、かどうじょうきょうを見せる、公開ページでした。"
+    },
+    {
+     "say": "そこから、複数のサーバーが操作されました。",
+     "reading": "そこから、ふくすうのサーバーが、そうさされました。"
+    },
+    {
+     "say": "接続用の鍵なども、持ち出されたおそれがあります。",
+     "reading": "せつぞくようの鍵なども、持ち出されたおそれがあります。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "term",
+   "term": "認証情報",
+   "reading": "にんしょうじょうほう",
+   "eyebrow": "今日の用語",
+   "icon": "key",
+   "definition": "IDやパスワード、鍵など、本人だと確かめるための情報。",
+   "beats": [
+    {
+     "say": "認証情報は、IDや鍵など、本人だと確かめるための情報です。",
+     "reading": "にんしょうじょうほうは、アイディーや鍵など、本人だと確かめるための情報です。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "kw",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "盗まれた鍵で、ほかのシステムへの接続も試みられました。",
+     "reading": "盗まれた鍵で、ほかのシステムへの接続も、こころみられました。",
+     "kw": [
+      {
+       "t": "盗まれた *鍵* で",
+       "icon": "card"
+      },
+      "ほかのシステムへの",
+      "接続も試みられました"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "kw",
+   "label": "私たちが気をつけること",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "理研は、理研を名乗る不審なメールに、注意を呼びかけています。",
+     "reading": "りけんは、りけんを名乗る、不審なメールに、注意を呼びかけています。",
+     "kw": [
+      "理研は",
+      {
+       "t": "理研を名乗る *不審なメール* に",
+       "icon": "mail"
+      },
+      "注意を呼びかけています"
+     ]
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "list",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "富岳",
+     "state": "運用を停止",
+     "icon": "chip"
+    },
+    {
+     "label": "漏えいのおそれ",
+     "state": "最大4597人分",
+     "icon": "people"
+    },
+    {
+     "label": "注意",
+     "state": "不審なメール",
+     "icon": "mail"
+    }
+   ],
+   "beats": [
+    {
+     "say": "まとめると、この3つです。",
+     "reading": "まとめると、このみっつです。"
+    }
+   ],
+   "story": 1,
+   "section": "社会｜サイバー",
+   "source": "NHK／INTERNET Watch／ITmedia（理研発表）"
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
