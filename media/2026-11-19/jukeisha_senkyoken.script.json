@@ -1,0 +1,199 @@
+{
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.19 THU",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "direction": "判決は『15人の裁判官がどう割れたか』が核心なので、headline（gavel）で結論を1コマ目に出したあと、custom で15の席が9（青＝合憲）と6（橙＝違憲・無効）に順に色づく様子を見せる。終盤は『判決のポイント』で国会への宿題を示し、list で持ち帰らせる。",
+ "title": "受刑者の選挙権制限は「合憲」｜最高裁が初判断、15人中6人は違憲",
+ "cover": {
+  "label": "社会｜最高裁判決",
+  "title": "受刑者の選挙権\n*制限は合憲*\n最高裁が初判断",
+  "sub": "15人中6人は「違憲・無効」。\n国会は見直しを議論するのか"
+ },
+ "scenes": [
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "headline",
+   "open": true,
+   "icon": "gavel",
+   "eyebrow": "最高裁大法廷",
+   "eyebrow_sub": "11月18日",
+   "text": "受刑者の選挙権\n制限は *合憲*",
+   "size": 112,
+   "sub": "公職選挙法の規定で初の判断",
+   "beats": [
+    {
+     "say": "受刑者の選挙権を制限する法律の規定を、最高裁が、合憲と判断しました。",
+     "reading": "じゅけいしゃの選挙権を制限する法律の規定を、さいこうさいが、合憲と判断しました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "kw",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "公職選挙法では、服役中の人は、投票できません。",
+     "reading": "こうしょく選挙法では、服役中の人は、投票できません。",
+     "kw": [
+      "公職選挙法では",
+      {
+       "t": "服役中の人は *投票* できません",
+       "icon": "vote"
+      }
+     ]
+    },
+    {
+     "say": "訴えたのは、服役中に投票できなかった男性です。",
+     "reading": "うったえたのは、服役中に、投票できなかった男性です。",
+     "kw": [
+      "訴えたのは",
+      {
+       "t": "服役中に *投票* できなかった",
+       "icon": "person"
+      },
+      "男性です"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "custom",
+   "title": "裁判官15人の *判断*",
+   "html": "<div class=\"bsw\"><div class=\"bsg\"><div class=\"bsd\" id=\"bs0\"></div><div class=\"bsd\" id=\"bs1\"></div><div class=\"bsd\" id=\"bs2\"></div><div class=\"bsd\" id=\"bs3\"></div><div class=\"bsd\" id=\"bs4\"></div><div class=\"bsd\" id=\"bs5\"></div><div class=\"bsd\" id=\"bs6\"></div><div class=\"bsd\" id=\"bs7\"></div><div class=\"bsd\" id=\"bs8\"></div><div class=\"bsd bso\" id=\"bs9\"></div><div class=\"bsd bso\" id=\"bs10\"></div><div class=\"bsd bso\" id=\"bs11\"></div><div class=\"bsd bso\" id=\"bs12\"></div><div class=\"bsd bso\" id=\"bs13\"></div><div class=\"bsd bso\" id=\"bs14\"></div></div><div class=\"bsl\"><div class=\"bsk\" id=\"bk0\"><div class=\"bsc\"></div><div class=\"bst\">合憲</div><div class=\"bsn\">9人</div></div><div class=\"bsk\" id=\"bk1\"><div class=\"bsc bso\"></div><div class=\"bst\">違憲・無効</div><div class=\"bsn bsno\">6人</div></div></div><div class=\"bsp\">{{picto:gavel:96:0.3}}</div></div>",
+   "css": ".bsw{position:absolute;left:96px;right:96px;top:520px}\n.bsg{display:grid;grid-template-columns:repeat(5,120px);gap:28px 34px;justify-content:start}\n.bsd{width:120px;height:120px;border-radius:50%;background:#fff;border:6px solid #C9D3E3;box-sizing:border-box}\n.bsd.on{background:#1F5BFF;border-color:#1F5BFF}\n.bsd.bso.on{background:#EA6A12;border-color:#EA6A12}\n.bsl{display:flex;gap:60px;margin-top:56px}\n.bsk{display:flex;align-items:center;gap:18px;opacity:0}\n.bsc{width:40px;height:40px;border-radius:50%;background:#1F5BFF}\n.bsc.bso{background:#EA6A12}\n.bst{font-size:46px;font-weight:700;color:#0B1F44;white-space:nowrap}\n.bsn{font-size:64px;font-weight:900;color:#1F5BFF;white-space:nowrap}\n.bsn.bsno{color:#EA6A12}\n.bsp{position:absolute;right:0;top:-10px;display:none}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const g=id=>document.getElementById(id);const b1=(__B[1]||2.6);\n__tick.push(t=>{for(let i=0;i<15;i++){const s=i<9?0.3+i*0.12:b1+(i-9)*0.12;const e=g('bs'+i);const u=ez((t-s)/0.3);if(u>0.5)e.classList.add('on');else e.classList.remove('on');e.style.transform='scale('+(0.85+0.15*u).toFixed(3)+')';}[['bk0',1.0],['bk1',b1+0.5]].forEach(([id,s])=>{const u=ez((t-s)/0.5);g(id).style.opacity=u.toFixed(3);g(id).style.transform='translateY('+(24*(1-u)).toFixed(1)+'px)';});});",
+   "beats": [
+    {
+     "say": "裁判官15人のうち、9人が合憲としました。",
+     "reading": "裁判官じゅうごにんのうち、きゅうにんが、合憲としました。"
+    },
+    {
+     "say": "残る6人は、違憲で無効としました。",
+     "reading": "残るろくにんは、いけんで、無効としました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "term",
+   "term": "大法廷",
+   "reading": "だいほうてい",
+   "eyebrow": "今日の用語",
+   "definition": "最高裁判所の裁判官15人全員で審理する法廷。法律が憲法に違反するかどうかなど、重要な判断を行う。",
+   "icon": "scale",
+   "beats": [
+    {
+     "say": "大法廷は、裁判官15人全員による法廷です。",
+     "reading": "だいほうていは、裁判官じゅうごにん全員による法廷です。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "kw",
+   "label": "判決のポイント",
+   "label_icon": "doc",
+   "beats": [
+    {
+     "say": "多数意見も、見直しが求められつつある、と指摘しました。",
+     "reading": "多数意見も、見直しが求められつつある、と指摘しました。",
+     "kw": [
+      "多数意見も",
+      {
+       "t": " *見直し* が求められつつある",
+       "icon": "alert"
+      },
+      "と指摘しました"
+     ]
+    },
+    {
+     "say": "補足意見では、国会での検討を求めました。",
+     "reading": "ほそく意見では、国会での検討を求めました。",
+     "kw": [
+      "補足意見では",
+      {
+       "t": " *国会* での検討を求めました",
+       "icon": "gov"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜裁判",
+   "source": "時事通信／弁護士ドットコムニュース／NHK",
+   "type": "list",
+   "title": "ここだけ *押さえる*",
+   "rows": [
+    {
+     "label": "判決",
+     "state": "合憲（初判断）",
+     "icon": "gavel"
+    },
+    {
+     "label": "裁判官",
+     "state": "9人対6人",
+     "icon": "people"
+    },
+    {
+     "label": "次の焦点",
+     "state": "国会の見直し",
+     "icon": "calendar"
+    }
+   ],
+   "beats": [
+    {
+     "say": "判決は合憲。9対6で、次の焦点は国会です。",
+     "reading": "判決は合憲。きゅうたいろくで、次の焦点は国会です。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
