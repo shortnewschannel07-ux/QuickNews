@@ -1,0 +1,173 @@
+{
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.19 THU",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "direction": "発表そのものが主役なので、地図も見出し単体も使わず morph の cards（工程表の書類）から入り『年内公表を断念』を1コマ目に出す。止まっている場所は custom の路線の模式図（品川—静岡工区—名古屋）で、点線の区間と営業停止のタグを順に出して見せる。",
+ "title": "リニア開業時期、年内公表を断念｜工期・工事費の精査に時間",
+ "cover": {
+  "label": "経済｜リニア中央新幹線",
+  "title": "リニア開業時期\n*年内公表を断念*\nJR東海が発表",
+  "sub": "工期と工事費の精査に時間。\n静岡工区の着工は来年春以降に"
+ },
+ "scenes": [
+  {
+   "story": 1,
+   "section": "経済｜交通",
+   "source": "NHK／静岡朝日テレビ",
+   "type": "morph",
+   "anchor_offset": 0,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "JR東海・11月18日",
+     "big": "リニア開業時期\n *年内公表を断念*",
+     "size": 96
+    },
+    {
+     "bg": "white",
+     "icon": "chart",
+     "icon2": "arrow",
+     "visual": "ripple",
+     "kicker": "理由は？",
+     "big": "工期と工事費の\n *精査に時間*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "JR東海が、リニアの開業時期について、年内の公表を断念しました。",
+     "reading": "ジェイアールとうかいが、リニアの開業時期について、ねんないの公表を断念しました。"
+    },
+    {
+     "say": "工期と工事費の精査に、時間がかかっています。",
+     "reading": "こうきと、工事費のせいさに、時間がかかっています。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "経済｜交通",
+   "source": "NHK／静岡朝日テレビ",
+   "type": "custom",
+   "title": "遅れの中心は *静岡工区*",
+   "html": "<div class=\"lnw\"><div class=\"lncap\">品川〜名古屋（模式図）</div><div class=\"lnrow\"><div class=\"lnst\" id=\"ls0\"><div class=\"lndot\"></div><div class=\"lnnm\">品川</div></div><div class=\"lnseg\" id=\"lg0\"><div class=\"lnfill\" id=\"lf0\"></div></div><div class=\"lnsz\" id=\"lsz\"><div class=\"lnzb\"></div><div class=\"lnzt\">静岡工区</div></div><div class=\"lnseg\" id=\"lg1\"><div class=\"lnfill\" id=\"lf1\"></div></div><div class=\"lnst\" id=\"ls1\"><div class=\"lndot\"></div><div class=\"lnnm\">名古屋</div></div></div><div class=\"lntag\" id=\"ltg\"><div class=\"lnti\">{{picto:alert:84:0.3}}</div><div class=\"lntx\">工事を担う大成建設が<br><font class=\"lnor\">来年3月まで営業停止</font></div></div><div class=\"lntag\" id=\"ltg2\"><div class=\"lnti\">{{picto:calendar:84:0.3}}</div><div class=\"lntx\">着工は<br><font class=\"lnbl\">来年春以降</font>の見通し</div></div></div>",
+   "css": ".lnw{position:absolute;left:96px;right:96px;top:520px}\n.lncap{font-size:40px;font-weight:700;color:#6B778C;margin-bottom:30px}\n.lnrow{display:flex;align-items:center;height:150px}\n.lnst{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:14px}\n.lndot{width:44px;height:44px;border-radius:50%;background:#1F5BFF}\n.lnnm{font-size:42px;font-weight:900;color:#0B1F44;white-space:nowrap}\n.lnseg{flex:1;height:14px;background:#DCE3EE;border-radius:7px;overflow:hidden;margin-bottom:58px}\n.lnfill{height:100%;width:0;background:#1F5BFF}\n.lnsz{flex:0 0 250px;display:flex;flex-direction:column;align-items:center;gap:14px}\n.lnzb{width:100%;height:14px;margin:15px 0;background:repeating-linear-gradient(90deg,#EA6A12 0 26px,transparent 26px 42px);border-radius:7px}\n.lnzt{font-size:44px;font-weight:900;color:#EA6A12;white-space:nowrap}\n.lntag{display:flex;align-items:center;gap:30px;margin-top:28px;opacity:0}\n.lnti{flex:0 0 90px}\n.lntx{font-size:50px;font-weight:700;line-height:1.35;color:#0B1F44;white-space:nowrap}\n.lnor{color:#EA6A12;font-weight:900}\n.lnbl{color:#1F5BFF;font-weight:900}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const g=id=>document.getElementById(id);\n__tick.push(t=>{const a=ez((t-0.1)/0.7),b=ez((t-0.5)/0.7);g('lf0').style.width=(100*a).toFixed(1)+'%';g('lf1').style.width=(100*b).toFixed(1)+'%';const z=ez((t-1.0)/0.5);g('lsz').style.opacity=z.toFixed(3);g('lsz').style.transform='scale('+(0.8+0.2*z).toFixed(3)+')';[['ltg',1.6],['ltg2',(__B[1]||4.4)]].forEach(([id,s])=>{const u=ez((t-s+0.1)/0.5);g(id).style.opacity=u.toFixed(3);g(id).style.transform='translateY('+(30*(1-u)).toFixed(1)+'px)';});});",
+   "beats": [
+    {
+     "say": "静岡工区を担う大成建設が、談合事件で、来年3月まで営業停止に。",
+     "reading": "しずおかこうくを担う、たいせいけんせつが、だんごう事件で、らいねんさんがつまで営業停止に。"
+    },
+    {
+     "say": "着工は、来年春以降の見通しです。",
+     "reading": "着工は、らいねんはる以降の見通しです。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "経済｜交通",
+   "source": "NHK／静岡朝日テレビ",
+   "type": "kw",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "当初の目標は、2027年の開業でした。",
+     "reading": "当初の目標は、にせんにじゅうななねんの開業でした。",
+     "kw": [
+      "当初の目標は",
+      {
+       "t": " *2027年* の開業",
+       "icon": "calendar"
+      }
+     ]
+    },
+    {
+     "say": "静岡県の水への懸念で遅れ、今は早くても2034年以降です。",
+     "reading": "しずおか県の、水への懸念で遅れ、今は、早くても、にせんさんじゅうよねん以降です。",
+     "kw": [
+      "静岡県の水への懸念で遅れ",
+      {
+       "t": "早くても *2034年以降*",
+       "icon": "down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "経済｜交通",
+   "source": "NHK／静岡朝日テレビ",
+   "type": "term",
+   "term": "営業停止",
+   "reading": "えいぎょうていし",
+   "eyebrow": "今日の用語",
+   "definition": "法令に違反した業者に、国などが一定期間の営業を禁じる行政処分。",
+   "icon": "gavel",
+   "beats": [
+    {
+     "say": "営業停止は、一定の期間、営業を禁じる処分です。",
+     "reading": "えいぎょうていしは、一定の期間、営業を禁じる処分です。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "経済｜交通",
+   "source": "NHK／静岡朝日テレビ",
+   "type": "kw",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "JR東海は、新しい見通しをできるだけ早く示したいとしています。",
+     "reading": "ジェイアールとうかいは、新しい見通しを、できるだけ早く示したいとしています。",
+     "kw": [
+      "JR東海は",
+      {
+       "t": "新しい *見通し* を",
+       "icon": "calendar"
+      },
+      "できるだけ早く示したい"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
