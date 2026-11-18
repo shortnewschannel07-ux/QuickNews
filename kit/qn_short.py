@@ -645,7 +645,7 @@ box-shadow:0 20px 50px rgba(31,91,255,.25);animation:fadeup .5s both;white-space
     return body, css + css2, ""
 
 
-CHIPS = {"bolt": '<svg width="64" height="64" viewBox="-32 -32 64 64"><circle r="27" fill="#fff" stroke="#1F5BFF" stroke-width="3"/><path d="M4,-18 L-10,3 H0 L-4,18 L10,-3 H0 Z" fill="#EA6A12" stroke="#EA6A12" stroke-width="2" stroke-linejoin="round"/></svg>'}
+CHIPS = {"dot": '<svg width="64" height="64" viewBox="-32 -32 64 64"><circle r="27" fill="#fff" stroke="#1F5BFF" stroke-width="3"/><circle r="11" fill="#EA6A12"/></svg>', "bolt": '<svg width="64" height="64" viewBox="-32 -32 64 64"><circle r="27" fill="#fff" stroke="#1F5BFF" stroke-width="3"/><path d="M4,-18 L-10,3 H0 L-4,18 L10,-3 H0 Z" fill="#EA6A12" stroke="#EA6A12" stroke-width="2" stroke-linejoin="round"/></svg>'}
 
 
 def globe_opts(kind, s, start=0.0, span=None, w=1080, h=760):
@@ -691,7 +691,7 @@ def t_globe(s, B, D):
                 + (f'<div class="hsub" style="top:{s.get("hero_top", 960) + int(s.get("hero_size", 118) * 1.16 * 2) + 26}px">{esc(s["hero_sub"])}</div>' if s.get("hero_sub") else ""))
     else:
         o = globe_opts("route", s, 0.3, span, 1080, 600)
-        body = (kin(s["title"], 0.05, "", 0.12, "top:336px;font-size:84px")
+        body = (kin(s["title"], -1.0 if s.get("open") else 0.05, "", 0.12, "top:336px;font-size:84px")
                 + f'<div class="gl" id="g1" data-pad="70" style="left:0;top:420px;width:1080px;height:600px"></div>'
                 + (f'<div class="rres" style="animation-delay:{0.3 + span:.2f}s;top:950px"><div class="rk">{esc(s.get("result_key", "結果"))}</div>{esc(s["result"])}</div>' if s.get("result") else ""))
     js = "(function(){const tk=QNGlobe(document.getElementById('g1')," + json.dumps(o, ensure_ascii=False) + ");__tick.push(tk);})();"
