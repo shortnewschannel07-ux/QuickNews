@@ -1,0 +1,207 @@
+{
+ "direction": "国と国の距離が縮まるかが核心なので、地図に寄らず globe の route で『東京→深セン』を弧で結んで始める。悪化の原因は custom の時間軸（2025年11月の答弁→中国の対抗措置→今回の握手）で一本の流れとして見せ、list は使わず『これからどうなる？』で締める。",
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.19 THU",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "title": "高市首相、習主席と握手｜APECで初訪中、関係改善の糸口は",
+ "cover": {
+  "label": "国際｜日中関係",
+  "title": "高市首相\n*習主席と握手*\nAPECで初の訪中",
+  "sub": "正式な会談は難しい情勢。\n冷え込んだ日中関係は動くのか",
+  "map": {
+   "from": [
+    139.7,
+    35.7
+   ],
+   "to": [
+    114.06,
+    22.54
+   ],
+   "hl": [
+    "156"
+   ],
+   "from_label": "東京",
+   "to_label": "深セン",
+   "pad_s": 16
+  }
+ },
+ "scenes": [
+  {
+   "type": "globe",
+   "mode": "route",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "title": "高市首相が\n *習主席と握手*",
+   "from": [
+    "東京",
+    "高市首相"
+   ],
+   "from_at": [
+    139.7,
+    35.7
+   ],
+   "from_id": "392",
+   "to": [
+    "深セン",
+    "APEC首脳会議"
+   ],
+   "to_at": [
+    114.06,
+    22.54
+   ],
+   "to_id": "156",
+   "chip": "dot",
+   "beats": [
+    {
+     "say": "深センのAPECで、高市首相が、習近平国家主席と握手しました。",
+     "reading": "シンセンのエイペックで、たかいち首相が、しゅうきんぺい国家主席と握手しました。"
+    }
+   ],
+   "open": true
+  },
+  {
+   "type": "morph",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "bubble",
+     "visual": "ripple",
+     "kicker": "どんな場面？",
+     "big": "夕食会の前に\n *短い握手*"
+    },
+    {
+     "bg": "white",
+     "icon": "card",
+     "icon2": "lock",
+     "visual": "cards",
+     "kicker": "正式な会談は？",
+     "big": "開くのは\n *難しい情勢*"
+    }
+   ],
+   "beats": [
+    {
+     "say": "夕食会の前の、短い握手でした。"
+    },
+    {
+     "say": "正式な会談は、難しい情勢です。"
+    }
+   ]
+  },
+  {
+   "type": "custom",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "title": "なぜ *冷え込んだ？*",
+   "html": "<div class=\"jxl\"><div class=\"jxline\"><div class=\"jxfill\" id=\"jxf\"></div></div><div class=\"jxr\" id=\"jxr0\"><div class=\"jxd\"></div><div class=\"jxt\"><div class=\"jxa\">2025年11月</div><div class=\"jxb\">首相が国会で<br><font class=\"jxc\">台湾有事</font>に言及</div></div><div class=\"jxp\">{{picto:gov:80:0.2}}</div></div><div class=\"jxr\" id=\"jxr1\"><div class=\"jxd\"></div><div class=\"jxt\"><div class=\"jxa\">そのあと</div><div class=\"jxb\">中国が反発し<br><font class=\"jxc\">渡航自粛</font>・輸出規制</div></div><div class=\"jxp\">{{picto:alert:80:1.2}}</div></div><div class=\"jxr\" id=\"jxr2\"><div class=\"jxd on\"></div><div class=\"jxt\"><div class=\"jxa\">2026年11月18日</div><div class=\"jxb\">APECで<br><font class=\"jxc on\">握手</font></div></div><div class=\"jxp\">{{picto:globe:80:2.4}}</div></div></div>",
+   "css": ".jxl{position:absolute;left:96px;right:110px;top:520px}\n.jxline{position:absolute;left:22px;top:40px;width:6px;height:410px;background:#DCE3EE;border-radius:3px;overflow:hidden}\n.jxfill{width:100%;height:0;background:#1F5BFF}\n.jxr{position:relative;display:flex;align-items:center;gap:34px;height:200px;opacity:0}\n.jxd,.jxd.on{flex:0 0 50px;height:50px;border-radius:50%;background:#fff;border:6px solid #1F5BFF;box-sizing:border-box;position:relative;z-index:2}\n.jxd.on{background:#EA6A12;border-color:#EA6A12}\n.jxt{flex:1;min-width:0}\n.jxa{font-size:36px;font-weight:700;color:#6B778C;margin-bottom:6px;white-space:nowrap}\n.jxb{font-size:48px;font-weight:900;line-height:1.28;color:#0B1F44;white-space:nowrap}\n.jxc{color:#1F5BFF}\n.jxc.on{color:#EA6A12}\n.jxp{flex:0 0 84px}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const R=[0,1,2].map(i=>document.getElementById('jxr'+i));const f=document.getElementById('jxf');\n__tick.push(t=>{const st=[0.15,(__B[1]||1.6)-0.1,(__B[1]||1.6)+2.2];R.forEach((r,i)=>{const u=ez((t-st[i])/0.55);r.style.opacity=u.toFixed(3);r.style.transform='translateX('+(60*(1-u)).toFixed(1)+'px)';});const g=ez((t-0.15)/Math.max(1,(st[2]+0.4)));f.style.height=(100*g).toFixed(1)+'%';});",
+   "beats": [
+    {
+     "say": "きっかけは去年11月、首相の台湾有事をめぐる答弁です。",
+     "reading": "きっかけは、きょねんのじゅういちがつ、首相の、たいわんゆうじをめぐる答弁です。"
+    },
+    {
+     "say": "中国は反発し、渡航自粛や輸出規制に動きました。",
+     "reading": "中国は反発し、とこう自粛や、輸出規制に動きました。"
+    }
+   ]
+  },
+  {
+   "type": "term",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "term": "APEC",
+   "reading": "エイペック",
+   "eyebrow": "今日の用語",
+   "definition": "アジア太平洋経済協力。日本・中国・アメリカなど21の国と地域が、貿易や投資の自由化を話し合う枠組み。",
+   "icon": "globe",
+   "beats": [
+    {
+     "say": "APECは、アジア太平洋の国と地域による、経済協力の枠組みです。",
+     "reading": "エイペックは、アジア太平洋の国と地域による、経済協力の枠組みです。"
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "中国の対抗措置は、日本経済の打撃になっています。",
+     "reading": "中国の対抗措置は、日本経済のだげきになっています。",
+     "kw": [
+      "中国の対抗措置は",
+      {
+       "t": "日本経済の *打撃* に",
+       "icon": "down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "kw",
+   "story": 1,
+   "section": "国際｜日中関係",
+   "source": "共同通信／時事通信",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "関係改善の糸口をつかめるかが、焦点です。",
+     "kw": [
+      {
+       "t": " *関係改善* の糸口を",
+       "icon": "key"
+      },
+      "つかめるかが焦点"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
