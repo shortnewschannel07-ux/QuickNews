@@ -1,0 +1,213 @@
+{
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.21 SAT",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "style": "pop",
+ "direction": "暮らしの疑問から入るので、ミントの pop で『コメは約3割安 でも物価は上昇』を1コマ目に。中盤は custom で品目ごとの上がり下がりを中央の軸から左右に伸びる棒（コメ類−29.7%、宿泊料・都市ガス代・電気代は上昇）で見せる。kw はオレンジ『なぜ上がった？』と黄『私たちへの影響』、最後に一覧。",
+ "title": "10月の物価2.2%上昇、2カ月連続で2%超｜コメは過去最大の下落",
+ "cover": {
+  "label": "暮らし｜10月の物価",
+  "title": "コメは約3割安\nでも物価は\n *2.2%上昇* ",
+  "sub": "なぜ上がり続ける？\n家計への影響は？"
+ },
+ "scenes": [
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "pop",
+   "bg": "mint",
+   "kicker": "総務省・10月の物価",
+   "text": "コメは *約3割安* \nでも物価は上昇",
+   "size": 112,
+   "icon": "home",
+   "marquee": "物価",
+   "sub": "生鮮食品を除き、前年より2.2%上昇",
+   "beats": [
+    {
+     "say": "コメは約3割安くなったのに、10月の物価は上がりました。",
+     "reading": "コメは、やく、さんわり安くなったのに、じゅうがつの物価は上がりました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "morph",
+   "anchor_offset": 4,
+   "shots": [
+    {
+     "bg": "blue",
+     "icon": "chart",
+     "visual": "ripple",
+     "number": 2.2,
+     "decimals": 1,
+     "unit": "%",
+     "kicker": "生鮮食品を除く指数",
+     "big": "9月の2.1%から\n *拡大* "
+    },
+    {
+     "bg": "navy",
+     "icon": "arrow",
+     "visual": "cards",
+     "kicker": "日銀の目標",
+     "big": "2カ月連続で\n *2%* 超え"
+    }
+   ],
+   "beats": [
+    {
+     "say": "生鮮食品を除く指数は、2.2%上昇。",
+     "reading": "せいせんしょくひんを除く指数は、にてんにパーセント上昇。"
+    },
+    {
+     "say": "2カ月連続で、日銀の目標の2%を上回りました。",
+     "reading": "にかげつれんぞくで、にちぎんの目標の、にパーセントを上回りました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "custom",
+   "title": "品目で *見ると* ",
+   "html": "<div class=\"pv\"><div class=\"pvax\"></div><div class=\"pvr\" id=\"pvr0\" style=\"top:0px\"><div class=\"pvl\">コメ類</div><div class=\"pvv dn\">−29.7%</div><div class=\"pvb dn\" id=\"pvb0\"></div></div><div class=\"pvr\" id=\"pvr1\" style=\"top:135px\"><div class=\"pvl\">宿泊料</div><div class=\"pvv up\">+6.7%</div><div class=\"pvb up\" id=\"pvb1\"></div></div><div class=\"pvr\" id=\"pvr2\" style=\"top:270px\"><div class=\"pvl\">都市ガス代</div><div class=\"pvv up\">+5.3%</div><div class=\"pvb up\" id=\"pvb2\"></div></div><div class=\"pvr\" id=\"pvr3\" style=\"top:405px\"><div class=\"pvl\">電気代</div><div class=\"pvv up\">+1.6%</div><div class=\"pvb up\" id=\"pvb3\"></div></div></div>",
+   "css": ".pv{position:absolute;left:96px;right:96px;top:500px;height:560px}\n.pvax{position:absolute;left:444px;top:0;width:4px;height:540px;background:#C9D3E3;border-radius:2px}\n.pvr{position:absolute;left:0;right:0;height:120px;opacity:0}\n.pvl{position:absolute;left:0;top:0;font-size:44px;font-weight:900;color:#0B1B33;white-space:nowrap}\n.pvv{position:absolute;right:0;top:-6px;font-size:52px;font-weight:900;white-space:nowrap}\n.pvv.up{color:#FF6A1F}.pvv.dn{color:#1F5BFF}\n.pvb{position:absolute;top:68px;height:40px;width:0;border-radius:8px}\n.pvb.up{left:446px;background:#FF6A1F}.pvb.dn{right:442px;background:#1F5BFF}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);const V=[-29.7, 6.7, 5.3, 1.6];\n__tick.push(t=>{const st=[0.15,(__B[1]||2.5),(__B[1]||2.5)+0.35,(__B[1]||2.5)+0.7];V.forEach((v,i)=>{const r=document.getElementById('pvr'+i),b=document.getElementById('pvb'+i);const u=ez((t-st[i])/0.45),g=ez((t-st[i]-0.15)/0.7);r.style.opacity=u.toFixed(3);r.style.transform='translateY('+(40*(1-u)).toFixed(1)+'px)';b.style.width=(Math.abs(v)/29.7*430*g).toFixed(1)+'px';});});",
+   "beats": [
+    {
+     "say": "コメ類は29.7%下がり、比較できる中で最大の下落です。",
+     "reading": "コメるいは、にじゅうきゅうてんななパーセント下がり、ひかくできる中で、最大の下落です。"
+    },
+    {
+     "say": "一方、宿泊料や都市ガス代は上がりました。",
+     "reading": "いっぽう、しゅくはくりょうや、としガス代は上がりました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "term",
+   "term": "CPI",
+   "reading": "消費者物価指数",
+   "eyebrow": "今日の用語",
+   "definition": "家庭が買うモノやサービスの値段の動きを示す指数。総務省が毎月発表する。",
+   "icon": "chart",
+   "beats": [
+    {
+     "say": "CPIは、モノやサービスの値段の動きを示す指数です。",
+     "reading": "シーピーアイは、モノやサービスの、値段の動きを示す指数です。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "kw",
+   "bg": "orange",
+   "label": "なぜ上がった？",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "電気・ガス代の補助が縮小され、エネルギーが上昇に転じました。",
+     "reading": "でんき・ガス代の補助が縮小され、エネルギーが、上昇に転じました。",
+     "kw": [
+      "電気・ガス代の補助が縮小され",
+      {
+       "t": " *エネルギー* が上昇に転じました",
+       "icon": "bolt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "kw",
+   "bg": "yellow",
+   "label": "私たちへの影響",
+   "label_icon": "home",
+   "beats": [
+    {
+     "say": "調理食品や外食、菓子類が、幅広く値上がりしています。",
+     "reading": "ちょうり食品や、がいしょく、かしるいが、はばひろく値上がりしています。",
+     "kw": [
+      {
+       "t": "調理食品や *外食* 、菓子類が",
+       "icon": "home"
+      },
+      "幅広く値上がりしています"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "暮らし｜物価",
+   "source": "総務省／時事通信／テレビ朝日",
+   "type": "list",
+   "title": "ここだけ *押さえる* ",
+   "rows": [
+    {
+     "label": "物価",
+     "state": "2.2%上昇",
+     "icon": "up"
+    },
+    {
+     "label": "コメ類",
+     "state": "29.7%下落",
+     "icon": "down"
+    },
+    {
+     "label": "エネルギー",
+     "state": "上昇に転じる",
+     "icon": "bolt"
+    }
+   ],
+   "beats": [
+    {
+     "say": "この3つを押さえましょう。"
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
