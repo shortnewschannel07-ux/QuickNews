@@ -151,8 +151,9 @@ def shell(body, css, js, D, p0, p1, sc, beats, B, source, sect, first, bg='white
     sect_html = (f'<div class="sect">{esc(sect[0])}<span>{esc(sect[1])}</span></div>' if sect[0] else f'<div class="sect">{esc(sect[1])}</div>') if sect else ""
     src = f'<div id="src">出典：{esc(source)}</div>' if source else ""
     first_css = "#scene{animation:none;-webkit-mask-image:none}" if first else ""
-    BGC = {"white": "#F6F8FB", "blue": "#1F5BFF", "navy": "#0B1B33", "sky": "#E3EBFF"}
-    dark = bg in ("blue", "navy")
+    BGC = {"white": "#F6F8FB", "blue": "#1F5BFF", "navy": "#0B1B33", "sky": "#E3EBFF", **POP_BG}
+    dark = bg in ("blue", "navy") or bg in POP_DARK
+    plain = bg in ("white", "sky")
     hv = (":root{--hfg:#fff;--hnews:" + ("#0B1B33" if bg == "blue" else "#7FA2FF") + ";--hsub:rgba(255,255,255,.72);--hline:rgba(255,255,255,.28)}") if dark else ""
     name = sc.get("channel", "Quick News")
     a, _, b2 = name.partition(" ")
@@ -196,11 +197,13 @@ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000
 :root{{--D:{D:.3f}s;--p0:{p0 * 100:.2f}%;--p1:{p1 * 100:.2f}%;--zout:{max(0, D - 0.22):.3f}s}}
 {css}
 {hv}
+{POP_THEME.get(bg, "")}
+{pop_css(sc, bg, prev_bg, first, D)}
 body{{background:{BGC.get(prev_bg, prev_bg)}}}
 {first_css}
 </style></head><body>
-<div id="scene"><div class="sbg" style="background:{BGC.get(bg, bg)}"></div>{'' if dark else '<div id="bg"><div class="glow g1"></div><div class="glow g2"></div><div class="dots"></div></div>'}<div class="cam"><div class="cx">{body}</div></div></div>
-<div id="grain"></div>
+<div id="scene"><div class="sbg" style="background:{BGC.get(bg, bg)}"></div>{'<div id="bg"><div class="glow g1"></div><div class="glow g2"></div><div class="dots"></div></div>' if plain else pop_deco(bg, D, sc)}<div class="cam"><div class="cx">{body}</div></div></div>
+{pop_overlay(sc, bg, prev_bg, first)}<div id="grain"></div>
 <div id="frame"><div class="brand">{esc(a)} <i>{esc(b2)}</i></div><div class="tagl">{esc(sc.get("tagline", "1日1分で社会がわかる"))}</div>
 <div class="date">{esc(sc.get("date_label", ""))}</div><div class="rule"><b></b></div>{sect_html}</div>
 <div id="cap">{''.join(caps)}</div>{src}
@@ -211,6 +214,7 @@ window.__tick=[];
 {LAYOUT_JS}
 {js}
 {dense_js}
+{pop_js(sc)}
 window.seek=function(t){{if(!window.__pd){{window.__pd=1;__palt(document);__layout();}}document.getAnimations().forEach(a=>{{a.pause();a.currentTime=t*1000;}});for(const f of __tick)f(t);}};
 </script></body></html>"""
 
@@ -1978,6 +1982,7 @@ TEMPLATES["morph"] = t_morph
 TEMPLATES["scroll"] = t_scroll
 TEMPLATES["kw"] = t_kw
 TEMPLATES["custom"] = t_custom
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "pop.py"), encoding="utf-8").read(), globals())
 
 
 # ───────── 音 ─────────
@@ -2126,6 +2131,12 @@ def plan(sc, speed):
         st = s.get("story", 0)
         sect = ((f"{st:02d} / {n_st:02d}" if n_st > 1 else ""), s.get("section", "")) if st else None
         scenes.append(dict(s=s, B=B, D=D, nf=nf, auds=auds, sect=sect))
+    prev = "white"   # 背景色（peek.py でも同じになるよう、ここで決める）
+    for p_ in scenes:
+        s_ = p_["s"]
+        p_["bg"] = s_["shots"][0].get("bg", "white") if s_["type"] == "morph" else s_.get("bg", "white")
+        p_["prev_bg"] = prev
+        prev = s_["shots"][-1].get("bg", "white") if s_["type"] == "morph" else s_.get("end_bg", p_["bg"])
     return scenes
 
 
