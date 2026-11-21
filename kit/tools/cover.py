@@ -89,7 +89,7 @@ window.layoutMap=function(top,bottom){{const M={mp};if(!M)return;const svg=docum
   const t=ad('text',{{x:p[0],y:p[1]-34,'text-anchor':'middle','font-size':34,'font-weight':700,fill:'#0B1B33','font-family':'Zen Kaku Gothic New',stroke:'#F7F8FA','stroke-width':9,'paint-order':'stroke','stroke-linejoin':'round'}});t.textContent=l;}});
 }};
 </script></body></html>"""
-if single and sc["cover"].get("key"):   # 2026-11-21〜：重要な語を特大で（黄色の箱に紺の文字）。一覧の小さな表示でも読める
+if single and sc["cover"].get("key"):   # 2026-11-21〜：重要な語を特大で（青の特大文字（背景色なし））。一覧の小さな表示でも読める
     cv = sc["cover"]
     subl = "<br>".join(fmt(l) for l in cv.get("sub", "").split("\n"))
     page = f"""<!doctype html><html><head><meta charset="utf-8">{fl}<style>
@@ -99,20 +99,18 @@ body{{width:1080px;height:1920px;background:#F7F8FA;font-family:"Yu Gothic","Zen
 .logo{{font-size:50px;font-weight:900;letter-spacing:-.01em;margin-left:-2px}}
 .logo i{{font-style:normal;color:#1F5BFF}}
 .dt{{font-size:28px;font-weight:700;letter-spacing:.08em;color:#5B6B82}}
-.wrap{{position:absolute;left:0;right:0;top:420px}}
-.lb{{margin:0 96px;font-size:34px;font-weight:900;color:#1F5BFF;letter-spacing:.04em}}
-.ld{{margin:18px 96px 0;font-size:100px;font-weight:900;line-height:1.12;letter-spacing:-.035em;white-space:nowrap;width:max-content}}
-.key{{margin-top:34px;background:#FFD43B;color:#0B1B33;padding:30px 96px 34px}}
-.kl{{display:block;font-weight:900;font-size:300px;line-height:.96;letter-spacing:-.06em;white-space:nowrap;width:max-content;margin-left:-.04em}}
-.kl+.kl{{margin-left:auto;margin-right:-.02em}}
-.tl{{margin:34px 96px 0;font-size:100px;font-weight:900;line-height:1.12;letter-spacing:-.035em;white-space:nowrap;width:max-content;color:#1F5BFF}}
-.sub{{margin:30px 96px 0;font-size:40px;font-weight:700;line-height:1.5;color:#5B6B82;letter-spacing:-.01em}}
+.wrap{{position:absolute;left:96px;right:96px;top:420px}}
+.lb{{display:inline-block;font-size:34px;font-weight:900;color:#fff;background:#1F5BFF;letter-spacing:.06em;padding:10px 24px;border-radius:10px}}
+.ld{{margin-top:44px;font-size:104px;font-weight:900;line-height:1.15;letter-spacing:-.03em;white-space:nowrap;width:max-content}}
+.key{{display:block;width:max-content;margin-top:18px;margin-left:-8px;color:#1F5BFF;font-weight:900;font-size:250px;line-height:1.04;letter-spacing:-.05em;white-space:nowrap;border-radius:18px}}
+.tl{{margin-top:30px;font-size:104px;font-weight:900;line-height:1.15;letter-spacing:-.03em;white-space:nowrap;width:max-content;color:#0B1B33}}
+.sub{{margin-top:44px;font-size:44px;font-weight:700;line-height:1.5;color:#5B6B82;letter-spacing:-.01em}}
 .kn{{letter-spacing:-.06em}}
 .ft{{position:absolute;left:96px;right:96px;top:1618px;font-size:26px;font-weight:700;color:#8A97AA;letter-spacing:.12em}}
 </style></head><body>
 <div class="top"><div class="logo">Quick <i>News</i></div><div class="dt">{d.month}/{d.day}（{wd}）</div></div>
 <div class="wrap"><div class="lb">{esc(cv.get("label", ""))}</div>
-<div class="ld">{fmt(cv.get("lead", ""))}</div><div class="key">{"".join(f'<span class="kl">{fmt(l)}</span>' for l in cv["key"].split(chr(10)))}</div><div class="tl">{fmt(cv.get("tail", ""))}</div>
+<div class="ld">{fmt(cv.get("lead", ""))}</div><div class="key">{fmt(cv["key"])}</div><div class="tl">{fmt(cv.get("tail", ""))}</div>
 <div class="sub">{subl}</div></div>
 <div class="ft">{esc(sc.get("tagline", "1日1分で社会がわかる"))}</div></body></html>"""
     single = "key"
@@ -123,7 +121,7 @@ with sync_playwright() as pw:
     pg.goto("file://" + fn); pg.evaluate("document.fonts.ready"); pg.wait_for_timeout(400)
     if single == "key":
         pg.evaluate("""(()=>{const W=900,fit=(el,s,min)=>{while(el.getBoundingClientRect().width>W&&s>min){s-=2;el.style.fontSize=s+'px';}};
-          let ks=300;const kl=[...document.querySelectorAll('.kl')];while(kl.some(e=>e.getBoundingClientRect().width>W-8)&&ks>140){ks-=4;kl.forEach(e=>e.style.fontSize=ks+'px');}document.querySelectorAll('.ld,.tl').forEach(e=>fit(e,100,56));const w=document.querySelector('.wrap'),h=w.getBoundingClientRect().height;w.style.top=Math.max(400,400+(1590-400-h)/2)+'px';})()""")
+          fit(document.querySelector('.key'),250,120);document.querySelectorAll('.ld,.tl').forEach(e=>fit(e,104,56));const w=document.querySelector('.wrap'),h=w.getBoundingClientRect().height;w.style.top=Math.max(420,420+(1570-420-h)/2)+'px';})()""")
     elif single:
         pg.evaluate("""(()=>{const h=document.querySelector('.hl'),W=888;let s=104;
           while([...h.querySelectorAll('.ln')].some(l=>l.getBoundingClientRect().width>W)&&s>50){s-=1;h.style.fontSize=s+'px';}
