@@ -31,7 +31,8 @@ def _pop_on(sc):
 
 
 def pop_deco(bg, D, sc):
-    """色の背景に、ゆっくり流れる斜めのストライプ（内容の邪魔をしない薄さ）。"""
+    """色の背景のストライプ。2026-11-21 ユーザー指定で廃止（背景にストライプは入れない）。"""
+    return ""
     if bg in ("blue", "navy") and not _pop_on(sc):
         return ""
     light = bg in _POP_LIGHT
