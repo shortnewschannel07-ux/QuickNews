@@ -48,7 +48,7 @@ body{{width:1080px;height:1920px;background:#F7F8FA;font-family:"Yu Gothic","Zen
 <div class="list">{rows}</div>
 <div class="ft">{esc(sc.get("tagline", "1日1分で社会がわかる"))}</div>
 </body></html>"""
-if single:   # 1本のニュースの表紙：大きな見出し＋補足の問い＋その話の地図
+if single and not sc["cover"].get("key"):   # 1本のニュースの表紙：大きな見出し＋補足の問い＋その話の地図
     cv = sc["cover"]
     lines = "".join(f'<span class="ln">{fmt(l)}</span>' for l in cv["title"].split("\n"))
     subl = "<br>".join(fmt(l) for l in cv.get("sub", "").split("\n"))
@@ -89,12 +89,40 @@ window.layoutMap=function(top,bottom){{const M={mp};if(!M)return;const svg=docum
   const t=ad('text',{{x:p[0],y:p[1]-34,'text-anchor':'middle','font-size':34,'font-weight':700,fill:'#0B1B33','font-family':'Zen Kaku Gothic New',stroke:'#F7F8FA','stroke-width':9,'paint-order':'stroke','stroke-linejoin':'round'}});t.textContent=l;}});
 }};
 </script></body></html>"""
+if single and sc["cover"].get("key"):   # 2026-11-21〜：重要な語を特大で（黄色の箱に紺の文字）。一覧の小さな表示でも読める
+    cv = sc["cover"]
+    subl = "<br>".join(fmt(l) for l in cv.get("sub", "").split("\n"))
+    page = f"""<!doctype html><html><head><meta charset="utf-8">{fl}<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{width:1080px;height:1920px;background:#F7F8FA;font-family:"Yu Gothic","Zen Kaku Gothic New",sans-serif;color:#0B1B33;position:relative;overflow:hidden}}
+.top{{position:absolute;left:96px;right:96px;top:282px;display:flex;align-items:baseline;justify-content:space-between;padding-bottom:26px;border-bottom:2px solid #0B1B33}}
+.logo{{font-size:50px;font-weight:900;letter-spacing:-.01em;margin-left:-2px}}
+.logo i{{font-style:normal;color:#1F5BFF}}
+.dt{{font-size:28px;font-weight:700;letter-spacing:.08em;color:#5B6B82}}
+.wrap{{position:absolute;left:96px;right:96px;top:420px}}
+.lb{{display:inline-block;font-size:34px;font-weight:900;color:#fff;background:#1F5BFF;letter-spacing:.06em;padding:10px 24px;border-radius:10px}}
+.ld{{margin-top:44px;font-size:104px;font-weight:900;line-height:1.15;letter-spacing:-.03em;white-space:nowrap;width:max-content}}
+.key{{display:inline-block;margin-top:22px;margin-left:-14px;padding:6px 22px 14px;background:#FFD43B;color:#0B1B33;font-weight:900;font-size:250px;line-height:1.04;letter-spacing:-.05em;white-space:nowrap;border-radius:18px}}
+.tl{{margin-top:30px;font-size:104px;font-weight:900;line-height:1.15;letter-spacing:-.03em;white-space:nowrap;width:max-content;color:#1F5BFF}}
+.sub{{margin-top:44px;font-size:44px;font-weight:700;line-height:1.5;color:#5B6B82;letter-spacing:-.01em}}
+.kn{{letter-spacing:-.06em}}
+.ft{{position:absolute;left:96px;right:96px;top:1618px;font-size:26px;font-weight:700;color:#8A97AA;letter-spacing:.12em}}
+</style></head><body>
+<div class="top"><div class="logo">Quick <i>News</i></div><div class="dt">{d.month}/{d.day}（{wd}）</div></div>
+<div class="wrap"><div class="lb">{esc(cv.get("label", ""))}</div>
+<div class="ld">{fmt(cv.get("lead", ""))}</div><div class="key">{fmt(cv["key"])}</div><div class="tl">{fmt(cv.get("tail", ""))}</div>
+<div class="sub">{subl}</div></div>
+<div class="ft">{esc(sc.get("tagline", "1日1分で社会がわかる"))}</div></body></html>"""
+    single = "key"
 fn = os.path.join(os.path.dirname(os.path.abspath(out)), "_cover.html")
 open(fn, "w", encoding="utf-8").write(page)
 with sync_playwright() as pw:
     br = pw.chromium.launch(); pg = br.new_page(viewport={"width": 1080, "height": 1920})
     pg.goto("file://" + fn); pg.evaluate("document.fonts.ready"); pg.wait_for_timeout(400)
-    if single:
+    if single == "key":
+        pg.evaluate("""(()=>{const W=900,fit=(el,s,min)=>{while(el.getBoundingClientRect().width>W&&s>min){s-=2;el.style.fontSize=s+'px';}};
+          fit(document.querySelector('.key'),250,120);document.querySelectorAll('.ld,.tl').forEach(e=>fit(e,104,56));const w=document.querySelector('.wrap'),h=w.getBoundingClientRect().height;w.style.top=Math.max(420,420+(1570-420-h)/2)+'px';})()""")
+    elif single:
         pg.evaluate("""(()=>{const h=document.querySelector('.hl'),W=888;let s=104;
           while([...h.querySelectorAll('.ln')].some(l=>l.getBoundingClientRect().width>W)&&s>50){s-=1;h.style.fontSize=s+'px';}
           const sb=document.querySelector('.sub');sb.style.top=(h.getBoundingClientRect().bottom+30)+'px';
@@ -103,6 +131,6 @@ with sync_playwright() as pw:
     pg.evaluate("""(()=>{const hs=[...document.querySelectorAll('.hl')],W=888;let s=84;
       const over=()=>hs.some(h=>[...h.querySelectorAll('.ln')].some(l=>l.getBoundingClientRect().width>W));
       while(over()&&s>40){s-=1;hs.forEach(h=>h.style.fontSize=s+'px');}return s;})()""")
-    print("size", pg.evaluate("getComputedStyle(document.querySelector('.hl')).fontSize"))
+    print("size", pg.evaluate("(e=>e?getComputedStyle(e).fontSize:getComputedStyle(document.querySelector('.key')).fontSize)(document.querySelector('.hl'))"))
     pg.screenshot(path=out); br.close()
 os.remove(fn)
