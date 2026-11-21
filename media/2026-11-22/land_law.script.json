@@ -1,0 +1,215 @@
+{
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.22 SUN",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "style": "pop",
+ "direction": "場所の一点ではなく『施設の周り約1000m』という範囲が核心なので、地図に寄らず、custom で施設を中心に点線の円が広がる図を作る。冒頭は青の pop、kw は珊瑚『何が変わる？』（届け出→許可）、morph は書類→地球儀が鍵に変わる『国籍を問わず／原則不許可』、紫『なぜ大事？』とミント『これからどうなる？』で締め、用語と一覧は省く。",
+ "title": "基地周辺の土地取引、事前許可制へ｜重要土地法の改正案が衆院委で可決",
+ "cover": {
+  "label": "政治｜重要土地法",
+  "lead": "基地周辺の土地取引が",
+  "key": "事前許可制へ",
+  "tail": "衆院の委員会で可決",
+  "sub": "対象はどこまで？\nこれまでと何が変わる？"
+ },
+ "scenes": [
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "pop",
+   "bg": "blue",
+   "kicker": "衆院内閣委・11月20日",
+   "text": "基地周辺の土地\n *事前許可* 制へ",
+   "size": 116,
+   "icon": "home",
+   "marquee": "土地",
+   "sub": "重要土地法の改正案が委員会で可決",
+   "beats": [
+    {
+     "say": "基地の周りの土地取引を、許可制にする法案が、委員会で可決されました。",
+     "reading": "基地の周りの、とちとりひきを、許可制にする法案が、委員会で可決されました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "custom",
+   "title": "どこが *対象* ？",
+   "html": "<div class=\"rg\"><div class=\"rgc\" id=\"rgc\"></div><div class=\"rgc2\" id=\"rgc2\"></div><div class=\"rgcore\" id=\"rgcore\"><div class=\"rgt\">自衛隊・<br>海保の施設</div></div><div class=\"rgm\" id=\"rgm\">約1000m</div><div class=\"rgtag\" id=\"rgtag\">規制区域＝取引に国の許可</div><div class=\"rgisl\" id=\"rgisl\">{{picto:globe:84:0}}<span>無人の国境離島も</span></div></div>",
+   "css": ".rg{position:absolute;left:96px;right:96px;top:470px;height:560px}\n.rgc{position:absolute;left:444px;top:240px;width:0;height:0;border-radius:50%;border:6px dashed #FF6A1F;transform:translate(-50%,-50%);background:rgba(255,106,31,.07)}\n.rgc2{position:absolute;left:444px;top:240px;width:0;height:0;border-radius:50%;border:3px solid #1F5BFF;transform:translate(-50%,-50%);opacity:0}\n.rgcore{position:absolute;left:444px;top:240px;width:210px;height:210px;border-radius:40px;background:#0B1B33;transform:translate(-50%,-50%) scale(0);display:flex;align-items:center;justify-content:center}\n.rgt{color:#fff;font-size:42px;font-weight:900;text-align:center;line-height:1.25}\n.rgm{position:absolute;left:600px;top:10px;font-size:52px;font-weight:900;color:#FF6A1F;opacity:0;white-space:nowrap}\n.rgtag{position:absolute;left:0;right:0;top:485px;text-align:center;font-size:46px;font-weight:900;color:#1F5BFF;opacity:0;white-space:nowrap}\n.rgisl{position:absolute;left:0;right:0;top:485px;display:flex;justify-content:center;align-items:center;gap:16px;font-size:50px;font-weight:900;color:#0B1B33;opacity:0;white-space:nowrap}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\n__tick.push(t=>{const g=id=>document.getElementById(id);\nconst a=ez((t-0.1)/0.5);g('rgcore').style.transform='translate(-50%,-50%) scale('+a.toFixed(3)+')';\nconst r=ez((t-0.5)/1.0)*480;const c=g('rgc');c.style.width=r+'px';c.style.height=r+'px';\nconst p=((t-0.6)%1.6)/1.6;const c2=g('rgc2');const r2=t>0.6?210+270*p:0;c2.style.width=r2+'px';c2.style.height=r2+'px';c2.style.opacity=t>0.6?(0.6*(1-p)).toFixed(3):0;\ng('rgm').style.opacity=ez((t-1.2)/0.4).toFixed(3);\nconst b1=(__B[1]||2.8);const s=ez((t-1.5)/0.4),h=ez((t-b1)/0.3);g('rgtag').style.opacity=(s*(1-h)).toFixed(3);\ng('rgisl').style.opacity=ez((t-b1-0.1)/0.4).toFixed(3);});",
+   "beats": [
+    {
+     "say": "対象は、自衛隊などの施設の周り、約1000メートルです。",
+     "reading": "対象は、じえいたいなどの施設の周り、やくせんメートルです。"
+    },
+    {
+     "say": "無人の国境離島も含まれます。",
+     "reading": "むじんの、こっきょうりとうも含まれます。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "kw",
+   "bg": "coral",
+   "label": "何が変わる？",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "これまでは、事前の届け出だけでした。",
+     "reading": "これまでは、じぜんのとどけでだけでした。",
+     "kw": [
+      "これまでは",
+      {
+       "t": "事前の *届け出* だけでした",
+       "icon": "doc"
+      }
+     ]
+    },
+    {
+     "say": "今後は、国の許可がない取引は、無効になります。",
+     "reading": "今後は、国の許可がないとりひきは、むこうになります。",
+     "kw": [
+      "今後は",
+      {
+       "t": "国の *許可* がない取引は",
+       "icon": "gov"
+      },
+      "無効になります"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "blue",
+     "icon": "card",
+     "visual": "cards",
+     "kicker": "対象は日本人も",
+     "big": "国籍を問わず\n *一律* に適用"
+    },
+    {
+     "bg": "navy",
+     "icon": "globe",
+     "icon2": "lock",
+     "visual": "ripple",
+     "kicker": "外国政府の関係者など",
+     "big": "取得は\n *原則不許可* "
+    }
+   ],
+   "beats": [
+    {
+     "say": "規制は、国籍を問わず適用されます。",
+     "reading": "規制は、こくせきを問わず、適用されます。"
+    },
+    {
+     "say": "外国政府の関係者などは、原則、許可されません。",
+     "reading": "がいこくせいふの関係者などは、げんそく、許可されません。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "kw",
+   "bg": "violet",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "ドローン攻撃などで、施設の機能が妨げられるのを防ぐねらいです。",
+     "reading": "ドローン攻撃などで、施設の機能が、さまたげられるのを防ぐねらいです。",
+     "kw": [
+      "ドローン攻撃などで",
+      {
+       "t": "施設の機能が *妨げられる* のを",
+       "icon": "alert"
+      },
+      "防ぐねらいです"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "政治｜重要土地法",
+   "source": "時事通信／NHK／共同通信",
+   "type": "kw",
+   "bg": "mint",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "委員会は、区域や基準をはっきりさせるよう、政府に求めました。",
+     "reading": "委員会は、くいきや基準を、はっきりさせるよう、政府に求めました。",
+     "kw": [
+      "委員会は",
+      {
+       "t": "区域や *基準* を",
+       "icon": "doc"
+      },
+      "はっきりさせるよう",
+      "政府に求めました"
+     ]
+    },
+    {
+     "say": "今後は、本会議で審議されます。",
+     "reading": "今後は、ほんかいぎで審議されます。",
+     "kw": [
+      "今後は",
+      {
+       "t": " *本会議* で審議されます",
+       "icon": "gov"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
