@@ -1,0 +1,208 @@
+{
+ "channel": "Quick News",
+ "tagline": "1日1分で社会がわかる",
+ "date_label": "2026.11.22 SUN",
+ "voice": {
+  "file": "1.vvm",
+  "id": 14,
+  "name": "冥鳴ひまり",
+  "intonation": 1.15,
+  "pause": 0.2
+ },
+ "speed": 1.25,
+ "min_seconds": 28,
+ "max_seconds": 32,
+ "density": 2.5,
+ "style": "pop",
+ "direction": "場所そのものが主役なので、今日はこの1本だけ地球儀で那覇・首里へ寄る冒頭に（前日は地図なし）。custom で『沖縄戦→1992年→2019年焼失→2026年完成』の縦の年表をたどり、morph は白地の書類→青の波紋で『沖縄産の朱色』『23日から一般公開』。kw は黄『背景』、ミント『なぜ大事？』、オレンジ『これからどうなる？』。",
+ "title": "首里城の正殿、復元が完成｜火災から7年、23日から一般公開",
+ "cover": {
+  "label": "社会｜首里城",
+  "lead": "火災から7年 首里城の正殿",
+  "key": "復元が完成",
+  "tail": "23日から一般公開",
+  "sub": "何がよみがえった？\n残る課題は？"
+ },
+ "scenes": [
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "globe",
+   "mode": "zoom",
+   "target": [
+    127.7195,
+    26.217
+   ],
+   "hl": [
+    "392"
+   ],
+   "stages": [
+    "世界",
+    "日本",
+    "沖縄",
+    "那覇・首里"
+   ],
+   "pin": "首里城",
+   "pin_sub": "正殿",
+   "title": "首里城の正殿\n *復元* が完成",
+   "title_at": -0.6,
+   "hero": true,
+   "hero_size": 124,
+   "map_h": 560,
+   "hero_top": 900,
+   "hero_sub": "2019年の火災から7年",
+   "beats": [
+    {
+     "say": "2019年の火災で焼けた首里城の正殿が、復元を終え、完成式が開かれました。",
+     "reading": "にせんじゅうきゅうねんの火災で焼けた、しゅりじょうの、せいでんが、復元を終え、完成式が開かれました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "kw",
+   "bg": "yellow",
+   "label": "背景",
+   "label_icon": "key",
+   "beats": [
+    {
+     "say": "正殿は、琉球王国の国王が、政治や儀式を行った建物です。",
+     "reading": "せいでんは、りゅうきゅうおうこくの国王が、政治や儀式を行った建物です。",
+     "kw": [
+      "正殿は",
+      {
+       "t": " *琉球王国* の国王が",
+       "icon": "gov"
+      },
+      "政治や儀式を行った建物です"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "custom",
+   "title": "焼失と *再建* の歴史",
+   "html": "<div class=\"tl\"><div class=\"tlax\"><div class=\"tlfill\" id=\"tlfill\"></div></div><div class=\"tlr\" id=\"tlr0\" style=\"top:0px\"><div class=\"tld\" style=\"background:#0B1B33\"></div><div class=\"tly\">沖縄戦</div><div class=\"tlt\">破壊される</div></div><div class=\"tlr\" id=\"tlr1\" style=\"top:130px\"><div class=\"tld\" style=\"background:#1F5BFF\"></div><div class=\"tly\">1992年</div><div class=\"tlt\">平成の復元</div></div><div class=\"tlr\" id=\"tlr2\" style=\"top:260px\"><div class=\"tld\" style=\"background:#FF4D6D\"></div><div class=\"tly\">2019年</div><div class=\"tlt\">火災で焼失</div></div><div class=\"tlr\" id=\"tlr3\" style=\"top:390px\"><div class=\"tld\" style=\"background:#FF6A1F\"></div><div class=\"tly\">2026年</div><div class=\"tlt\">令和の復元が完成</div></div></div>",
+   "css": ".tl{position:absolute;left:96px;right:96px;top:500px;height:520px}\n.tlax{position:absolute;left:22px;top:20px;width:6px;height:400px;background:#D5DDEA;border-radius:3px;overflow:hidden}\n.tlfill{position:absolute;left:0;top:0;width:6px;height:0;background:#1F5BFF}\n.tlr{position:absolute;left:0;right:0;height:100px;opacity:0}\n.tld{position:absolute;left:5px;top:22px;width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 8px #fff}\n.tly{position:absolute;left:84px;top:4px;font-size:44px;font-weight:900;color:#5A6B85;white-space:nowrap}\n.tlt{position:absolute;left:330px;top:0;font-size:52px;font-weight:900;color:#0B1B33;white-space:nowrap}\n#tlr2 .tlt{color:#FF4D6D}#tlr3 .tlt{color:#1F5BFF}",
+   "js": "const ez=x=>x<=0?0:x>=1?1:1-Math.pow(1-x,3);\n__tick.push(t=>{const b1=(__B[1]||2.6);const st=[0.15,0.9,b1,Math.min(__D-0.9,b1+1.1)];\nst.forEach((s,i)=>{const r=document.getElementById('tlr'+i);const u=ez((t-s)/0.45);r.style.opacity=u.toFixed(3);r.style.transform='translateX('+(50*(1-u)).toFixed(1)+'px)';});\nlet f=0;st.forEach((s,i)=>{f=Math.max(f,ez((t-s)/0.5)*(i*130+40));});document.getElementById('tlfill').style.height=Math.min(400,f).toFixed(1)+'px';});",
+   "beats": [
+    {
+     "say": "沖縄戦で壊され、1992年に復元。",
+     "reading": "おきなわせんで壊され、せんきゅうひゃくきゅうじゅうにねんに、復元。"
+    },
+    {
+     "say": "2019年に再び焼け、今回よみがえりました。",
+     "reading": "にせんじゅうきゅうねんに、ふたたび焼け、今回よみがえりました。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "morph",
+   "anchor_offset": 1,
+   "shots": [
+    {
+     "bg": "white",
+     "icon": "dot",
+     "icon2": "card",
+     "visual": "cards",
+     "kicker": "今回の復元では",
+     "big": "沖縄産の\n *朱色* で塗装"
+    },
+    {
+     "bg": "blue",
+     "icon": "arrow",
+     "visual": "ripple",
+     "kicker": "11月23日から・事前予約制",
+     "big": "正殿の\n *一般公開* "
+    }
+   ],
+   "beats": [
+    {
+     "say": "朱色の塗装には、沖縄産の顔料を使いました。",
+     "reading": "しゅいろの塗装には、おきなわさんの、がんりょうを使いました。"
+    },
+    {
+     "say": "23日からは、正殿の一般公開が始まります。",
+     "reading": "にじゅうさんにちからは、せいでんの、いっぱんこうかいが始まります。"
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "kw",
+   "bg": "mint",
+   "label": "なぜ大事？",
+   "label_icon": "alert",
+   "beats": [
+    {
+     "say": "地元では、経済効果への期待も高まっています。",
+     "reading": "地元では、けいざいこうかへの、期待も高まっています。",
+     "kw": [
+      "地元では",
+      {
+       "t": " *経済効果* への",
+       "icon": "coin"
+      },
+      "期待も高まっています"
+     ]
+    }
+   ]
+  },
+  {
+   "story": 1,
+   "section": "社会｜首里城",
+   "source": "NHK／共同通信／琉球新報",
+   "type": "kw",
+   "bg": "orange",
+   "label": "これからどうなる？",
+   "label_icon": "calendar",
+   "beats": [
+    {
+     "say": "一方、南殿や北殿の再建の時期は、まだ決まっていません。",
+     "reading": "いっぽう、なんでんや、ほくでんの、再建の時期は、まだ決まっていません。",
+     "kw": [
+      "一方、南殿や北殿の",
+      {
+       "t": "再建の *時期* は",
+       "icon": "calendar"
+      },
+      "まだ決まっていません"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "morph",
+   "story": 0,
+   "section": "",
+   "source": "",
+   "anchor_offset": 3,
+   "min_dur": 2.4,
+   "shots": [
+    {
+     "bg": "navy",
+     "icon": "dot",
+     "logo": true,
+     "tagline": "1日1分で社会がわかる",
+     "cta": "フォローして毎朝の習慣に"
+    }
+   ],
+   "beats": [
+    {
+     "say": "フォローして、毎朝の習慣に。"
+    }
+   ]
+  }
+ ]
+}
